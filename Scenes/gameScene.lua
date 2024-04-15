@@ -12,12 +12,13 @@ local volume = nil
 
 local snowflakes = {}
 
-local function createSnowflake()
+local function createSnowflake(sceneGroup)
 	local snowflake = display.newImageRect("Assets/snowflake.png", 36, 36)
 
 	snowflake.x = math.random(display.contentWidth)
 	snowflake.y = -snowflake.contentHeight
 
+	sceneGroup:insert(snowflake)
 	table.insert(snowflakes, snowflake)
 end
 
@@ -34,9 +35,12 @@ local function updateSnowflakes()
 	end
 end
 
-local function createSnowflakes()
-	createSnowflake()
-	timer.performWithDelay(500, createSnowflakes)
+local function createSnowflakes(sceneGroup)
+	createSnowflake(sceneGroup)
+
+	timer.performWithDelay(500, function ()
+		createSnowflakes(sceneGroup)
+	end)
 end
 
 function scene:create()
@@ -46,7 +50,7 @@ function scene:create()
 	backgroundImage.y = display.contnetCenterY
 	sceneGroup:insert(backgroundImage)
 
-	createSnowflakes()
+	createSnowflakes(sceneGroup)
 
 	audio.play(backgroundSound)
 	volume = audio.getVolume()
