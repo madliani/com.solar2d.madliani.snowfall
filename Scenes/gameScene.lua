@@ -1,30 +1,43 @@
+local audio = require("audio")
 local composer = require("composer")
 local display = require("display")
 
 local scene = composer.newScene()
-local background = display.newImageRect("Assets/background.png", display.pixelWidth, display.pixelHeight)
+
+local backgroundImage = display.newImageRect("Assets/background.png", display.pixelWidth, display.pixelHeight)
+
+local backgroundSound = audio.loadSound("Sounds/The field of dreams.mp3")
+local volume = nil
 
 function scene:create()
     local sceneGroup = self.view
 
-    background.x = display.contentCenterX
-    background.y = display.contnetCenterY
+    backgroundImage.x = display.contentCenterX
+    backgroundImage.y = display.contnetCenterY
+    sceneGroup:insert(backgroundImage)
 
-    sceneGroup:insert(background)
+    audio.play(backgroundSound)
+    volume = audio.getVolume()
 end
 
 function scene:show()
-    background.isVisible = true
+    backgroundImage.isVisible = true
+
+    audio.setVolume(volume)
 end
 
 function scene:hide()
-    background.isVisible = false
+    backgroundImage.isVisible = false
+
+    audio.setVolume(0)
 end
 
 function scene:destroy()
-    background:removeSelf()
+    backgroundImage:removeSelf()
+    backgroundImage = nil
 
-    background = nil
+    audio.setVolume(0)
+    backgroundSound = nil
 end
 
 scene:addEventListener("create", scene)
