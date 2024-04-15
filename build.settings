@@ -1,11 +1,5 @@
 settings =
 {
-	orientation =
-	{
-		default = "portrait",
-		supported = { "portrait", },
-	},
-
 	android =
 	{
 		usesPermissions =
@@ -14,21 +8,27 @@ settings =
 		},
 	},
 
-	iphone =
-	{
-		xcassets = "Images.xcassets",
-		plist =
-		{
-			UIStatusBarHidden = false,
-			UILaunchStoryboardName = "LaunchScreen",
-		},
-	},
-
-	plugins = {},
-
 	excludeFiles =
 	{
 		all = { "Icon.png", "Icon-*dpi.png", "Images.xcassets", },
 		android = { "LaunchScreen.storyboardc", },
 	},
+
+	iphone =
+	{
+		plist =
+		{
+			UILaunchStoryboardName = "LaunchScreen",
+			UIStatusBarHidden = false,
+		},
+		xcassets = "Images.xcassets",
+	},
+
+	orientation =
+	{
+		default = "portrait",
+		supported = { "portrait", },
+	},
+
+	plugins = {},
 }
