@@ -7,14 +7,12 @@ local scene = composer.newScene()
 
 local backgroundImage = display.newImageRect("Assets/background.png", display.pixelWidth, display.pixelHeight)
 
-local backgroundSound = audio.loadSound("Sounds/the field of dreams.mp3")
+local backgroundSound = audio.loadSound("Sounds/the_field_of_dreams.mp3")
 local volume = nil
 
 local snowflakes = {}
 
 local function createSnowflake(sceneGroup)
-	math.randomseed(os.time())
-
 	local scale = math.random(5, 15)
 	local snowflakeWidth = display.pixelWidth / display.contentWidth * scale
 	local snowflakeHeight = display.pixelWidth / display.contentWidth * scale
