@@ -13,7 +13,12 @@ local volume = nil
 local snowflakes = {}
 
 local function createSnowflake(sceneGroup)
-	local snowflake = display.newImageRect("Assets/snowflake.png", 36, 36)
+	math.randomseed(os.time())
+
+	local scale = math.random(5, 15)
+	local snowflakeWidth = display.pixelWidth / display.contentWidth * scale
+	local snowflakeHeight = display.pixelWidth / display.contentWidth * scale
+	local snowflake = display.newImageRect("Assets/snowflake.png", snowflakeWidth, snowflakeHeight)
 
 	snowflake.x = math.random(display.contentWidth)
 	snowflake.y = -snowflake.contentHeight
@@ -43,7 +48,7 @@ local function createSnowflakes(sceneGroup)
 	end)
 end
 
-function scene:create()
+function scene.create(self)
 	local sceneGroup = self.view
 
 	backgroundImage.x = display.contentCenterX
@@ -56,7 +61,7 @@ function scene:create()
 	volume = audio.getVolume()
 end
 
-function scene:show()
+function scene.show()
 	backgroundImage.isVisible = true
 
 	audio.setVolume(volume)
@@ -68,7 +73,10 @@ function scene:hide()
 	audio.setVolume(0)
 end
 
-function scene:destroy()
+function scene.destroy(self)
+	local sceneGroup = self.view
+
+	sceneGroup:remove(backgroundImage)
 	backgroundImage:removeSelf()
 	backgroundImage = nil
 
@@ -76,10 +84,10 @@ function scene:destroy()
 	backgroundSound = nil
 end
 
-scene:addEventListener("create", scene)
-scene:addEventListener("show", scene)
-scene:addEventListener("hide", scene)
-scene:addEventListener("destroy", scene)
+scene:addEventListener("create")
+scene:addEventListener("show")
+scene:addEventListener("hide")
+scene:addEventListener("destroy")
 
 Runtime:addEventListener("enterFrame", updateSnowflakes)
 
