@@ -1,3 +1,3 @@
 local composer = require("composer")
 
-composer.gotoScene("Scenes.GameScene")
+composer.gotoScene("Scenes.gameScene")

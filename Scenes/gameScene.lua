@@ -7,7 +7,7 @@ local scene = composer.newScene()
 
 local backgroundImage = display.newImageRect("Assets/background.png", display.pixelWidth, display.pixelHeight)
 
-local backgroundSound = audio.loadSound("Sounds/The field of dreams.mp3")
+local backgroundSound = audio.loadSound("Sounds/the field of dreams.mp3")
 local volume = nil
 
 local snowflakes = {}
