@@ -1,16 +1,15 @@
-local audio = require("audio")
 local composer = require("composer")
 local display = require("display")
 local timer = require("timer")
 
 local BackgroundImage = require("Objects.backgroundImage")
+local BackgroundSound = require("Objects.backgroundSound")
 
 local scene = composer.newScene()
 
 local backgroundImage = BackgroundImage("Assets/background.png")
 
-local backgroundSound = audio.loadSound("Sounds/the_field_of_dreams.mp3")
-local volume = nil
+local backgroundSound = BackgroundSound("Sounds/the_field_of_dreams.mp3")
 
 local snowflakes = {}
 
@@ -55,27 +54,26 @@ function scene.create(self)
 
 	createSnowflakes(sceneGroup)
 
-	audio.play(backgroundSound)
-	volume = audio.getVolume()
+	backgroundSound.create()
 end
 
 function scene.show()
 	backgroundImage.show()
 
-	audio.setVolume(volume)
+	backgroundSound.unmute()
 end
 
 function scene:hide()
 	backgroundImage.hide()
 
-	audio.setVolume(0)
+	backgroundSound.mute()
 end
 
 function scene.destroy()
 	backgroundImage.destroy()
 	backgroundImage = nil
 
-	audio.setVolume(0)
+	backgroundSound.destroy()
 	backgroundSound = nil
 end
 
