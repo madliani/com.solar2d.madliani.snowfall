@@ -65,7 +65,6 @@ local Blizzard = function ()
             for i = 1, #snowflakes, 1 do
                 local snowflake = snowflakes[i]
 
-                sceneGroup.remove(sceneGroup, snowflake)
                 snowflake.destroy()
                 table.remove(snowflakes, i)
             end
