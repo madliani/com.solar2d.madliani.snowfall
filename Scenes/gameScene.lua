@@ -19,7 +19,7 @@ pool.insert(backgroundSound)
 function scene.create(self)
 	local sceneGroup = self.view
 
-	pool.addSceneGroup(sceneGroup)
+	pool.insertSceneGroup(sceneGroup)
 	pool.create()
 end
 

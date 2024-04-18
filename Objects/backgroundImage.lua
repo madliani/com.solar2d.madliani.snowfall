@@ -6,7 +6,7 @@ local BackgroundImage = function (path)
     local sceneGroup = nil
 
     ---@param group table
-    local function addSceneGroup(group)
+    local function insertSceneGroup(group)
         sceneGroup = group
     end
 
@@ -43,13 +43,13 @@ local BackgroundImage = function (path)
     end
 
     ---@class BackgroundImage
-    ---@field addSceneGroup function
+    ---@field insertSceneGroup function
     ---@field create function
     ---@field destroy function
     ---@field hide function
     ---@field show function
     return {
-        addSceneGroup = addSceneGroup,
+        insertSceneGroup = insertSceneGroup,
         create = create,
         destroy = destroy,
         hide = hide,

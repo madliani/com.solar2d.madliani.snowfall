@@ -9,13 +9,13 @@ local Pool = function ()
     end
 
     ---@param group table
-    local function addSceneGroup(group)
+    local function insertSceneGroup(group)
         if objects ~= nil and #objects ~= 0 then
             for i = 1, #objects, 1 do
                 local object = objects[i]
 
-                if object.addSceneGroup ~= nil then
-                    object.addSceneGroup(group)
+                if object.insertSceneGroup ~= nil then
+                    object.insertSceneGroup(group)
                 end
             end
         end
@@ -68,14 +68,14 @@ local Pool = function ()
     end
 
     ---@class Pool
-    ---@field addSceneGroup function
+    ---@field insertSceneGroup function
     ---@field create function
     ---@field destroy function
     ---@field hide function
     ---@field insert function
     ---@field show function
     return {
-        addSceneGroup = addSceneGroup,
+        insertSceneGroup = insertSceneGroup,
         create = create,
         destroy = destroy,
         hide = hide,
