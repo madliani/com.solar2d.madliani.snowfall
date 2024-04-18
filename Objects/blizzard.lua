@@ -7,9 +7,11 @@ local Blizzard = function ()
     local sceneGroup = nil
 
     ---@param group table
-    local function create(group)
+    local function addSceneGroup(group)
         sceneGroup = group
+    end
 
+    local function create()
         if sceneGroup ~= nil then
             local snowflake = Snowflake("Assets/snowflake.png")
 
@@ -17,9 +19,7 @@ local Blizzard = function ()
             snowflake.create()
             table.insert(snowflakes, snowflake)
 
-            timer.performWithDelay(500, function ()
-                create(sceneGroup)
-            end)
+            timer.performWithDelay(500, create)
         end
     end
 
@@ -69,12 +69,14 @@ local Blizzard = function ()
     end
 
     ---@class Blizzard
+    ---@field addSceneGroup function
     ---@field create function
     ---@field destroy function
     ---@field hide function
     ---@field show function
     ---@field update function
     return {
+        addSceneGroup = addSceneGroup,
         create = create,
         destroy = destroy,
         hide = hide,

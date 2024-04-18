@@ -18,7 +18,8 @@ function scene.create(self)
 	backgroundImage.addSceneGroup(sceneGroup)
 	backgroundImage.create()
 
-	blizzard.create(sceneGroup)
+	blizzard.addSceneGroup(sceneGroup)
+	blizzard.create()
 	Runtime:addEventListener("enterFrame", blizzard.update)
 
 	backgroundSound.create()
