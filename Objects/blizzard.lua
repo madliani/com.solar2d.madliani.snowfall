@@ -11,7 +11,7 @@ local Blizzard = function ()
         sceneGroup = group
     end
 
-    local function create()
+    local function generateSnowflakes()
         if sceneGroup ~= nil then
             local snowflake = Snowflake("Assets/snowflake.png")
 
@@ -19,8 +19,29 @@ local Blizzard = function ()
             snowflake.create()
             table.insert(snowflakes, snowflake)
 
-            timer.performWithDelay(500, create)
+            timer.performWithDelay(500, generateSnowflakes)
         end
+    end
+
+    local function update()
+        if #snowflakes ~= 0 then
+            for i = #snowflakes, 1, -1 do
+                local snowflake = snowflakes[i]
+
+                snowflake.incY()
+
+                if snowflake.isRemovable() then
+                    snowflake.destroy()
+                    table.remove(snowflakes, i)
+                end
+            end
+        end
+    end
+
+    local function create()
+        generateSnowflakes()
+
+        Runtime:addEventListener("enterFrame", update)
     end
 
     local function show()
@@ -53,35 +74,18 @@ local Blizzard = function ()
         end
     end
 
-    local function update()
-        if #snowflakes ~= 0 then
-            for i = #snowflakes, 1, -1 do
-                local snowflake = snowflakes[i]
-
-                snowflake.incY()
-
-                if snowflake.isRemovable() then
-                    snowflake.destroy()
-                    table.remove(snowflakes, i)
-                end
-            end
-        end
-    end
-
     ---@class Blizzard
     ---@field addSceneGroup function
     ---@field create function
     ---@field destroy function
     ---@field hide function
     ---@field show function
-    ---@field update function
     return {
         addSceneGroup = addSceneGroup,
         create = create,
         destroy = destroy,
         hide = hide,
         show = show,
-        update = update
     }
 end
 
