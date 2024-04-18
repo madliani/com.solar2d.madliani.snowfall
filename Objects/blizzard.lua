@@ -13,7 +13,8 @@ local Blizzard = function ()
         if sceneGroup ~= nil then
             local snowflake = Snowflake("Assets/snowflake.png")
 
-            snowflake.create(sceneGroup)
+            snowflake.addSceneGroup(sceneGroup)
+            snowflake.create()
             table.insert(snowflakes, snowflake)
 
             timer.performWithDelay(500, function ()

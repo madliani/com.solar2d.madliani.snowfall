@@ -6,9 +6,11 @@ local Snowflake = function (path)
     local sceneGroup = nil
 
     ---@param group table
-    local function create(group)
+    local function addSceneGroup(group)
         sceneGroup = group
+    end
 
+    local function create()
         if imageRect == nil and sceneGroup ~= nil then
             local scale = math.random(5, 15)
             local width = display.pixelWidth / display.contentWidth * scale
@@ -57,6 +59,7 @@ local Snowflake = function (path)
     end
 
     ---@class Snowflake
+    ---@field addSceneGroup function
     ---@field create function
     ---@field destroy function
     ---@field hide function
@@ -64,6 +67,7 @@ local Snowflake = function (path)
     ---@field isRemovable function
     ---@field show function
     return {
+        addSceneGroup = addSceneGroup,
         create = create,
         destroy = destroy,
         hide = hide,
