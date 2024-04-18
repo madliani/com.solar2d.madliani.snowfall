@@ -28,10 +28,9 @@ local Blizzard = function ()
             for i = #snowflakes, 1, -1 do
                 local snowflake = snowflakes[i]
 
-                snowflake.incY()
+                snowflake.update()
 
-                if snowflake.isRemovable() then
-                    snowflake.destroy()
+                if snowflake.isUnavable() then
                     table.remove(snowflakes, i)
                 end
             end

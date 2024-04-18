@@ -46,16 +46,24 @@ local Snowflake = function (path)
         end
     end
 
-    local function incY()
-        if imageRect ~= nil then
-            imageRect.y = imageRect.y + 1
-        end
-    end
-
     local function isRemovable()
         if imageRect ~= nil then
             return imageRect.y >= display.contentHeight
         end
+    end
+
+    local function update()
+        if imageRect ~= nil then
+            imageRect.y = imageRect.y + 1
+
+            if isRemovable() then
+                destroy()
+            end
+        end
+    end
+
+    local function isUnavable()
+        return imageRect == nil
     end
 
     ---@class Snowflake
@@ -63,17 +71,17 @@ local Snowflake = function (path)
     ---@field create function
     ---@field destroy function
     ---@field hide function
-    ---@field incY function
-    ---@field isRemovable function
+    ---@field isUnavable function
     ---@field show function
+    ---@field update function
     return {
         addSceneGroup = addSceneGroup,
         create = create,
         destroy = destroy,
         hide = hide,
-        incY = incY,
-        isRemovable = isRemovable,
-        show = show
+        isUnavable = isUnavable,
+        show = show,
+        update = update
     }
 end
 
