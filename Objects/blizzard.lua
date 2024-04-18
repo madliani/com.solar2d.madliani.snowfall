@@ -12,7 +12,7 @@ local Blizzard = function ()
     end
 
     local function generateSnowflakes()
-        if sceneGroup ~= nil then
+        if snowflakes ~= nil and sceneGroup ~= nil then
             local snowflake = Snowflake("Assets/snowflake.png")
 
             snowflake.addSceneGroup(sceneGroup)
@@ -24,7 +24,7 @@ local Blizzard = function ()
     end
 
     local function update()
-        if #snowflakes ~= 0 then
+        if snowflakes ~= nil and #snowflakes ~= 0 then
             for i = #snowflakes, 1, -1 do
                 local snowflake = snowflakes[i]
 
@@ -45,7 +45,7 @@ local Blizzard = function ()
     end
 
     local function show()
-        if #snowflakes ~= 0 then
+        if snowflakes ~= nil and #snowflakes ~= 0 then
             for i = 1, #snowflakes, 1 do
                 snowflakes[i].show()
             end
@@ -53,7 +53,7 @@ local Blizzard = function ()
     end
 
     local function hide()
-        if #snowflakes ~= 0 then
+        if snowflakes ~= nil and #snowflakes ~= 0 then
             for i = 1, #snowflakes, 1 do
                 snowflakes[i].hide()
             end
@@ -61,7 +61,7 @@ local Blizzard = function ()
     end
 
     local function destroy()
-        if #snowflakes ~= 0 and sceneGroup ~= nil then
+        if snowflakes ~= nil and #snowflakes ~= 0 and sceneGroup ~= nil then
             for i = 1, #snowflakes, 1 do
                 local snowflake = snowflakes[i]
 
