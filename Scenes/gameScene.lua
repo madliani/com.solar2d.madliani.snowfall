@@ -15,7 +15,8 @@ local blizzard = Blizzard()
 function scene.create(self)
 	local sceneGroup = self.view
 
-	backgroundImage.create(sceneGroup)
+	backgroundImage.addSceneGroup(sceneGroup)
+	backgroundImage.create()
 
 	blizzard.create(sceneGroup)
 	Runtime:addEventListener("enterFrame", blizzard.update)
