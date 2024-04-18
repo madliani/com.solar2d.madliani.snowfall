@@ -21,7 +21,7 @@ local Snowflake = function (path)
             imageRect.x = math.random(display.contentWidth)
             imageRect.y = -imageRect.contentHeight
 
-            sceneGroup:insert(imageRect)
+            sceneGroup.insert(sceneGroup, imageRect)
         end
     end
 
@@ -39,8 +39,8 @@ local Snowflake = function (path)
 
     local function destroy()
         if imageRect ~= nil and sceneGroup ~= nil then
-            sceneGroup:remove(imageRect)
-            imageRect:removeSelf()
+            sceneGroup.remove(sceneGroup, imageRect)
+            imageRect.removeSelf(imageRect)
 
             imageRect = nil
         end

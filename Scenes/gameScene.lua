@@ -32,7 +32,7 @@ function scene.show()
 	backgroundSound.unmute()
 end
 
-function scene:hide()
+function scene.hide()
 	backgroundImage.hide()
 
 	blizzard.hide()
@@ -51,9 +51,9 @@ function scene.destroy()
 	blizzard = nil
 end
 
-scene:addEventListener("create")
-scene:addEventListener("show")
-scene:addEventListener("hide")
-scene:addEventListener("destroy")
+scene.addEventListener(scene, "create")
+scene.addEventListener(scene, "show")
+scene.addEventListener(scene, "hide")
+scene.addEventListener(scene, "destroy")
 
 return scene

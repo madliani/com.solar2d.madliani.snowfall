@@ -41,7 +41,7 @@ local Blizzard = function ()
     local function create()
         generateSnowflakes()
 
-        Runtime:addEventListener("enterFrame", update)
+        Runtime.addEventListener(Runtime, "enterFrame", update)
     end
 
     local function show()
@@ -65,7 +65,7 @@ local Blizzard = function ()
             for i = 1, #snowflakes, 1 do
                 local snowflake = snowflakes[i]
 
-                sceneGroup:remove(snowflake)
+                sceneGroup.remove(sceneGroup, snowflake)
                 snowflake.destroy()
                 table.remove(snowflakes, i)
             end

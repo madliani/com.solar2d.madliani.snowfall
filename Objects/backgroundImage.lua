@@ -17,7 +17,7 @@ local BackgroundImage = function (path)
             imageRect.x = display.contentCenterX
             imageRect.y = display.contnetCenterY
 
-            sceneGroup:insert(imageRect)
+            sceneGroup.insert(sceneGroup, imageRect)
         end
     end
 
@@ -35,9 +35,9 @@ local BackgroundImage = function (path)
 
     local function destroy()
         if imageRect ~= nil and sceneGroup ~= nil then
-            sceneGroup:remove(imageRect)
+            sceneGroup.remove(sceneGroup, imageRect)
 
-            imageRect:removeSelf()
+            imageRect.removeSelf(imageRect)
             imageRect = nil
         end
     end
