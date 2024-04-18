@@ -21,6 +21,16 @@ local Pool = function ()
         end
     end
 
+    local function destroy()
+        if objects ~= nil and #objects ~= 0 then
+            for i = 1, #objects, 1 do
+                objects[i].destroy()
+
+                table.remove(objects, i)
+            end
+        end
+    end
+
     local function create()
         if objects ~= nil and #objects ~= 0 then
             for i = 1, #objects, 1 do
@@ -53,16 +63,6 @@ local Pool = function ()
                 elseif object.mute ~= nil then
                     object.mute()
                 end
-            end
-        end
-    end
-
-    local function destroy()
-        if objects ~= nil and #objects ~= 0 then
-            for i = 1, #objects, 1 do
-                objects[i].destroy()
-
-                table.remove(objects, i)
             end
         end
     end

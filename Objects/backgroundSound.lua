@@ -5,6 +5,15 @@ local BackgroundSound = function (path)
     local sound = nil
     local volume = nil
 
+    local function destroy()
+        if sound ~= nil and volume ~= nil then
+            audio.setVolume(0)
+
+            sound = nil
+            volume = nil
+        end
+    end
+
     local function create()
         if sound == nil and volume == nil then
             sound = audio.loadSound(path)
@@ -23,15 +32,6 @@ local BackgroundSound = function (path)
     local function mute()
         if sound ~= nil then
             audio.setVolume(0)
-        end
-    end
-
-    local function destroy()
-        if sound ~= nil and volume ~= nil then
-            audio.setVolume(0)
-
-            sound = nil
-            volume = nil
         end
     end
 

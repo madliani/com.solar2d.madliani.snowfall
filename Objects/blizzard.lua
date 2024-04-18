@@ -37,6 +37,19 @@ local Blizzard = function ()
         end
     end
 
+    local function destroy()
+        if snowflakes ~= nil and #snowflakes ~= 0 and sceneGroup ~= nil then
+            for i = 1, #snowflakes, 1 do
+                local snowflake = snowflakes[i]
+
+                snowflake.destroy()
+                table.remove(snowflakes, i)
+            end
+
+            snowflakes = nil
+        end
+    end
+
     local function create()
         generateSnowflakes()
 
@@ -56,19 +69,6 @@ local Blizzard = function ()
             for i = 1, #snowflakes, 1 do
                 snowflakes[i].hide()
             end
-        end
-    end
-
-    local function destroy()
-        if snowflakes ~= nil and #snowflakes ~= 0 and sceneGroup ~= nil then
-            for i = 1, #snowflakes, 1 do
-                local snowflake = snowflakes[i]
-
-                snowflake.destroy()
-                table.remove(snowflakes, i)
-            end
-
-            snowflakes = nil
         end
     end
 

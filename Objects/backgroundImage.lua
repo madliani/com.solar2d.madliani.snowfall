@@ -10,6 +10,15 @@ local BackgroundImage = function (path)
         sceneGroup = group
     end
 
+    local function destroy()
+        if imageRect ~= nil and sceneGroup ~= nil then
+            sceneGroup.remove(sceneGroup, imageRect)
+
+            imageRect.removeSelf(imageRect)
+            imageRect = nil
+        end
+    end
+
     local function create()
         if imageRect == nil and sceneGroup ~= nil then
             imageRect = display.newImageRect(path, display.pixelWidth, display.pixelHeight)
@@ -30,15 +39,6 @@ local BackgroundImage = function (path)
     local function hide()
         if imageRect ~= nil then
             imageRect.isVisible = false
-        end
-    end
-
-    local function destroy()
-        if imageRect ~= nil and sceneGroup ~= nil then
-            sceneGroup.remove(sceneGroup, imageRect)
-
-            imageRect.removeSelf(imageRect)
-            imageRect = nil
         end
     end
 
