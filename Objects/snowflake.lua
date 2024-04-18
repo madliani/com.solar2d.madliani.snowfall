@@ -10,6 +10,15 @@ local Snowflake = function (path)
         sceneGroup = group
     end
 
+    local function destroy()
+        if imageRect ~= nil and sceneGroup ~= nil then
+            sceneGroup.remove(sceneGroup, imageRect)
+            imageRect.removeSelf(imageRect)
+
+            imageRect = nil
+        end
+    end
+
     local function create()
         if imageRect == nil and sceneGroup ~= nil then
             local scale = math.random(5, 15)
@@ -22,6 +31,7 @@ local Snowflake = function (path)
             imageRect.y = -imageRect.contentHeight
 
             sceneGroup.insert(sceneGroup, imageRect)
+            imageRect.addEventListener(imageRect, "tap", destroy)
         end
     end
 
@@ -34,15 +44,6 @@ local Snowflake = function (path)
     local function hide()
         if imageRect ~= nil then
             imageRect.isVisible = false
-        end
-    end
-
-    local function destroy()
-        if imageRect ~= nil and sceneGroup ~= nil then
-            sceneGroup.remove(sceneGroup, imageRect)
-            imageRect.removeSelf(imageRect)
-
-            imageRect = nil
         end
     end
 
