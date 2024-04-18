@@ -67,18 +67,18 @@ local Snowflake = function (path)
     end
 
     ---@class Snowflake
-    ---@field insertSceneGroup function
     ---@field create function
     ---@field destroy function
     ---@field hide function
+    ---@field insertSceneGroup function
     ---@field isUnavable function
     ---@field show function
     ---@field update function
     return {
-        insertSceneGroup = insertSceneGroup,
         create = create,
         destroy = destroy,
         hide = hide,
+        insertSceneGroup = insertSceneGroup,
         isUnavable = isUnavable,
         show = show,
         update = update

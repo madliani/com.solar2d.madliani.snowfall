@@ -68,18 +68,18 @@ local Pool = function ()
     end
 
     ---@class Pool
-    ---@field insertSceneGroup function
     ---@field create function
     ---@field destroy function
     ---@field hide function
     ---@field insert function
+    ---@field insertSceneGroup function
     ---@field show function
     return {
-        insertSceneGroup = insertSceneGroup,
         create = create,
         destroy = destroy,
         hide = hide,
         insert = insert,
+        insertSceneGroup = insertSceneGroup,
         show = show
     }
 end

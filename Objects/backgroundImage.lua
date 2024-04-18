@@ -43,16 +43,16 @@ local BackgroundImage = function (path)
     end
 
     ---@class BackgroundImage
-    ---@field insertSceneGroup function
     ---@field create function
     ---@field destroy function
     ---@field hide function
+    ---@field insertSceneGroup function
     ---@field show function
     return {
-        insertSceneGroup = insertSceneGroup,
         create = create,
         destroy = destroy,
         hide = hide,
+        insertSceneGroup = insertSceneGroup,
         show = show
     }
 end
