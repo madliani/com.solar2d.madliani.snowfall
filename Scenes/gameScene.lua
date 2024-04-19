@@ -7,8 +7,6 @@ local Counter = require("Objects.counter")
 local BackgroundSound = require("Objects.backgroundSound")
 local Blizzard = require("Objects.blizzard")
 
-local scene = composer.newScene()
-
 local pool = Pool()
 local backgroundImage = BackgroundImage("Assets/background.png")
 local count = Count(0)
@@ -20,6 +18,8 @@ pool.insert(backgroundImage)
 pool.insert(count)
 pool.insert(blizzard)
 pool.insert(backgroundSound)
+
+local scene = composer.newScene()
 
 function scene.create(self)
 	local sceneGroup = self.view
