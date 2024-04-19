@@ -53,18 +53,24 @@ local Snowflake = function (path, counter)
         end
     end
 
-    local function isRemovable()
-        if imageRect ~= nil then
-            return imageRect.y >= display.contentHeight
-        end
-    end
-
     local function update()
-        if imageRect ~= nil then
-            imageRect.y = imageRect.y + 1
+        local function isRemovable()
+            if imageRect ~= nil then
+                return imageRect.y >= display.contentHeight
+            end
+        end
 
+        local function incCoordinateY()
+            if imageRect ~= nil then
+                imageRect.y = imageRect.y + 1
+            end
+        end
+
+        if imageRect ~= nil then
             if isRemovable() then
                 destroy()
+            else
+                incCoordinateY()
             end
         end
     end
