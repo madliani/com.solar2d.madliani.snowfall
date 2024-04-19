@@ -1,7 +1,8 @@
 local display = require("display")
 
 ---@param path string
-local Snowflake = function (path)
+---@param counter table
+local Snowflake = function (path, counter)
     local imageRect = nil
     local sceneGroup = nil
 
@@ -19,6 +20,11 @@ local Snowflake = function (path)
         end
     end
 
+    local function onTap()
+        destroy()
+        counter.inc()
+    end
+
     local function create()
         if imageRect == nil and sceneGroup ~= nil then
             local scale = math.random(5, 15)
@@ -31,7 +37,7 @@ local Snowflake = function (path)
             imageRect.y = -imageRect.contentHeight
 
             sceneGroup.insert(sceneGroup, imageRect)
-            imageRect.addEventListener(imageRect, "tap", destroy)
+            imageRect.addEventListener(imageRect, "tap", onTap)
         end
     end
 

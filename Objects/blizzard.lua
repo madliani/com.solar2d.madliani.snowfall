@@ -2,7 +2,8 @@ local timer = require("timer")
 
 local Snowflake = require("Objects.snowflake")
 
-local Blizzard = function ()
+---@param counter table
+local Blizzard = function (counter)
     local snowflakes = {}
     local sceneGroup = nil
 
@@ -13,7 +14,7 @@ local Blizzard = function ()
 
     local function generateSnowflakes()
         if snowflakes ~= nil and sceneGroup ~= nil then
-            local snowflake = Snowflake("Assets/snowflake.png")
+            local snowflake = Snowflake("Assets/snowflake.png", counter)
 
             snowflake.insertSceneGroup(sceneGroup)
             snowflake.create()
@@ -30,9 +31,9 @@ local Blizzard = function ()
 
                 if snowflake.isUnavable() then
                     table.remove(snowflakes, i)
+                else
+                    snowflake.update()
                 end
-
-                snowflake.update()
             end
         end
     end
