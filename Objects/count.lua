@@ -1,7 +1,7 @@
 local display = require("display")
 local native = require("native")
 
-local Label = require("Objects.label")
+local Button = require("Objects.button")
 
 ---@param initialCount integer
 local Count = function (initialCount)
@@ -23,39 +23,46 @@ local Count = function (initialCount)
         blue = 0
     }
 
-    local label = Label(initialCount, coordinate, font, color)
+    local label = {
+        title = initialCount,
+        coordinate = coordinate,
+        font = font,
+        color = color
+    }
+
+    local button = Button(label)
 
     ---@param group table
     local function insertSceneGroup(group)
-        label.insertSceneGroup(group)
+        button.insertSceneGroup(group)
     end
 
     local function destroy()
-        label.destroy()
+        button.destroy()
     end
 
     local function create()
-        label.create()
+        button.create()
     end
 
     local function show()
-        label.show()
+        button.show()
     end
 
     local function hide()
-        label.hide()
+        button.hide()
     end
 
     local function inc()
         count = count + 1
 
-        label.updateTitle(count)
+        button.updateTitle(count)
     end
 
     local function dec()
         count = count - 1
 
-        label.updateTitle(count)
+        button.updateTitle(count)
     end
 
     ---@class Count
