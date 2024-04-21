@@ -3,7 +3,7 @@ local Pool = function ()
 
     ---@param objects table
     local function insert(objects)
-        if pool ~= nil then
+        if pool ~= nil and #pool == 0 then
             pool = objects
         end
     end
