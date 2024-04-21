@@ -15,11 +15,6 @@ local Snowflake = function (path, counter)
         end
     end
 
-    local function onTap()
-        destroy()
-        counter.inc()
-    end
-
     ---@param group table
     local function create(group)
         sceneGroup = group
@@ -28,6 +23,11 @@ local Snowflake = function (path, counter)
             local scale = math.random(5, 15)
             local width = display.pixelWidth / display.contentWidth * scale
             local height = display.pixelWidth / display.contentWidth * scale
+
+            local function onTap()
+                destroy()
+                counter.inc()
+            end
 
             imageRect = display.newImageRect(path, width, height)
 
