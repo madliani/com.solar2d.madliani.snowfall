@@ -12,6 +12,7 @@ local Snowflake = function (path, counter)
             imageRect.removeSelf(imageRect)
 
             imageRect = nil
+            sceneGroup = nil
         end
     end
 

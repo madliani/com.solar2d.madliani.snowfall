@@ -42,6 +42,7 @@ local Blizzard = function (counter)
             end
 
             snowflakes = nil
+            sceneGroup = nil
         end
     end
 

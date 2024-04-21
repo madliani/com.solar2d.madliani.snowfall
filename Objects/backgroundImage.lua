@@ -10,7 +10,9 @@ local BackgroundImage = function (path)
             sceneGroup.remove(sceneGroup, imageRect)
 
             imageRect.removeSelf(imageRect)
+
             imageRect = nil
+            sceneGroup = nil
         end
     end
 

@@ -17,6 +17,7 @@ local Button = function (label, action)
             sceneGroup.remove(sceneGroup, button)
 
             button = nil
+            sceneGroup = nil
             titleBackup = nil
         end
     end
