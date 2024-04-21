@@ -1,7 +1,7 @@
 local audio = require("audio")
 
 ---@param path string
-local BackgroundSound = function (path)
+local Sound = function (path)
     local sound = nil
     local volume = nil
 
@@ -35,7 +35,7 @@ local BackgroundSound = function (path)
         end
     end
 
-    ---@class BackgroundSound
+    ---@class Sound
     ---@field create function
     ---@field destroy function
     ---@field mute function
@@ -48,4 +48,4 @@ local BackgroundSound = function (path)
     }
 end
 
-return BackgroundSound
+return Sound
