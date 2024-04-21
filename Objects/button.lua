@@ -1,10 +1,13 @@
 local display = require("display")
 
----@param title integer
----@param coordinate table
----@param font table
----@param color table
-local Button = function (title, coordinate, font, color)
+---@param label table
+---@param action? table
+local Button = function (label, action)
+    local title = label.title
+    local coordinate = label.coordinate
+    local font = label.font
+    local color = label.color
+
     local button = nil
     local sceneGroup = nil
     local titleBackup = nil
@@ -30,6 +33,10 @@ local Button = function (title, coordinate, font, color)
             button.setFillColor(button, color.red, color.green, color.blue)
 
             sceneGroup.insert(sceneGroup, button)
+        end
+
+        if button ~= nil and action ~= nil then
+            button.addEventListener(button, action.type, action.method)
         end
     end
 
