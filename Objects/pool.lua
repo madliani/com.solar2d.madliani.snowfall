@@ -10,7 +10,7 @@ local Pool = function ()
 
     ---@param group table
     local function insertSceneGroup(group)
-        if objects ~= nil and #objects ~= 0 then
+        if objects ~= nil and #objects > 0 then
             for i = 1, #objects, 1 do
                 local object = objects[i]
 
@@ -22,7 +22,7 @@ local Pool = function ()
     end
 
     local function destroy()
-        if objects ~= nil and #objects ~= 0 then
+        if objects ~= nil and #objects > 0 then
             for i = 1, #objects, 1 do
                 objects[i].destroy()
 
@@ -32,7 +32,7 @@ local Pool = function ()
     end
 
     local function create()
-        if objects ~= nil and #objects ~= 0 then
+        if objects ~= nil and #objects > 0 then
             for i = 1, #objects, 1 do
                 objects[i].create()
             end
@@ -40,7 +40,7 @@ local Pool = function ()
     end
 
     local function show()
-        if objects ~= nil and #objects ~= 0 then
+        if objects ~= nil and #objects > 0 then
             for i = 1, #objects, 1 do
                 local object = objects[i]
 
@@ -54,7 +54,7 @@ local Pool = function ()
     end
 
     local function hide()
-        if objects ~= nil and #objects ~= 0 then
+        if objects ~= nil and #objects > 0 then
             for i = 1, #objects, 1 do
                 local object = objects[i]
 
