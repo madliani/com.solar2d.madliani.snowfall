@@ -4,8 +4,8 @@ local display = require("display")
 ---@param coordinate table
 ---@param font table
 ---@param color table
-local Label = function (title, coordinate, font, color)
-    local label = nil
+local Button = function (title, coordinate, font, color)
+    local button = nil
     local sceneGroup = nil
     local titleBackup = nil
 
@@ -15,43 +15,43 @@ local Label = function (title, coordinate, font, color)
     end
 
     local function destroy()
-        if label ~= nil and sceneGroup ~= nil and titleBackup ~= nil then
-            sceneGroup.remove(sceneGroup, label)
+        if button ~= nil and sceneGroup ~= nil and titleBackup ~= nil then
+            sceneGroup.remove(sceneGroup, button)
 
-            label = nil
+            button = nil
             titleBackup = nil
         end
     end
 
     local function create()
-        if label == nil and sceneGroup ~= nil then
-            label = display.newText(title, coordinate.x, coordinate.y, font.family, font.size)
+        if button == nil and sceneGroup ~= nil then
+            button = display.newText(title, coordinate.x, coordinate.y, font.family, font.size)
 
-            label.setFillColor(label, color.red, color.green, color.blue)
+            button.setFillColor(button, color.red, color.green, color.blue)
 
-            sceneGroup.insert(sceneGroup, label)
+            sceneGroup.insert(sceneGroup, button)
         end
     end
 
     local function show()
-        if label ~= nil and titleBackup ~= nil then
-            label.text = titleBackup
+        if button ~= nil and titleBackup ~= nil then
+            button.text = titleBackup
         end
     end
 
     local function hide()
-        if label ~= nil then
-            label.text = ""
+        if button ~= nil then
+            button.text = ""
         end
     end
 
     local function updateTitle(newTitle)
-        if label ~= nil then
-            label.text = newTitle
+        if button ~= nil then
+            button.text = newTitle
         end
     end
 
-    ---@class Label
+    ---@class Button
     ---@field create function
     ---@field destroy function
     ---@field hide function
@@ -68,4 +68,4 @@ local Label = function (title, coordinate, font, color)
     }
 end
 
-return Label
+return Button
