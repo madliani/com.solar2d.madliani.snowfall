@@ -19,7 +19,7 @@ local Blizzard = function (counter)
     end
 
     local function update()
-        if snowflakes ~= nil and #snowflakes ~= 0 then
+        if snowflakes ~= nil and #snowflakes > 0 then
             for i = #snowflakes, 1, -1 do
                 local snowflake = snowflakes[i]
 
@@ -33,7 +33,7 @@ local Blizzard = function (counter)
     end
 
     local function destroy()
-        if snowflakes ~= nil and #snowflakes ~= 0 and sceneGroup ~= nil then
+        if snowflakes ~= nil and #snowflakes > 0 and sceneGroup ~= nil then
             for i = 1, #snowflakes, 1 do
                 local snowflake = snowflakes[i]
 
@@ -56,7 +56,7 @@ local Blizzard = function (counter)
     end
 
     local function show()
-        if snowflakes ~= nil and #snowflakes ~= 0 then
+        if snowflakes ~= nil and #snowflakes > 0 then
             for i = 1, #snowflakes, 1 do
                 snowflakes[i].show()
             end
@@ -64,7 +64,7 @@ local Blizzard = function (counter)
     end
 
     local function hide()
-        if snowflakes ~= nil and #snowflakes ~= 0 then
+        if snowflakes ~= nil and #snowflakes > 0 then
             for i = 1, #snowflakes, 1 do
                 snowflakes[i].hide()
             end
