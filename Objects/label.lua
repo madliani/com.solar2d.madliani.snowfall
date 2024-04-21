@@ -1,11 +1,11 @@
 local display = require("display")
 
----@param initialTitle integer
+---@param title integer
 ---@param coordinate table
 ---@param font table
 ---@param color table
-local Label = function (initialTitle, coordinate, font, color)
-    local title = nil
+local Label = function (title, coordinate, font, color)
+    local label = nil
     local sceneGroup = nil
     local titleBackup = nil
 
@@ -15,39 +15,39 @@ local Label = function (initialTitle, coordinate, font, color)
     end
 
     local function destroy()
-        if title ~= nil and sceneGroup ~= nil and titleBackup ~= nil then
-            sceneGroup.remove(sceneGroup, title)
+        if label ~= nil and sceneGroup ~= nil and titleBackup ~= nil then
+            sceneGroup.remove(sceneGroup, label)
 
-            title = nil
+            label = nil
             titleBackup = nil
         end
     end
 
     local function create()
-        if title == nil and sceneGroup ~= nil then
-            title = display.newText(initialTitle, coordinate.x, coordinate.y, font.family, font.size)
+        if label == nil and sceneGroup ~= nil then
+            label = display.newText(title, coordinate.x, coordinate.y, font.family, font.size)
 
-            title.setFillColor(title, color.red, color.green, color.blue)
+            label.setFillColor(label, color.red, color.green, color.blue)
 
-            sceneGroup.insert(sceneGroup, title)
+            sceneGroup.insert(sceneGroup, label)
         end
     end
 
     local function show()
-        if title ~= nil and titleBackup ~= nil then
-            title.text = titleBackup
+        if label ~= nil and titleBackup ~= nil then
+            label.text = titleBackup
         end
     end
 
     local function hide()
-        if title ~= nil then
-            title.text = ""
+        if label ~= nil then
+            label.text = ""
         end
     end
 
     local function updateTitle(newTitle)
-        if title ~= nil then
-            title.text = newTitle
+        if label ~= nil then
+            label.text = newTitle
         end
     end
 
