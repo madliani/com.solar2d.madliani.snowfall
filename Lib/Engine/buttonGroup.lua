@@ -1,4 +1,4 @@
-local Button = require("Objects.button")
+local Button = require("Lib.Engine.button")
 
 ---@param buttons integer
 local ButtonGroup = function (buttons)
