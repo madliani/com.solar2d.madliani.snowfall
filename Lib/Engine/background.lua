@@ -1,7 +1,7 @@
 local display = require("display")
 
 ---@param path string
-local BackgroundImage = function (path)
+local Background = function (path)
     local imageRect = nil
     local sceneGroup = nil
 
@@ -42,7 +42,7 @@ local BackgroundImage = function (path)
         end
     end
 
-    ---@class BackgroundImage
+    ---@class Background
     ---@field create function
     ---@field destroy function
     ---@field hide function
@@ -55,4 +55,4 @@ local BackgroundImage = function (path)
     }
 end
 
-return BackgroundImage
+return Background
