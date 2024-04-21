@@ -1,74 +1,61 @@
 local display = require("display")
 local native = require("native")
 
+local Label = require("Objects.label")
+
 ---@param initialCount integer
 local Count = function (initialCount)
-    local text = nil
-    local sceneGroup = nil
-    local countBackup = nil
+    local count = initialCount
+
+    local coordinate = {
+        x = display.contentCenterX,
+        y = 1
+    }
+
+    local font = {
+        family = native.systemFont,
+        size = 48
+    }
+
+    local color = {
+        red = 0,
+        green = 0,
+        blue = 0
+    }
+
+    local label = Label(initialCount, coordinate, font, color)
 
     ---@param group table
     local function insertSceneGroup(group)
-        sceneGroup = group
+        label.insertSceneGroup(group)
     end
 
     local function destroy()
-        if text ~= nil and sceneGroup ~= nil and countBackup ~= nil then
-            sceneGroup.remove(sceneGroup, text)
-
-            text = nil
-            countBackup = nil
-        end
+        label.destroy()
     end
 
     local function create()
-        if text == nil and sceneGroup ~= nil then
-            local coordinate = {
-                x = display.contentCenterX,
-                y = 1
-            }
-
-            local font = {
-                family = native.systemFont,
-                size = 48
-            }
-
-            local color = {
-                red = 0,
-                green = 0,
-                blue = 0
-            }
-
-            text = display.newText(initialCount, coordinate.x, coordinate.y, font.family, font.size)
-
-            text.setFillColor(text, color.red, color.green, color.blue)
-
-            sceneGroup.insert(sceneGroup, text)
-        end
+        label.create()
     end
 
     local function show()
-        if text ~= nil and countBackup ~= nil then
-            text.text = countBackup
-        end
+        label.show()
     end
 
     local function hide()
-        if text ~= nil then
-            text.text = ""
-        end
+        label.hide()
     end
 
     local function inc()
-        if text ~= nil then
-            text.text = text.text + 1
-        end
+        count = count + 1
+
+        label.updateTitle(count)
     end
 
     local function dec()
-        if text ~= nil then
-            text.text = text.text - 1
-        end
+        count = count - 1
+
+        label.updateTitle(count)
     end
 
     ---@class Count
