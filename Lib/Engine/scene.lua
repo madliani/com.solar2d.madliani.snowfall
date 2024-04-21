@@ -1,24 +1,43 @@
 local composer = require("composer")
 
----@param pool table
-local Scene = function (pool)
+local Pool = require("Lib.Engine.pool")
+
+---@param objects table
+local Scene = function (objects)
+    local background = objects.background
+    local sound = objects.sound
+
+    local pool = Pool(objects.objects)
+
     local scene = composer.newScene()
 
     function scene.create(self)
         local sceneGroup = self.view
 
+        background.create(sceneGroup)
+        sound.create(sceneGroup)
+
         pool.create(sceneGroup)
     end
 
     function scene.show()
+        background.show()
+        sound.show()
+
         pool.show()
     end
 
     function scene.hide()
+        background.hide()
+        sound.hide()
+
         pool.hide()
     end
 
     function scene.destroy()
+        background.destroy()
+        sound.destroy()
+
         pool.destroy()
     end
 

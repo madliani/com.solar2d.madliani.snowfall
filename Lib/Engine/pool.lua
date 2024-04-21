@@ -1,12 +1,6 @@
-local Pool = function ()
-    local pool = {}
-
-    ---@param objects table
-    local function insert(objects)
-        if pool ~= nil and #pool == 0 then
-            pool = objects
-        end
-    end
+---@param objects table
+local Pool = function (objects)
+    local pool = objects
 
     local function destroy()
         if pool ~= nil and #pool > 0 then
@@ -59,13 +53,11 @@ local Pool = function ()
     ---@field create function
     ---@field destroy function
     ---@field hide function
-    ---@field insert function
     ---@field show function
     return {
         create = create,
         destroy = destroy,
         hide = hide,
-        insert = insert,
         show = show
     }
 end
