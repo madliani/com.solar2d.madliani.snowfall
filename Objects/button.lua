@@ -12,11 +12,6 @@ local Button = function (label, action)
     local sceneGroup = nil
     local titleBackup = nil
 
-    ---@param group table
-    local function insertSceneGroup(group)
-        sceneGroup = group
-    end
-
     local function destroy()
         if button ~= nil and sceneGroup ~= nil and titleBackup ~= nil then
             sceneGroup.remove(sceneGroup, button)
@@ -26,7 +21,10 @@ local Button = function (label, action)
         end
     end
 
-    local function create()
+    ---@param group table
+    local function create(group)
+        sceneGroup = group
+
         if button == nil and sceneGroup ~= nil then
             button = display.newText(title, coordinate.x, coordinate.y, font.family, font.size)
 
@@ -62,14 +60,12 @@ local Button = function (label, action)
     ---@field create function
     ---@field destroy function
     ---@field hide function
-    ---@field insertSceneGroup function
     ---@field show function
     ---@field updateTitle function
     return {
         create = create,
         destroy = destroy,
         hide = hide,
-        insertSceneGroup = insertSceneGroup,
         show = show,
         updateTitle = updateTitle
     }

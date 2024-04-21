@@ -7,17 +7,11 @@ local Blizzard = function (counter)
     local snowflakes = {}
     local sceneGroup = nil
 
-    ---@param group table
-    local function insertSceneGroup(group)
-        sceneGroup = group
-    end
-
     local function generateSnowflakes()
         if snowflakes ~= nil and sceneGroup ~= nil then
             local snowflake = Snowflake("Assets/snowflake.png", counter)
 
-            snowflake.insertSceneGroup(sceneGroup)
-            snowflake.create()
+            snowflake.create(sceneGroup)
             table.insert(snowflakes, snowflake)
 
             timer.performWithDelay(500, generateSnowflakes)
@@ -51,7 +45,10 @@ local Blizzard = function (counter)
         end
     end
 
-    local function create()
+    ---@param group table
+    local function create(group)
+        sceneGroup = group
+
         generateSnowflakes()
 
         Runtime.addEventListener(Runtime, "enterFrame", update)

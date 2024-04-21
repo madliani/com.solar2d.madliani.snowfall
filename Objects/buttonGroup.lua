@@ -10,15 +10,6 @@ local ButtonGroup = function (buttons)
         table.insert(buttonGroup, Button(button.label, button.action))
     end
 
-    ---@param group table
-    local function insertSceneGroup(group)
-        if buttonGroup ~= nil and #buttonGroup > 0 then
-            for i = 1, #buttons, 1 do
-                buttonGroup[i].insertSceneGroup(group)
-            end
-        end
-    end
-
     local function destroy()
         if buttonGroup ~= nil and #buttonGroup > 0 then
             for i = 1, #buttons, 1 do
@@ -27,10 +18,11 @@ local ButtonGroup = function (buttons)
         end
     end
 
-    local function create()
+    ---@param group table
+    local function create(group)
         if buttonGroup ~= nil and #buttonGroup > 0 then
             for i = 1, #buttons, 1 do
-                buttonGroup[i].create()
+                buttonGroup[i].create(group)
             end
         end
     end
@@ -55,13 +47,11 @@ local ButtonGroup = function (buttons)
     ---@field create function
     ---@field destroy function
     ---@field hide function
-    ---@field insertSceneGroup function
     ---@field show function
     return {
         create = create,
         destroy = destroy,
         hide = hide,
-        insertSceneGroup = insertSceneGroup,
         show = show
     }
 end

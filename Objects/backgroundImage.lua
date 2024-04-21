@@ -5,11 +5,6 @@ local BackgroundImage = function (path)
     local imageRect = nil
     local sceneGroup = nil
 
-    ---@param group table
-    local function insertSceneGroup(group)
-        sceneGroup = group
-    end
-
     local function destroy()
         if imageRect ~= nil and sceneGroup ~= nil then
             sceneGroup.remove(sceneGroup, imageRect)
@@ -19,7 +14,10 @@ local BackgroundImage = function (path)
         end
     end
 
-    local function create()
+    ---@param group table
+    local function create(group)
+        sceneGroup = group
+
         if imageRect == nil and sceneGroup ~= nil then
             imageRect = display.newImageRect(path, display.pixelWidth, display.pixelHeight)
 

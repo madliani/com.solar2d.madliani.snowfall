@@ -32,17 +32,13 @@ local Count = function (initialCount)
 
     local button = Button(label)
 
-    ---@param group table
-    local function insertSceneGroup(group)
-        button.insertSceneGroup(group)
-    end
-
     local function destroy()
         button.destroy()
     end
 
-    local function create()
-        button.create()
+    ---@param group table
+    local function create(group)
+        button.create(group)
     end
 
     local function show()
@@ -71,7 +67,6 @@ local Count = function (initialCount)
     ---@field destroy function
     ---@field hide function
     ---@field inc function
-    ---@field insertSceneGroup function
     ---@field show function
     return {
         create = create,
@@ -79,7 +74,6 @@ local Count = function (initialCount)
         destroy = destroy,
         hide = hide,
         inc = inc,
-        insertSceneGroup = insertSceneGroup,
         show = show
     }
 end

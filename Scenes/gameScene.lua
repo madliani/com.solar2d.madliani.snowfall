@@ -24,8 +24,7 @@ local scene = composer.newScene()
 function scene.create(self)
 	local sceneGroup = self.view
 
-	pool.insertSceneGroup(sceneGroup)
-	pool.create()
+	pool.create(sceneGroup)
 end
 
 function scene.show()
