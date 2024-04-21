@@ -11,6 +11,13 @@ local Scene = function (objects)
 
     local scene = composer.newScene()
 
+    function scene.destroy()
+        background.destroy()
+        sound.destroy()
+
+        pool.destroy()
+    end
+
     function scene.create(self)
         local sceneGroup = self.view
 
@@ -34,17 +41,10 @@ local Scene = function (objects)
         pool.hide()
     end
 
-    function scene.destroy()
-        background.destroy()
-        sound.destroy()
-
-        pool.destroy()
-    end
-
+    scene.addEventListener(scene, "destroy")
     scene.addEventListener(scene, "create")
     scene.addEventListener(scene, "show")
     scene.addEventListener(scene, "hide")
-    scene.addEventListener(scene, "destroy")
 
     ---@class Scene
     return scene
