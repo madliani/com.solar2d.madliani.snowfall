@@ -1,5 +1,4 @@
-local composer = require("composer")
-
+local Scene = require("Lib.Engine.scene")
 local Pool = require("Lib.Engine.pool")
 local BackgroundImage = require("Lib.Engine.backgroundImage")
 local BackgroundSound = require("Lib.Engine.backgroundSound")
@@ -22,29 +21,4 @@ pool.insert(backgroundSound)
 pool.insert(count)
 pool.insert(blizzard)
 
-local scene = composer.newScene()
-
-function scene.create(self)
-	local sceneGroup = self.view
-
-	pool.create(sceneGroup)
-end
-
-function scene.show()
-	pool.show()
-end
-
-function scene.hide()
-	pool.hide()
-end
-
-function scene.destroy()
-	pool.destroy()
-end
-
-scene.addEventListener(scene, "create")
-scene.addEventListener(scene, "show")
-scene.addEventListener(scene, "hide")
-scene.addEventListener(scene, "destroy")
-
-return scene
+return Scene(pool)
