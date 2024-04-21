@@ -17,6 +17,7 @@ return Scene {
     background = background,
     sound = sound,
     objects = {
+        count,
         blizzard
     }
 }
