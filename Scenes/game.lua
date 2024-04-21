@@ -15,10 +15,6 @@ local count = Count(0)
 local counter = Counter(count)
 local blizzard = Blizzard(counter)
 
-pool.insert(backgroundImage)
-pool.insert(backgroundSound)
-
-pool.insert(count)
-pool.insert(blizzard)
+pool.insert({backgroundImage, backgroundSound, count, blizzard})
 
 return Scene(pool)

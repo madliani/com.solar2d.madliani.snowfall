@@ -1,36 +1,36 @@
 local Pool = function ()
-    local objects = {}
+    local pool = {}
 
-    ---@param object table
-    local function insert(object)
-        if objects ~= nil then
-            table.insert(objects, object)
+    ---@param objects table
+    local function insert(objects)
+        if pool ~= nil then
+            pool = objects
         end
     end
 
     local function destroy()
-        if objects ~= nil and #objects > 0 then
-            for i = 1, #objects, 1 do
-                objects[i].destroy()
+        if pool ~= nil and #pool > 0 then
+            for i = 1, #pool, 1 do
+                pool[i].destroy()
 
-                table.remove(objects, i)
+                table.remove(pool, i)
             end
         end
     end
 
     ---@param group table
     local function create(group)
-        if objects ~= nil and #objects > 0 then
-            for i = 1, #objects, 1 do
-                objects[i].create(group)
+        if pool ~= nil and #pool > 0 then
+            for i = 1, #pool, 1 do
+                pool[i].create(group)
             end
         end
     end
 
     local function show()
-        if objects ~= nil and #objects > 0 then
-            for i = 1, #objects, 1 do
-                local object = objects[i]
+        if pool ~= nil and #pool > 0 then
+            for i = 1, #pool, 1 do
+                local object = pool[i]
 
                 if object.show ~= nil then
                     object.show()
@@ -42,9 +42,9 @@ local Pool = function ()
     end
 
     local function hide()
-        if objects ~= nil and #objects > 0 then
-            for i = 1, #objects, 1 do
-                local object = objects[i]
+        if pool ~= nil and #pool > 0 then
+            for i = 1, #pool, 1 do
+                local object = pool[i]
 
                 if object.hide ~= nil then
                     object.hide()
