@@ -29,14 +29,14 @@ local Scene = function (objects)
 
     function scene.show()
         background.show()
-        sound.show()
+        sound.unmute()
 
         pool.show()
     end
 
     function scene.hide()
         background.hide()
-        sound.hide()
+        sound.mute()
 
         pool.hide()
     end
