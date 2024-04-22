@@ -16,7 +16,11 @@ local Pool = function (objects)
     local function create(group)
         if pool ~= nil and #pool > 0 then
             for i = 1, #pool, 1 do
-                pool[i].create(group)
+                if group ~= nil then
+                    pool[i].create(group)
+                else
+                    pool[i].create()
+                end
             end
         end
     end
