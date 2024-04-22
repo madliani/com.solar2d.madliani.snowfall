@@ -1,46 +1,24 @@
-local Button = require("Lib.Engine.button")
+local Pool = require("Lib.Engine.pool")
 
----@param buttons integer
+---@param buttons table
 local ButtonGroup = function (buttons)
-    local buttonGroup = {}
-
-    for i = 1, #buttons, 1 do
-        local button = buttons[i]
-
-        table.insert(buttonGroup, Button(button.label, button.action))
-    end
+    local buttonGroup = Pool(buttons)
 
     local function destroy()
-        if buttonGroup ~= nil and #buttonGroup > 0 then
-            for i = 1, #buttons, 1 do
-                buttonGroup[i].destroy()
-            end
-        end
+        buttonGroup.destroy()
     end
 
     ---@param group table
     local function create(group)
-        if buttonGroup ~= nil and #buttonGroup > 0 then
-            for i = 1, #buttons, 1 do
-                buttonGroup[i].create(group)
-            end
-        end
+        buttonGroup.create(group)
     end
 
     local function show()
-        if buttonGroup ~= nil and #buttonGroup > 0 then
-            for i = 1, #buttons, 1 do
-                buttonGroup[i].show()
-            end
-        end
+        buttonGroup.show()
     end
 
     local function hide()
-        if buttonGroup ~= nil and #buttonGroup > 0 then
-            for i = 1, #buttons, 1 do
-                buttonGroup[i].hide()
-            end
-        end
+        buttonGroup.hide()
     end
 
     ---@class ButtonGrount
