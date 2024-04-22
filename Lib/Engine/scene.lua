@@ -7,37 +7,25 @@ local Scene = function (objects)
     local background = objects.background
     local sound = objects.sound
 
-    local pool = Pool(objects.objects)
+    local pool = Pool { background, sound, Pool(objects.objects) }
 
     local scene = composer.newScene()
 
     function scene.destroy()
-        background.destroy()
-        sound.destroy()
-
         pool.destroy()
     end
 
     function scene.create(self)
         local sceneGroup = self.view
 
-        background.create(sceneGroup)
-        sound.create(sceneGroup)
-
         pool.create(sceneGroup)
     end
 
     function scene.show()
-        background.show()
-        sound.unmute()
-
         pool.show()
     end
 
     function scene.hide()
-        background.hide()
-        sound.mute()
-
         pool.hide()
     end
 
