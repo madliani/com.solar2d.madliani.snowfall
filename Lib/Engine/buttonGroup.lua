@@ -6,8 +6,8 @@ local ButtonGroup = function (buttons)
     local buttonGroup = {}
 
     for i = 1, #buttons, 1 do
-        local label = buttons[i]
-        local action = buttons[i]
+        local label = buttons[i].label
+        local action = buttons[i].action
 
         local button = Button(label, action)
 
