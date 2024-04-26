@@ -11,7 +11,7 @@ local Blizzard = function (counter)
 
     local function generateSnowflakes()
         if snowflakes ~= nil and sceneGroup ~= nil then
-            local snowflake = Snowflake(resources.Game.Images.snowflake, counter)
+            local snowflake = Snowflake(resources.Images.snowflake, counter)
 
             snowflake.create(sceneGroup)
             table.insert(snowflakes, snowflake)

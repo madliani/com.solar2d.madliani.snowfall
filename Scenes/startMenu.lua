@@ -9,8 +9,8 @@ local Sound = require("Lib.Engine.sound")
 
 local ItemGroup = require("Objects.itemGroup")
 
-local background = Background(resources.StartMenu.Images.background)
-local sound = Sound(resources.StartMenu.Sounds.background)
+local background = Background(resources.Images.background)
+local sound = Sound(resources.Sounds.background)
 
 return Scene {
     background = background,

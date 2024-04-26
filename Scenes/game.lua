@@ -8,8 +8,8 @@ local Count = require("Objects.count")
 local Counter = require("Objects.counter")
 local Blizzard = require("Objects.blizzard")
 
-local background = Background(resources.Game.Images.background)
-local sound = Sound(resources.Game.Sounds.background)
+local background = Background(resources.Images.background)
+local sound = Sound(resources.Sounds.background)
 
 local count = Count(0)
 local counter = Counter(count)
