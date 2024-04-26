@@ -4,7 +4,7 @@ local Resources = require("resources")
 
 local Snowflake = require("Objects.snowflake")
 
----@param counter table
+---@param counter Counter
 local Blizzard = function (counter)
     local snowflakes = {}
     local sceneGroup = nil

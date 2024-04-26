@@ -1,4 +1,4 @@
----@param count table
+---@param count Count
 local Counter = function (count)
     local function inc()
         count.inc()

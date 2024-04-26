@@ -1,7 +1,7 @@
 local display = require("display")
 
 ---@param path string
----@param counter table
+---@param counter Counter
 local Snowflake = function (path, counter)
     local imageRect = nil
     local sceneGroup = nil
