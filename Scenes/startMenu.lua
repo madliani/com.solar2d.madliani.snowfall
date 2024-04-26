@@ -1,7 +1,7 @@
-local resources = require("resources")
-
 local composer = require("composer")
 local os = require("os")
+
+local Resources = require("resources")
 
 local Scene = require("Lib.Engine.scene")
 local Background = require("Lib.Engine.background")
@@ -9,8 +9,8 @@ local Sound = require("Lib.Engine.sound")
 
 local ItemGroup = require("Objects.itemGroup")
 
-local background = Background(resources.Images.background)
-local sound = Sound(resources.Sounds.background)
+local background = Background(Resources.Images.background)
+local sound = Sound(Resources.Sounds.background)
 
 return Scene {
     background = background,

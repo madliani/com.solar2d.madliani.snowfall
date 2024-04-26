@@ -1,4 +1,4 @@
-local resources = require("resources")
+local Resources = require("resources")
 
 local Scene = require("Lib.Engine.scene")
 local Background = require("Lib.Engine.background")
@@ -8,8 +8,8 @@ local Count = require("Objects.count")
 local Counter = require("Objects.counter")
 local Blizzard = require("Objects.blizzard")
 
-local background = Background(resources.Images.background)
-local sound = Sound(resources.Sounds.background)
+local background = Background(Resources.Images.background)
+local sound = Sound(Resources.Sounds.background)
 
 local count = Count(0)
 local counter = Counter(count)

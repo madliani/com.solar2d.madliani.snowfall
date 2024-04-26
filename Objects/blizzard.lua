@@ -1,6 +1,6 @@
-local resources = require("resources")
-
 local timer = require("timer")
+
+local Resources = require("resources")
 
 local Snowflake = require("Objects.snowflake")
 
@@ -11,7 +11,7 @@ local Blizzard = function (counter)
 
     local function generateSnowflakes()
         if snowflakes ~= nil and sceneGroup ~= nil then
-            local snowflake = Snowflake(resources.Images.snowflake, counter)
+            local snowflake = Snowflake(Resources.Images.snowflake, counter)
 
             snowflake.create(sceneGroup)
             table.insert(snowflakes, snowflake)
