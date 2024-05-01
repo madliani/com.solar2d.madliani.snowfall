@@ -3,9 +3,9 @@ local Resources = require("resources")
 local Scene = require("Libraries.Engine.scene")
 local Background = require("Libraries.Engine.background")
 
-local Count = require("Objects.count")
-local Counter = require("Objects.counter")
-local Blizzard = require("Objects.blizzard")
+local Count = require("Sources.Objects.count")
+local Counter = require("Sources.Objects.counter")
+local Blizzard = require("Sources.Objects.blizzard")
 
 local background = Background(Resources.Images.background)
 

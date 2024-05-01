@@ -2,7 +2,7 @@ local timer = require("timer")
 
 local Resources = require("resources")
 
-local Snowflake = require("Objects.snowflake")
+local Snowflake = require("Sources.Objects.snowflake")
 
 ---@param counter Counter
 local Blizzard = function (counter)

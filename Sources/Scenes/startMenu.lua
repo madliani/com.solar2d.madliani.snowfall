@@ -6,7 +6,7 @@ local Resources = require("resources")
 local Scene = require("Libraries.Engine.scene")
 local Background = require("Libraries.Engine.background")
 
-local ItemGroup = require("Objects.itemGroup")
+local ItemGroup = require("Sources.Objects.itemGroup")
 
 local background = Background(Resources.Images.background)
 
@@ -21,8 +21,8 @@ return Scene {
                 {
                     type = "tap",
                     method = function ()
-                        composer.removeScene("Scenes.startMenu")
-                        composer.gotoScene("Scenes.game")
+                        composer.removeScene("Sources.Scenes.startMenu")
+                        composer.gotoScene("Sources.Scenes.game")
                     end
                 }
             },

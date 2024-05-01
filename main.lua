@@ -8,4 +8,4 @@ local sound = Sound(Resources.Sounds.background)
 
 sound.create()
 
-composer.gotoScene("Scenes.startMenu")
+composer.gotoScene("Sources.Scenes.startMenu")
