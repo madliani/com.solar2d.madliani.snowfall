@@ -5,16 +5,13 @@ local Resources = require("resources")
 
 local Scene = require("Lib.Engine.scene")
 local Background = require("Lib.Engine.background")
-local Sound = require("Lib.Engine.sound")
 
 local ItemGroup = require("Objects.itemGroup")
 
 local background = Background(Resources.Images.background)
-local sound = Sound(Resources.Sounds.background)
 
 return Scene {
     background = background,
-    sound = sound,
     objects =
     {
         ItemGroup {

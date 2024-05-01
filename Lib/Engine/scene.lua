@@ -5,9 +5,8 @@ local Pool = require("Lib.Engine.pool")
 ---@param objects table
 local Scene = function (objects)
     local background = objects.background
-    local sound = objects.sound
 
-    local pool = Pool { background, sound, Pool(objects.objects) }
+    local pool = Pool { background, Pool(objects.objects) }
 
     local scene = composer.newScene()
 
