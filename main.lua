@@ -1,11 +1,5 @@
-local composer = require("composer")
+local Game = require("Libraries.Engine.game")
 
-local Resources = require("resources")
+local game = Game()
 
-local Sound = require("Libraries.Engine.sound")
-
-local sound = Sound()
-
-sound.create(Resources.Sounds.background)
-
-composer.gotoScene("Sources.Scenes.startMenu")
+game.create()
