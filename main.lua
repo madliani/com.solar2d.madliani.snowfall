@@ -4,8 +4,8 @@ local Resources = require("resources")
 
 local Sound = require("Libraries.Engine.sound")
 
-local sound = Sound(Resources.Sounds.background)
+local sound = Sound()
 
-sound.create()
+sound.create(Resources.Sounds.background)
 
 composer.gotoScene("Sources.Scenes.startMenu")

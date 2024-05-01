@@ -1,7 +1,6 @@
 local audio = require("audio")
 
----@param path string
-local Sound = function (path)
+local Sound = (function ()
     local sound = nil
     local volume = nil
 
@@ -14,7 +13,8 @@ local Sound = function (path)
         end
     end
 
-    local function create()
+    ---@param path string
+    local function create(path)
         if sound == nil and volume == nil then
             sound = audio.loadSound(path)
             volume = audio.getVolume()
@@ -35,17 +35,19 @@ local Sound = function (path)
         end
     end
 
-    ---@class Sound
-    ---@field create function
-    ---@field destroy function
-    ---@field mute function
-    ---@field unmute function
-    return {
-        create = create,
-        destroy = destroy,
-        mute = mute,
-        unmute = unmute
-    }
-end
+    return function ()
+        ---@class Sound
+        ---@field create function
+        ---@field destroy function
+        ---@field mute function
+        ---@field unmute function
+        return {
+            create = create,
+            destroy = destroy,
+            mute = mute,
+            unmute = unmute
+        }
+    end
+end)()
 
 return Sound
