@@ -24,6 +24,7 @@ return Scene {
                 {
                     type = "tap",
                     method = function ()
+                        composer.removeScene("Scenes.startMenu")
                         composer.gotoScene("Scenes.game")
                     end
                 }

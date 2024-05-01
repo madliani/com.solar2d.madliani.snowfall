@@ -6,8 +6,6 @@ local Pool = function (objects)
         if pool ~= nil and #pool > 0 then
             for i = 1, #pool, 1 do
                 pool[i].destroy()
-
-                table.remove(pool, i)
             end
         end
     end

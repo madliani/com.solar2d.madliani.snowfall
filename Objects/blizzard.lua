@@ -26,7 +26,7 @@ local Blizzard = function (counter)
                 local snowflake = snowflakes[i]
 
                 if snowflake.isUnavable() then
-                    table.remove(snowflakes, i)
+                    snowflake.destroy()
                 else
                     snowflake.update()
                 end
@@ -40,7 +40,6 @@ local Blizzard = function (counter)
                 local snowflake = snowflakes[i]
 
                 snowflake.destroy()
-                table.remove(snowflakes, i)
             end
 
             snowflakes = nil
