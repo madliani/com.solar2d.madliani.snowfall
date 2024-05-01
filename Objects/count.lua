@@ -1,7 +1,7 @@
 local display = require("display")
 local native = require("native")
 
-local Button = require("Lib.Engine.button")
+local Button = require("Libraries.Engine.button")
 
 ---@param initialCount integer
 local Count = function (initialCount)

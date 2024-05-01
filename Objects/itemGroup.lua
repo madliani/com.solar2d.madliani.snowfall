@@ -1,7 +1,7 @@
 local display = require("display")
 local native = require("native")
 
-local ButtonGroup = require("Lib.Engine.buttonGroup")
+local ButtonGroup = require("Libraries.Engine.buttonGroup")
 
 ---@param items table
 local ItemGroup = function (items)

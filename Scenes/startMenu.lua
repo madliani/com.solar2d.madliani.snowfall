@@ -3,8 +3,8 @@ local os = require("os")
 
 local Resources = require("resources")
 
-local Scene = require("Lib.Engine.scene")
-local Background = require("Lib.Engine.background")
+local Scene = require("Libraries.Engine.scene")
+local Background = require("Libraries.Engine.background")
 
 local ItemGroup = require("Objects.itemGroup")
 

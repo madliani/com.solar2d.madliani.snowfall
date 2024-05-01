@@ -2,7 +2,7 @@ local composer = require("composer")
 
 local Resources = require("resources")
 
-local Sound = require("Lib.Engine.sound")
+local Sound = require("Libraries.Engine.sound")
 
 local sound = Sound(Resources.Sounds.background)
 

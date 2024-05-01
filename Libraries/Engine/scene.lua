@@ -1,6 +1,6 @@
 local composer = require("composer")
 
-local Pool = require("Lib.Engine.pool")
+local Pool = require("Libraries.Engine.pool")
 
 ---@param objects table
 local Scene = function (objects)
