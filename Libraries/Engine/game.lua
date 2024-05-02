@@ -6,50 +6,51 @@ local Resources = require("resources")
 local Sound = require("Libraries.Engine.sound")
 
 local Game = (function ()
-    ---@type "startMenu" | "world" | nil
-    local sceneName = nil
+    local startScene = nil
+    local worldScene = nil
 
     ---@type table | nil
     local sound = Sound()
 
-    local function destroy()
-        if sceneName == "startMenu" and sound ~= nil then
+    local function exit()
+        if sound ~= nil then
             sound.destroy()
 
-            sceneName = nil
+            startScene = nil
+            worldScene = nil
             sound = nil
 
             os.exit()
         end
     end
 
-    local function create()
-        if sceneName == nil and sound ~= nil then
+    local function start()
+        if sound ~= nil and startScene ~= nil then
             sound.create(Resources.Sounds.background)
-            composer.gotoScene("Sources.Scenes.startMenu")
-
-            sceneName = "startMenu"
+            composer.gotoScene(startScene)
         end
     end
 
-    local function resume()
-        if sceneName == "startMenu" then
-            composer.removeScene("Sources.Scenes.startMenu")
-            composer.gotoScene("Sources.Scenes.world")
-
-            sceneName = "world"
-        end
+    local function run()
+       if startScene ~= nil and worldScene ~= nil then
+            composer.removeScene(startScene)
+            composer.gotoScene(worldScene)
+       end
     end
 
-    return function ()
+    ---@param scenes table
+    return function (scenes)
+        startScene = scenes.start
+        worldScene = scenes.world
+
         ---@class Game
-        ---@field create function
-        ---@field destroy function
-        ---@field resume function
+        ---@field exit function
+        ---@field run function
+        ---@field start function
         return {
-            create = create,
-            destroy = destroy,
-            resume = resume
+            exit = exit,
+            run = run,
+            start = start
         }
     end
 end)()

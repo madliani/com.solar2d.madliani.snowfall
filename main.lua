@@ -1,5 +1,3 @@
-local Game = require("Libraries.Engine.game")
+local Snowfall = require("Sources.snowfall")
 
-local game = Game()
-
-game.create()
+Snowfall.start()

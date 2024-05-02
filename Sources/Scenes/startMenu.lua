@@ -2,12 +2,12 @@ local Resources = require("resources")
 
 local Scene = require("Libraries.Engine.scene")
 local Background = require("Libraries.Engine.background")
-local Game = require("Libraries.Engine.game")
+
+local Snowfall = require("Sources.snowfall")
 
 local ItemGroup = require("Sources.Objects.itemGroup")
 
 local background = Background(Resources.Images.background)
-local game = Game()
 
 return Scene {
     background = background,
@@ -20,7 +20,7 @@ return Scene {
                 {
                     type = "tap",
                     method = function ()
-                        game.resume()
+                        Snowfall.run()
                     end
                 }
             },
@@ -38,7 +38,7 @@ return Scene {
                 {
                     type = "tap",
                     method = function ()
-                        game.destroy()
+                        Snowfall.exit()
                     end
                 }
             }
