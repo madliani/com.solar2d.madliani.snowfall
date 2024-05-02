@@ -4,7 +4,7 @@ local Sound = (function ()
     local sound = nil
     local volume = nil
 
-    local function destroy()
+    local function finalize()
         if sound ~= nil and volume ~= nil then
             audio.setVolume(0)
 
@@ -14,7 +14,7 @@ local Sound = (function ()
     end
 
     ---@param path string
-    local function create(path)
+    local function initialize(path)
         if sound == nil and volume == nil then
             sound = audio.loadSound(path)
             volume = audio.getVolume()
@@ -37,13 +37,13 @@ local Sound = (function ()
 
     return function ()
         ---@class Sound
-        ---@field create function
-        ---@field destroy function
+        ---@field finalize function
+        ---@field initialize function
         ---@field mute function
         ---@field unmute function
         return {
-            create = create,
-            destroy = destroy,
+            finalize = finalize,
+            initialize = initialize,
             mute = mute,
             unmute = unmute
         }

@@ -9,12 +9,12 @@ local Game = (function ()
     local startScene = nil
     local worldScene = nil
 
-    ---@type table | nil
+    ---@type Sound | nil
     local sound = Sound()
 
     local function exit()
         if sound ~= nil then
-            sound.destroy()
+            sound.initialize()
 
             startScene = nil
             worldScene = nil
@@ -26,7 +26,7 @@ local Game = (function ()
 
     local function start()
         if sound ~= nil and startScene ~= nil then
-            sound.create(Resources.Sounds.background)
+            sound.initialize(Resources.Sounds.background)
             composer.gotoScene(startScene)
         end
     end
