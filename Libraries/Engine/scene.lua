@@ -6,6 +6,7 @@ local Pool = require("Libraries.Engine.pool")
 local Scene = function (objects)
     local pool = Pool(objects)
 
+    ---@type table
     local scene = composer.newScene()
 
     function scene.destroy()
