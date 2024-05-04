@@ -6,7 +6,10 @@ local Resources = require("resources")
 local Sound = require("Libraries.Engine.sound")
 
 local Game = (function ()
+    ---@type string | nil
     local startScene = nil
+
+    ---@type string | nil
     local worldScene = nil
 
     ---@type Sound | nil
