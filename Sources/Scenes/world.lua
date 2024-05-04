@@ -1,7 +1,7 @@
 local Resources = require("resources")
 
-local Scene = require("Libraries.Engine.scene")
 local Background = require("Libraries.Engine.background")
+local Scene = require("Libraries.Engine.scene")
 
 local Count = require("Sources.Objects.count")
 local Counter = require("Sources.Objects.counter")
