@@ -1,3 +1,3 @@
 local Snowfall = require("Sources.snowfall")
 
-Snowfall.start()
+Snowfall.run()

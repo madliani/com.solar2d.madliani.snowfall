@@ -34,7 +34,7 @@ local Game = (function ()
         end
     end
 
-    local function run()
+    local function start()
        if startScene ~= nil and worldScene ~= nil then
             composer.removeScene(startScene)
             composer.gotoScene(worldScene)
@@ -52,8 +52,8 @@ local Game = (function ()
         ---@field start function
         return {
             exit = destroy,
-            run = run,
-            start = create
+            run = create,
+            start = start
         }
     end
 end)()

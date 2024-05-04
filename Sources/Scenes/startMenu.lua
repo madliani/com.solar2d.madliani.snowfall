@@ -20,7 +20,7 @@ return Scene {
                 {
                     type = "tap",
                     method = function ()
-                        Snowfall.run()
+                        Snowfall.start()
                     end
                 }
             },
