@@ -1,7 +1,10 @@
 local audio = require("audio")
 
 local Sound = (function ()
+    ---@type table | nil
     local sound = nil
+
+    ---@type number | nil
     local volume = nil
 
     local function destroy()
