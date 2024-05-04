@@ -5,6 +5,7 @@ local ButtonGroup = require("Libraries.Engine.buttonGroup")
 
 ---@param items table
 local ItemGroup = function (items)
+    ---@type table
     local itemGroup = {}
 
     local font = {
