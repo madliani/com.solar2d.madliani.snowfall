@@ -4,7 +4,7 @@ local Sound = (function ()
     ---@type table | nil
     local sound = nil
 
-    ---@type number | nil
+    ---@type integer | nil
     local volume = nil
 
     local function destroy()
