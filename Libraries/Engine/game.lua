@@ -15,7 +15,7 @@ local Game = (function ()
     ---@type Sound | nil
     local sound = Sound()
 
-    local function exit()
+    local function destroy()
         if sound ~= nil then
             sound.initialize()
 
@@ -27,7 +27,7 @@ local Game = (function ()
         end
     end
 
-    local function start()
+    local function create()
         if sound ~= nil and startScene ~= nil then
             sound.initialize(Resources.Sounds.background)
             composer.gotoScene(startScene)
@@ -51,9 +51,9 @@ local Game = (function ()
         ---@field run function
         ---@field start function
         return {
-            exit = exit,
+            exit = destroy,
             run = run,
-            start = start
+            start = create
         }
     end
 end)()
