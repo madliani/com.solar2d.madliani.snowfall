@@ -1,8 +1,16 @@
 local display = require("display")
 
+---@class Background
+---@field create function
+---@field destroy function
+---@field hide function
+---@field show function
 ---@param path string
 local Background = function (path)
+    ---@type table | nil
     local imageRect = nil
+
+    ---@type table | nil
     local sceneGroup = nil
 
     local function destroy()
@@ -42,11 +50,6 @@ local Background = function (path)
         end
     end
 
-    ---@class Background
-    ---@field create function
-    ---@field destroy function
-    ---@field hide function
-    ---@field show function
     return {
         create = create,
         destroy = destroy,
