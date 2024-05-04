@@ -8,8 +8,13 @@ local Button = function (label, action)
     local font = label.font
     local color = label.color
 
+    ---@type table | nil
     local button = nil
+
+    ---@type table | nil
     local sceneGroup = nil
+
+    ---@type string | nil
     local titleBackup = nil
 
     local function destroy()
