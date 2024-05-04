@@ -6,7 +6,7 @@ local Snowflake = require("Sources.Objects.snowflake")
 
 ---@param counter Counter
 local Blizzard = function (counter)
-    ---@type table
+    ---@type table | nil
     local snowflakes = {}
 
     ---@type table | nil
