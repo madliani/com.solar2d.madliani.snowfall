@@ -3,6 +3,7 @@ local Pool = require("Libraries.Engine.pool")
 
 ---@param buttons table
 local ButtonGroup = function (buttons)
+    ---@type table
     local buttonGroup = {}
 
     for i = 1, #buttons, 1 do
@@ -14,6 +15,7 @@ local ButtonGroup = function (buttons)
         table.insert(buttonGroup, button)
     end
 
+    ---@type Pool
     local pool = Pool(buttonGroup)
 
     local function destroy()
