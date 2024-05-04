@@ -3,7 +3,10 @@ local display = require("display")
 ---@param path string
 ---@param counter Counter
 local Snowflake = function (path, counter)
+    ---@type table | nil
     local imageRect = nil
+
+    ---@type table | nil
     local sceneGroup = nil
 
     local function destroy()
@@ -54,9 +57,7 @@ local Snowflake = function (path, counter)
 
     local function update()
         local function isRemovable()
-            if imageRect ~= nil then
-                return imageRect.y >= display.contentHeight
-            end
+            return imageRect ~= nil and imageRect.y >= display.contentHeight
         end
 
         local function incCoordinateY()
