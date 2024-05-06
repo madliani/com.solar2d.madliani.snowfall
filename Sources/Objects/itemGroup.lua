@@ -3,6 +3,7 @@ local native = require "native"
 
 local Font = require "Libraries.Engine.font"
 local Color = require "Libraries.Engine.color"
+local Coordinate = require "Libraries.Engine.coordinate"
 local ButtonGroup = require "Libraries.Engine.buttonGroup"
 
 ---@param items table
@@ -21,10 +22,7 @@ local ItemGroup = function(items)
         local gap = 100
         local step = i - 1
 
-        local coordinate = {
-            x = display.contentCenterX,
-            y = 100 + gap * step,
-        }
+        local coordinate = Coordinate(display.contentCenterX, 100 + gap * step)
 
         local label = {
             title = title,
