@@ -1,61 +1,57 @@
-local display = require("display")
+local display = require "display"
 
 ---@param path string
 local Background = function(path)
-	---@type table | nil
-	local imageRect = nil
+    ---@type table | nil
+    local imageRect = nil
 
-	---@type table | nil
-	local sceneGroup = nil
+    ---@type table | nil
+    local sceneGroup = nil
 
-	local function destroy()
-		if imageRect ~= nil and sceneGroup ~= nil then
-			sceneGroup.remove(sceneGroup, imageRect)
+    local function destroy()
+        if imageRect ~= nil and sceneGroup ~= nil then
+            sceneGroup.remove(sceneGroup, imageRect)
 
-			imageRect.removeSelf(imageRect)
+            imageRect.removeSelf(imageRect)
 
-			imageRect = nil
-			sceneGroup = nil
-		end
-	end
+            imageRect = nil
+            sceneGroup = nil
+        end
+    end
 
-	---@param group table
-	local function create(group)
-		sceneGroup = group
+    ---@param group table
+    local function create(group)
+        sceneGroup = group
 
-		if imageRect == nil and sceneGroup ~= nil then
-			imageRect = display.newImageRect(path, display.pixelWidth, display.pixelHeight)
+        if imageRect == nil and sceneGroup ~= nil then
+            imageRect = display.newImageRect(path, display.pixelWidth, display.pixelHeight)
 
-			imageRect.x = display.contentCenterX
-			imageRect.y = display.contnetCenterY
+            imageRect.x = display.contentCenterX
+            imageRect.y = display.contnetCenterY
 
-			sceneGroup.insert(sceneGroup, imageRect)
-		end
-	end
+            sceneGroup.insert(sceneGroup, imageRect)
+        end
+    end
 
-	local function show()
-		if imageRect ~= nil then
-			imageRect.isVisible = true
-		end
-	end
+    local function show()
+        if imageRect ~= nil then imageRect.isVisible = true end
+    end
 
-	local function hide()
-		if imageRect ~= nil then
-			imageRect.isVisible = false
-		end
-	end
+    local function hide()
+        if imageRect ~= nil then imageRect.isVisible = false end
+    end
 
-	---@class Background
-	---@field create function
-	---@field destroy function
-	---@field hide function
-	---@field show function
-	return {
-		create = create,
-		destroy = destroy,
-		hide = hide,
-		show = show,
-	}
+    ---@class Background
+    ---@field create function
+    ---@field destroy function
+    ---@field hide function
+    ---@field show function
+    return {
+        create = create,
+        destroy = destroy,
+        hide = hide,
+        show = show,
+    }
 end
 
 return Background
