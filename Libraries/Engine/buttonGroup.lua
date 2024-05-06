@@ -2,50 +2,50 @@ local Button = require("Libraries.Engine.button")
 local Pool = require("Libraries.Engine.pool")
 
 ---@param buttons table
-local ButtonGroup = function (buttons)
-    ---@type table
-    local buttonGroup = {}
+local ButtonGroup = function(buttons)
+	---@type table
+	local buttonGroup = {}
 
-    for i = 1, #buttons, 1 do
-        local label = buttons[i].label
-        local action = buttons[i].action
+	for i = 1, #buttons, 1 do
+		local label = buttons[i].label
+		local action = buttons[i].action
 
-        local button = Button(label, action)
+		local button = Button(label, action)
 
-        table.insert(buttonGroup, button)
-    end
+		table.insert(buttonGroup, button)
+	end
 
-    ---@type Pool
-    local pool = Pool(buttonGroup)
+	---@type Pool
+	local pool = Pool(buttonGroup)
 
-    local function destroy()
-        pool.destroy()
-    end
+	local function destroy()
+		pool.destroy()
+	end
 
-    ---@param group table
-    local function create(group)
-        pool.create(group)
-    end
+	---@param group table
+	local function create(group)
+		pool.create(group)
+	end
 
-    local function show()
-        pool.show()
-    end
+	local function show()
+		pool.show()
+	end
 
-    local function hide()
-        pool.hide()
-    end
+	local function hide()
+		pool.hide()
+	end
 
-    ---@class ButtonGrount
-    ---@field create function
-    ---@field destroy function
-    ---@field hide function
-    ---@field show function
-    return {
-        create = create,
-        destroy = destroy,
-        hide = hide,
-        show = show
-    }
+	---@class ButtonGrount
+	---@field create function
+	---@field destroy function
+	---@field hide function
+	---@field show function
+	return {
+		create = create,
+		destroy = destroy,
+		hide = hide,
+		show = show,
+	}
 end
 
 return ButtonGroup
