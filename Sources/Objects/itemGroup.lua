@@ -1,6 +1,7 @@
 local display = require "display"
 local native = require "native"
 
+local Font = require "Libraries.Engine.font"
 local ButtonGroup = require "Libraries.Engine.buttonGroup"
 
 ---@param items table
@@ -8,10 +9,7 @@ local ItemGroup = function(items)
     ---@type table
     local itemGroup = {}
 
-    local font = {
-        family = native.systemFont,
-        size = 48,
-    }
+    local font = Font(native.systemFont, 48)
 
     local color = {
         red = 0,
