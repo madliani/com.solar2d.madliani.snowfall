@@ -2,6 +2,7 @@ local display = require "display"
 local native = require "native"
 
 local Font = require "Libraries.Engine.font"
+local Color = require "Libraries.Engine.color"
 local ButtonGroup = require "Libraries.Engine.buttonGroup"
 
 ---@param items table
@@ -11,11 +12,7 @@ local ItemGroup = function(items)
 
     local font = Font(native.systemFont, 48)
 
-    local color = {
-        red = 0,
-        green = 0,
-        blue = 0,
-    }
+    local color = Color(0, 0, 0)
 
     for i = 1, #items, 1 do
         local title = items[i].title
