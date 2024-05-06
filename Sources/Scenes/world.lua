@@ -13,8 +13,8 @@ local count = Count(0)
 local counter = Counter(count)
 local blizzard = Blizzard(counter)
 
-return Scene  {
-    background,
-    count,
-    blizzard
-}
+return Scene({
+	background,
+	count,
+	blizzard,
+})
