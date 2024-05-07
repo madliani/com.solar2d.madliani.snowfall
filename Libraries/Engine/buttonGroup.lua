@@ -15,7 +15,6 @@ local ButtonGroup = function(buttons)
         table.insert(buttonGroup, button)
     end
 
-    ---@type Pool
     local pool = Pool(buttonGroup)
 
     local function destroy() pool.destroy() end
