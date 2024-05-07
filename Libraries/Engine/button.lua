@@ -1,7 +1,7 @@
 local display = require "display"
 
----@param label table
----@param action? table
+---@param label Label
+---@param action? Action
 local Button = function(label, action)
     local title = label.title
     local coordinate = label.coordinate
