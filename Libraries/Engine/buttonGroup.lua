@@ -3,7 +3,7 @@ local Pool = require "Libraries.Engine.pool"
 
 ---@param buttons table
 local ButtonGroup = function(buttons)
-    ---@type table
+    ---@type any[]
     local buttonGroup = {}
 
     for i = 1, #buttons, 1 do
