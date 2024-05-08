@@ -17,14 +17,22 @@ local ButtonGroup = function(buttons)
 
     local pool = Pool(buttonGroup)
 
-    local function destroy() pool.destroy() end
+    local function destroy()
+        pool.destroy()
+    end
 
     ---@param group table
-    local function create(group) pool.create(group) end
+    local function create(group)
+        pool.create(group)
+    end
 
-    local function show() pool.show() end
+    local function show()
+        pool.show()
+    end
 
-    local function hide() pool.hide() end
+    local function hide()
+        pool.hide()
+    end
 
     ---@class ButtonGrount
     ---@field create function

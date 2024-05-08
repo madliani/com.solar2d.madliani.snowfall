@@ -34,11 +34,15 @@ local Background = function(path)
     end
 
     local function show()
-        if imageRect ~= nil then imageRect.isVisible = true end
+        if imageRect ~= nil then
+            imageRect.isVisible = true
+        end
     end
 
     local function hide()
-        if imageRect ~= nil then imageRect.isVisible = false end
+        if imageRect ~= nil then
+            imageRect.isVisible = false
+        end
     end
 
     ---@class Background

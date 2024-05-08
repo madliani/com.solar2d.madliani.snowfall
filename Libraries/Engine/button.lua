@@ -39,19 +39,27 @@ local Button = function(label, action)
             sceneGroup.insert(sceneGroup, button)
         end
 
-        if button ~= nil and action ~= nil then button.addEventListener(button, action.type, action.method) end
+        if button ~= nil and action ~= nil then
+            button.addEventListener(button, action.type, action.method)
+        end
     end
 
     local function show()
-        if button ~= nil and titleBackup ~= nil then button.text = titleBackup end
+        if button ~= nil and titleBackup ~= nil then
+            button.text = titleBackup
+        end
     end
 
     local function hide()
-        if button ~= nil then button.text = "" end
+        if button ~= nil then
+            button.text = ""
+        end
     end
 
     local function updateTitle(newTitle)
-        if button ~= nil then button.text = newTitle end
+        if button ~= nil then
+            button.text = newTitle
+        end
     end
 
     ---@class Button

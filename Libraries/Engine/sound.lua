@@ -27,11 +27,15 @@ local Sound = (function()
     end
 
     local function show()
-        if sound ~= nil then audio.setVolume(volume) end
+        if sound ~= nil then
+            audio.setVolume(volume)
+        end
     end
 
     local function hide()
-        if sound ~= nil then audio.setVolume(0) end
+        if sound ~= nil then
+            audio.setVolume(0)
+        end
     end
 
     return function()

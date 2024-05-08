@@ -9,7 +9,9 @@ local Scene = function(objects)
     ---@type table
     local scene = composer.newScene()
 
-    function scene.destroy() pool.destroy() end
+    function scene.destroy()
+        pool.destroy()
+    end
 
     function scene.create(self)
         local sceneGroup = self.view
@@ -17,9 +19,13 @@ local Scene = function(objects)
         pool.create(sceneGroup)
     end
 
-    function scene.show() pool.show() end
+    function scene.show()
+        pool.show()
+    end
 
-    function scene.hide() pool.hide() end
+    function scene.hide()
+        pool.hide()
+    end
 
     scene.addEventListener(scene, "destroy")
     scene.addEventListener(scene, "create")
