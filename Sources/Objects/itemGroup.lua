@@ -1,11 +1,11 @@
 local display = require "display"
 local native = require "native"
 
-local Font = require "Libraries.Engine.font"
+local ButtonGroup = require "Libraries.Engine.buttonGroup"
 local Color = require "Libraries.Engine.color"
 local Coordinate = require "Libraries.Engine.coordinate"
+local Font = require "Libraries.Engine.font"
 local Label = require "Libraries.Engine.label"
-local ButtonGroup = require "Libraries.Engine.buttonGroup"
 
 ---@param items table
 local ItemGroup = function(items)
@@ -37,14 +37,22 @@ local ItemGroup = function(items)
 
     local buttonGroup = ButtonGroup(itemGroup)
 
-    local function destroy() buttonGroup.destroy() end
+    local function destroy()
+        buttonGroup.destroy()
+    end
 
     ---@param group table
-    local function create(group) buttonGroup.create(group) end
+    local function create(group)
+        buttonGroup.create(group)
+    end
 
-    local function show() buttonGroup.show() end
+    local function show()
+        buttonGroup.show()
+    end
 
-    local function hide() buttonGroup.hide() end
+    local function hide()
+        buttonGroup.hide()
+    end
 
     ---@class ItemGroup
     ---@field create function

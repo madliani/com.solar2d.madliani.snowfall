@@ -32,14 +32,22 @@ local Count = function(initialCount)
 
     local button = Button(label)
 
-    local function destroy() button.destroy() end
+    local function destroy()
+        button.destroy()
+    end
 
     ---@param group table
-    local function create(group) button.create(group) end
+    local function create(group)
+        button.create(group)
+    end
 
-    local function show() button.show() end
+    local function show()
+        button.show()
+    end
 
-    local function hide() button.hide() end
+    local function hide()
+        button.hide()
+    end
 
     local function inc()
         count = count + 1

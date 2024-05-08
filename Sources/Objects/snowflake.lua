@@ -44,18 +44,26 @@ local Snowflake = function(path, counter)
     end
 
     local function show()
-        if imageRect ~= nil then imageRect.isVisible = true end
+        if imageRect ~= nil then
+            imageRect.isVisible = true
+        end
     end
 
     local function hide()
-        if imageRect ~= nil then imageRect.isVisible = false end
+        if imageRect ~= nil then
+            imageRect.isVisible = false
+        end
     end
 
     local function update()
-        local function isRemovable() return imageRect ~= nil and imageRect.y >= display.contentHeight end
+        local function isRemovable()
+            return imageRect ~= nil and imageRect.y >= display.contentHeight
+        end
 
         local function incCoordinateY()
-            if imageRect ~= nil then imageRect.y = imageRect.y + 1 end
+            if imageRect ~= nil then
+                imageRect.y = imageRect.y + 1
+            end
         end
 
         if imageRect ~= nil then
@@ -67,7 +75,9 @@ local Snowflake = function(path, counter)
         end
     end
 
-    local function isUnavable() return imageRect == nil end
+    local function isUnavable()
+        return imageRect == nil
+    end
 
     ---@class Snowflake
     ---@field create function

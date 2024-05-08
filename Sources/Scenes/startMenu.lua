@@ -14,7 +14,9 @@ local itemGroup = ItemGroup {
         title = "Start Game",
         action = {
             type = "tap",
-            method = function() Snowfall.start() end,
+            method = function()
+                Snowfall.start()
+            end,
         },
     },
     {
@@ -28,7 +30,9 @@ local itemGroup = ItemGroup {
         title = "Exit",
         action = {
             type = "tap",
-            method = function() Snowfall.exit() end,
+            method = function()
+                Snowfall.exit()
+            end,
         },
     },
 }
