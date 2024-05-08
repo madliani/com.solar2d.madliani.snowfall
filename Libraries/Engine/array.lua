@@ -7,7 +7,9 @@ local Array = function(values)
 
     ---@param f function
     local function forEach(f)
-        for i = 1, length, 1 do
+        local i = 1
+
+        while i <= length do
             local value = array[i]
 
             ---@param newValue any
@@ -16,6 +18,8 @@ local Array = function(values)
             end
 
             f(value, set)
+
+            i = i + 1
         end
     end
 
