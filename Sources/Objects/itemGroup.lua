@@ -9,7 +9,7 @@ local ButtonGroup = require "Libraries.Engine.buttonGroup"
 
 ---@param items table
 local ItemGroup = function(items)
-    ---@type table
+    ---@type any[]
     local itemGroup = {}
 
     local font = Font(native.systemFont, 48)
