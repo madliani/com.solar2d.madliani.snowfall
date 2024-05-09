@@ -28,8 +28,19 @@ local Table = function(values)
         end
     end
 
+    local function getKeys()
+        ---@type table<any>
+        local keys = {}
+
+        for key, _ in pairs(array) do
+            table.insert(key)
+        end
+
+        return keys
+    end
+
     ---@param position integer
-    local function get(position)
+    local function getValue(position)
         return array[position]
     end
 
@@ -65,7 +76,8 @@ local Table = function(values)
     ---@class Array
     ---@field find function
     ---@field forEach function
-    ---@field get function
+    ---@field getKeys function
+    ---@field getValue function
     ---@field index function
     ---@field insert function
     ---@field length function
@@ -73,7 +85,8 @@ local Table = function(values)
     return {
         find = find,
         forEach = forEach,
-        get = get,
+        getKeys = getKeys,
+        getValue = getValue,
         index = index,
         insert = insert,
         len = len,
