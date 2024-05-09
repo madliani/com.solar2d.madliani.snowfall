@@ -6,6 +6,17 @@ local Table = function(values)
     local length = #array
 
     ---@param func function
+    local function find(func)
+        for _, value in pairs(array) do
+            if func(value) == true then
+                return value
+            end
+        end
+
+        return nil
+    end
+
+    ---@param func function
     local function forEach(func)
         for key, value in pairs(array) do
             ---@param newValue any
@@ -52,6 +63,7 @@ local Table = function(values)
     end
 
     ---@class Array
+    ---@field find function
     ---@field forEach function
     ---@field get function
     ---@field index function
@@ -59,6 +71,7 @@ local Table = function(values)
     ---@field length function
     ---@field remove function
     return {
+        find = find,
         forEach = forEach,
         get = get,
         index = index,
