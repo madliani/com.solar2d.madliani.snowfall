@@ -1,6 +1,6 @@
 local table = require "table"
 
----@param values? any[]
+---@param values? table
 local Table = function(values)
     local array = values or {}
     local length = #array
