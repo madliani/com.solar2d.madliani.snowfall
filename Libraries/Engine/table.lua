@@ -1,25 +1,19 @@
 local table = require "table"
 
 ---@param values? any[]
-local Array = function(values)
+local Table = function(values)
     local array = values or {}
     local length = #array
 
-    ---@param f function
-    local function forEach(f)
-        local i = 1
-
-        while i <= length do
-            local value = array[i]
-
+    ---@param func function
+    local function forEach(func)
+        for key, value in pairs(array) do
             ---@param newValue any
             local function set(newValue)
-                array[i] = newValue
+                array[key] = newValue
             end
 
-            f(value, set)
-
-            i = i + 1
+            func(value, set)
         end
     end
 
@@ -61,4 +55,4 @@ local Array = function(values)
     }
 end
 
-return Array
+return Table
