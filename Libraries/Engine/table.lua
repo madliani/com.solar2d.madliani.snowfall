@@ -33,7 +33,7 @@ local Table = function(values)
         local keys = {}
 
         for key, _ in pairs(array) do
-            table.insert(key)
+            table.insert(keys, key)
         end
 
         return keys
