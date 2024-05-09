@@ -22,6 +22,17 @@ local Table = function(values)
         return array[position]
     end
 
+    ---@param pattern any
+    local function index(pattern)
+        for key, value in pairs(array) do
+            if value == pattern then
+                return key
+            end
+        end
+
+        return nil
+    end
+
     ---@param value any
     local function insert(value)
         table.insert(array, value)
@@ -43,12 +54,14 @@ local Table = function(values)
     ---@class Array
     ---@field forEach function
     ---@field get function
+    ---@field index function
     ---@field insert function
     ---@field length function
     ---@field remove function
     return {
         forEach = forEach,
         get = get,
+        index = index,
         insert = insert,
         len = len,
         remove = remove,
