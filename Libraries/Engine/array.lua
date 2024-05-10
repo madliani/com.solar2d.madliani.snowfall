@@ -1,8 +1,8 @@
 local table = require "table"
 
----@param values? table
-local Array = function(values)
-    local array = values or {}
+---@param initialArray? table
+local Array = function(initialArray)
+    local array = initialArray or {}
     local length = #array
 
     ---@param func function
@@ -44,6 +44,17 @@ local Array = function(values)
         return array[position]
     end
 
+    local function getValues()
+        ---@type table<any>
+        local values = {}
+
+        for _, value in pairs(array) do
+            table.insert(values, value)
+        end
+
+        return values
+    end
+
     ---@param pattern any
     local function index(pattern)
         for key, value in pairs(array) do
@@ -78,6 +89,7 @@ local Array = function(values)
     ---@field forEach function
     ---@field getKeys function
     ---@field getValue function
+    ---@field getValues function
     ---@field index function
     ---@field insert function
     ---@field length function
@@ -87,6 +99,7 @@ local Array = function(values)
         forEach = forEach,
         getKeys = getKeys,
         getValue = getValue,
+        getValues = getValues,
         index = index,
         insert = insert,
         len = len,
