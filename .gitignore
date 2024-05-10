@@ -508,4 +508,5 @@ hs_err_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/emacs,git,linux,macos,vim,visualstudiocode,webstorm,windows,android,androidstudio,xcode,lua
 
+# luarocks packages
 .rocks
