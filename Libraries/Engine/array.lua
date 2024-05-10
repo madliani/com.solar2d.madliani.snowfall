@@ -1,7 +1,7 @@
 local table = require "table"
 
 ---@param values? table
-local Table = function(values)
+local Array = function(values)
     local array = values or {}
     local length = #array
 
@@ -94,4 +94,4 @@ local Table = function(values)
     }
 end
 
-return Table
+return Array
