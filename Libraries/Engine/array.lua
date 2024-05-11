@@ -3,7 +3,6 @@ local table = require "table"
 ---@param initialArray? table
 local Array = function(initialArray)
     local array = initialArray or {}
-    local length = #array
 
     ---@param func function
     local function find(func)
@@ -69,19 +68,15 @@ local Array = function(initialArray)
     ---@param value any
     local function insert(value)
         table.insert(array, value)
-
-        length = #array
     end
 
-    local function len()
-        return length
+    local function length()
+        return #array
     end
 
     ---@param position integer
     local function remove(position)
         table.remove(array, position)
-
-        length = #array
     end
 
     ---@class Array
@@ -92,7 +87,7 @@ local Array = function(initialArray)
     ---@field getValues function
     ---@field index function
     ---@field insert function
-    ---@field len function
+    ---@field length function
     ---@field remove function
     return {
         find = find,
@@ -102,7 +97,7 @@ local Array = function(initialArray)
         getValues = getValues,
         index = index,
         insert = insert,
-        len = len,
+        length = length,
         remove = remove,
     }
 end
