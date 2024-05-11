@@ -1,8 +1,8 @@
 local table = require "table"
 
----@param initialArray? table
-local Array = function(initialArray)
-    local array = initialArray or {}
+---@param initialList? table
+local List = function(initialList)
+    local array = initialList or {}
 
     ---@param callback function
     local function find(callback)
@@ -79,7 +79,7 @@ local Array = function(initialArray)
         table.remove(array, position)
     end
 
-    ---@class Array
+    ---@class List
     ---@field find function
     ---@field foreach function
     ---@field getKeys function
@@ -102,4 +102,4 @@ local Array = function(initialArray)
     }
 end
 
-return Array
+return List
