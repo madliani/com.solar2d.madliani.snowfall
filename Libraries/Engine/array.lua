@@ -15,15 +15,15 @@ local Array = function(initialArray)
         return nil
     end
 
-    ---@param func function
-    local function forEach(func)
+    ---@param callback function
+    local function foreach(callback)
         for key, value in pairs(array) do
             ---@param newValue any
             local function set(newValue)
                 array[key] = newValue
             end
 
-            func(value, set)
+            callback(value, set)
         end
     end
 
@@ -81,7 +81,7 @@ local Array = function(initialArray)
 
     ---@class Array
     ---@field find function
-    ---@field forEach function
+    ---@field foreach function
     ---@field getKeys function
     ---@field getValue function
     ---@field getValues function
@@ -91,7 +91,7 @@ local Array = function(initialArray)
     ---@field remove function
     return {
         find = find,
-        forEach = forEach,
+        foreach = foreach,
         getKeys = getKeys,
         getValue = getValue,
         getValues = getValues,
