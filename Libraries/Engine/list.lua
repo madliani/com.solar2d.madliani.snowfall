@@ -1,8 +1,14 @@
 local table = require "table"
 
+local _unpack = unpack
+
 ---@param initialList? table
 local List = function(initialList)
     local list = initialList or {}
+
+    local function unpack()
+        return _unpack(list)
+    end
 
     ---@param callback function
     local function find(callback)
@@ -80,6 +86,7 @@ local List = function(initialList)
     end
 
     ---@class List
+    ---@field unpack function
     ---@field find function
     ---@field foreach function
     ---@field getKeys function
@@ -90,6 +97,7 @@ local List = function(initialList)
     ---@field length function
     ---@field remove function
     return {
+        unpack = unpack,
         find = find,
         foreach = foreach,
         getKeys = getKeys,
