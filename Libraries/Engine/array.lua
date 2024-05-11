@@ -92,7 +92,7 @@ local Array = function(initialArray)
     ---@field getValues function
     ---@field index function
     ---@field insert function
-    ---@field length function
+    ---@field len function
     ---@field remove function
     return {
         find = find,
