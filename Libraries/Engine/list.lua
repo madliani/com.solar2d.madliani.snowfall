@@ -2,11 +2,11 @@ local table = require "table"
 
 ---@param initialList? table
 local List = function(initialList)
-    local array = initialList or {}
+    local list = initialList or {}
 
     ---@param callback function
     local function find(callback)
-        for _, value in pairs(array) do
+        for _, value in pairs(list) do
             if callback(value) == true then
                 return value
             end
@@ -17,10 +17,10 @@ local List = function(initialList)
 
     ---@param callback function
     local function foreach(callback)
-        for key, value in pairs(array) do
+        for key, value in pairs(list) do
             ---@param newValue any
             local function set(newValue)
-                array[key] = newValue
+                list[key] = newValue
             end
 
             callback(value, set)
@@ -31,7 +31,7 @@ local List = function(initialList)
         ---@type table<any>
         local keys = {}
 
-        for key, _ in pairs(array) do
+        for key, _ in pairs(list) do
             table.insert(keys, key)
         end
 
@@ -40,14 +40,14 @@ local List = function(initialList)
 
     ---@param position integer
     local function getValue(position)
-        return array[position]
+        return list[position]
     end
 
     local function getValues()
         ---@type table<any>
         local values = {}
 
-        for _, value in pairs(array) do
+        for _, value in pairs(list) do
             table.insert(values, value)
         end
 
@@ -56,7 +56,7 @@ local List = function(initialList)
 
     ---@param pattern any
     local function index(pattern)
-        for key, value in pairs(array) do
+        for key, value in pairs(list) do
             if value == pattern then
                 return key
             end
@@ -67,16 +67,16 @@ local List = function(initialList)
 
     ---@param value any
     local function insert(value)
-        table.insert(array, value)
+        table.insert(list, value)
     end
 
     local function length()
-        return #array
+        return #list
     end
 
     ---@param position integer
     local function remove(position)
-        table.remove(array, position)
+        table.remove(list, position)
     end
 
     ---@class List
