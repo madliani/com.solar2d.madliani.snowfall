@@ -1,13 +1,15 @@
 local table = require "table"
 
 local _unpack = unpack
+local _next = next
 
 ---@param initialList? table
 local List = function(initialList)
     local list = initialList or {}
 
-    local function unpack()
-        return _unpack(list)
+    ---@param index? any
+    local function next(index)
+        return _next(list, index)
     end
 
     ---@param callback function
@@ -85,7 +87,12 @@ local List = function(initialList)
         table.remove(list, position)
     end
 
+    local function unpack()
+        return _unpack(list)
+    end
+
     ---@class List
+    ---@field next function
     ---@field find function
     ---@field foreach function
     ---@field getKey function
@@ -97,6 +104,7 @@ local List = function(initialList)
     ---@field remove function
     ---@field unpack function
     return {
+        next = next,
         find = find,
         foreach = foreach,
         getKey = getKey,
