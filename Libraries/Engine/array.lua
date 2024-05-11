@@ -4,10 +4,10 @@ local table = require "table"
 local Array = function(initialArray)
     local array = initialArray or {}
 
-    ---@param func function
-    local function find(func)
+    ---@param callback function
+    local function find(callback)
         for _, value in pairs(array) do
-            if func(value) == true then
+            if callback(value) == true then
                 return value
             end
         end
