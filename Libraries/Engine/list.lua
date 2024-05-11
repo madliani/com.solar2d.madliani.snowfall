@@ -61,7 +61,7 @@ local List = function(initialList)
     end
 
     ---@param pattern any
-    local function index(pattern)
+    local function getKey(pattern)
         for key, value in pairs(list) do
             if value == pattern then
                 return key
@@ -86,27 +86,27 @@ local List = function(initialList)
     end
 
     ---@class List
-    ---@field unpack function
     ---@field find function
     ---@field foreach function
+    ---@field getKey function
     ---@field getKeys function
     ---@field getValue function
     ---@field getValues function
-    ---@field index function
     ---@field insert function
     ---@field length function
     ---@field remove function
+    ---@field unpack function
     return {
-        unpack = unpack,
         find = find,
         foreach = foreach,
+        getKey = getKey,
         getKeys = getKeys,
         getValue = getValue,
         getValues = getValues,
-        index = index,
         insert = insert,
         length = length,
         remove = remove,
+        unpack = unpack,
     }
 end
 
