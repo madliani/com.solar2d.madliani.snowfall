@@ -4,7 +4,12 @@ local Image = require "Libraries.Engine.image"
 
 ---@param path string
 local Background = function(path)
-    local image = Image(path, display.pixelWidth, display.pixelHeight)
+    local width = display.pixelWidth
+    local height = display.pixelHeight
+    local coordinateX = display.contentCenterX
+    local coordinateY = display.contentCenterY
+
+    local image = Image(path, width, height, coordinateX, coordinateY)
 
     local function destroy()
         image.destroy()

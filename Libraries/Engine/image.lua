@@ -3,7 +3,9 @@ local display = require "display"
 ---@param path string
 ---@param width integer
 ---@param height integer
-local Image = function(path, width, height)
+---@param x integer
+---@param y integer
+local Image = function(path, width, height, x, y)
     ---@type table | nil
     local imageRect = nil
 
@@ -28,8 +30,8 @@ local Image = function(path, width, height)
         if imageRect == nil and sceneGroup ~= nil then
             imageRect = display.newImageRect(path, width, height)
 
-            imageRect.x = display.contentCenterX
-            imageRect.y = display.contnetCenterY
+            imageRect.x = x
+            imageRect.y = y
 
             sceneGroup.insert(sceneGroup, imageRect)
         end
