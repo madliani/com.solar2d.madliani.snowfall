@@ -1,48 +1,26 @@
 local display = require "display"
 
+local Image = require "Libraries.Engine.image"
+
 ---@param path string
 local Background = function(path)
-    ---@type table | nil
-    local imageRect = nil
-
-    ---@type table | nil
-    local sceneGroup = nil
+    local image = Image(path, display.pixelWidth, display.pixelHeight)
 
     local function destroy()
-        if imageRect ~= nil and sceneGroup ~= nil then
-            sceneGroup.remove(sceneGroup, imageRect)
-
-            imageRect.removeSelf(imageRect)
-
-            imageRect = nil
-            sceneGroup = nil
-        end
+        image.destroy()
     end
 
     ---@param group table
     local function create(group)
-        sceneGroup = group
-
-        if imageRect == nil and sceneGroup ~= nil then
-            imageRect = display.newImageRect(path, display.pixelWidth, display.pixelHeight)
-
-            imageRect.x = display.contentCenterX
-            imageRect.y = display.contnetCenterY
-
-            sceneGroup.insert(sceneGroup, imageRect)
-        end
+        image.create(group)
     end
 
     local function show()
-        if imageRect ~= nil then
-            imageRect.isVisible = true
-        end
+        image.show()
     end
 
     local function hide()
-        if imageRect ~= nil then
-            imageRect.isVisible = false
-        end
+        image.hide()
     end
 
     ---@class Background
