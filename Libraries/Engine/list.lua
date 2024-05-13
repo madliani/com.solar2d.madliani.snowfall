@@ -35,7 +35,7 @@ local List = function(initialList)
         end
     end
 
-    local function getKeys()
+    local function getkeys()
         ---@type table<any>
         local keys = {}
 
@@ -47,11 +47,11 @@ local List = function(initialList)
     end
 
     ---@param position integer
-    local function getValue(position)
+    local function getvalue(position)
         return list[position]
     end
 
-    local function getValues()
+    local function getvalues()
         ---@type table<any>
         local values = {}
 
@@ -63,7 +63,7 @@ local List = function(initialList)
     end
 
     ---@param pattern any
-    local function getKey(pattern)
+    local function getkey(pattern)
         for key, value in pairs(list) do
             if value == pattern then
                 return key
@@ -95,10 +95,10 @@ local List = function(initialList)
     ---@field next function
     ---@field find function
     ---@field foreach function
-    ---@field getKey function
-    ---@field getKeys function
-    ---@field getValue function
-    ---@field getValues function
+    ---@field getkey function
+    ---@field getkeys function
+    ---@field getvalue function
+    ---@field getvalues function
     ---@field insert function
     ---@field length function
     ---@field remove function
@@ -107,10 +107,10 @@ local List = function(initialList)
         next = next,
         find = find,
         foreach = foreach,
-        getKey = getKey,
-        getKeys = getKeys,
-        getValue = getValue,
-        getValues = getValues,
+        getkey = getkey,
+        getkeys = getkeys,
+        getvalue = getvalue,
+        getvalues = getvalues,
         insert = insert,
         length = length,
         remove = remove,
