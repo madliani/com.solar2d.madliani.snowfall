@@ -5,9 +5,12 @@ local Scene = require "Libraries.Engine.scene"
 
 local Snowfall = require "Sources.snowfall"
 
+local MenuBackground = require "Sources.Objects.menuBackground"
 local ItemGroup = require "Sources.Objects.itemGroup"
 
 local background = Background(Resources.Images.background)
+
+local menuBackground = MenuBackground()
 
 local itemGroup = ItemGroup {
     {
@@ -39,5 +42,6 @@ local itemGroup = ItemGroup {
 
 return Scene {
     background,
+    menuBackground,
     itemGroup,
 }

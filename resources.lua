@@ -1,6 +1,9 @@
 return {
     Images = {
         background = "Assets/Images/background.png",
+        dropdownBottom = "Assets/Images/dropdown_bottom.png",
+        dropdownMiddle = "Assets/Images/dropdown_middle.png",
+        dropdownTop = "Assets/Images/dropdown_top.png",
         snowflake = "Assets/Images/snowflake.png",
     },
     Sounds = {
