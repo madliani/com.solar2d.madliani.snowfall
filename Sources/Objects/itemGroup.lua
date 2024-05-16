@@ -15,25 +15,6 @@ local ItemGroup = function(items)
     ---@type any[]
     local itemGroup = {}
 
-    for i = 1, #items, 1 do
-        local title = items[i].title
-        local action = items[i].action
-
-        local gap = 100
-        local step = i - 1
-
-        local coordinate = Coordinate(display.contentCenterX, 100 + gap * step)
-
-        local label = Label(title, coordinate, font, color)
-
-        local item = {
-            label = label,
-            action = action,
-        }
-
-        table.insert(itemGroup, item)
-    end
-
     local buttonGroup = ButtonGroup(itemGroup)
 
     local function destroy()
@@ -42,6 +23,24 @@ local ItemGroup = function(items)
 
     ---@param group table
     local function create(group)
+        for i = 1, #items, 1 do
+            local title = items[i].title
+            local action = items[i].action
+
+            local gap = 100
+            local step = i - 1
+
+            local coordinate = Coordinate(display.contentCenterX, 100 + gap * step)
+            local label = Label(title, coordinate, font, color)
+
+            local item = {
+                label = label,
+                action = action,
+            }
+
+            table.insert(itemGroup, item)
+        end
+
         buttonGroup.create(group)
     end
 
