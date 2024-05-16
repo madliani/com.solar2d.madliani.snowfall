@@ -4,36 +4,37 @@ local Resources = require "resources"
 
 local Pool = require "Libraries.Engine.pool"
 local Image = require "Libraries.Engine.image"
+local Size = require "Libraries.Engine.size"
+local Coordinate = require "Libraries.Engine.coordinate"
 
 local itemsCount = 5
-local width = 190
-local height = 24
-local coordinateX = display.contentCenterX
-local coordinateY = display.contentCenterY
+local size = Size(190, 24)
 
 local MenuBackground = function()
     ---@type any[]
     local dropdown = {}
 
     for i = 1, itemsCount, 1 do
-        local dropdownMiddle =
-            Image(Resources.Images.dropdownMiddle, width, height, coordinateX, coordinateY - i * height)
+        local coordinate = Coordinate(display.contentCentderX, display.contentCenterY - i * size.height)
+        local dropdownMiddle = Image(Resources.Images.dropdownMiddle, size, coordinate)
 
         table.insert(dropdown, dropdownMiddle)
     end
 
     for i = 1, itemsCount, 1 do
-        local dropdownMiddle =
-            Image(Resources.Images.dropdownMiddle, width, height, coordinateX, coordinateY + i * height)
+        local coordinate = Coordinate(display.contentCentderX, display.contentCenterY + i * size.height)
+        local dropdownMiddle = Image(Resources.Images.dropdownMiddle, size, coordinate)
 
         table.insert(dropdown, dropdownMiddle)
     end
 
-    local dropdownTop =
-        Image(Resources.Images.dropdownTop, width, height, coordinateX, coordinateY - (itemsCount + 1) * height)
-    local dropdownMiddle = Image(Resources.Images.dropdownMiddle, width, height, coordinateX, coordinateY)
-    local dropdownBottom =
-        Image(Resources.Images.dropdownBottom, width, height, coordinateX, coordinateY + (itemsCount + 1) * height)
+    local coordinateTop = Coordinate(display.contentCentderX, display.contentCenterY - (itemsCount + 1) * size.height)
+    local coordinateMiddle = Coordinate(display.contentCentderX, display.contentCenterY)
+    local coordinateBottom = Coordinate(display.contentCentderX, display.contentCenterY + (itemsCount + 1) * size.height)
+
+    local dropdownTop = Image(Resources.Images.dropdownTop, size, coordinateTop)
+    local dropdownMiddle = Image(Resources.Images.dropdownMiddle, size, coordinateMiddle)
+    local dropdownBottom = Image(Resources.Images.dropdownBottom, size, coordinateBottom)
 
     table.insert(dropdown, dropdownTop)
     table.insert(dropdown, dropdownMiddle)
