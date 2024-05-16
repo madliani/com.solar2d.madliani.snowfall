@@ -2,13 +2,13 @@ local display = require "display"
 
 local Image = require "Libraries.Engine.image"
 
+local width = display.pixelWidth
+local height = display.pixelHeight
+local coordinateX = display.contentCenterX
+local coordinateY = display.contentCenterY
+
 ---@param path string
 local Background = function(path)
-    local width = display.pixelWidth
-    local height = display.pixelHeight
-    local coordinateX = display.contentCenterX
-    local coordinateY = display.contentCenterY
-
     local image = Image(path, width, height, coordinateX, coordinateY)
 
     local function destroy()
