@@ -15,22 +15,22 @@ local MenuBackground = function()
     local dropdown = {}
 
     for i = 1, itemsCount, 1 do
-        local coordinate = Coordinate(display.contentCentderX, display.contentCenterY - i * size.height)
+        local coordinate = Coordinate(display.contentCenterX, display.contentCenterY - i * size.height)
         local dropdownMiddle = Image(Resources.Images.dropdownMiddle, size, coordinate)
 
         table.insert(dropdown, dropdownMiddle)
     end
 
     for i = 1, itemsCount, 1 do
-        local coordinate = Coordinate(display.contentCentderX, display.contentCenterY + i * size.height)
+        local coordinate = Coordinate(display.contentCenterX, display.contentCenterY + i * size.height)
         local dropdownMiddle = Image(Resources.Images.dropdownMiddle, size, coordinate)
 
         table.insert(dropdown, dropdownMiddle)
     end
 
-    local coordinateTop = Coordinate(display.contentCentderX, display.contentCenterY - (itemsCount + 1) * size.height)
-    local coordinateMiddle = Coordinate(display.contentCentderX, display.contentCenterY)
-    local coordinateBottom = Coordinate(display.contentCentderX, display.contentCenterY + (itemsCount + 1) * size.height)
+    local coordinateTop = Coordinate(display.contentCenterX, display.contentCenterY - (itemsCount + 1) * size.height)
+    local coordinateMiddle = Coordinate(display.contentCenterX, display.contentCenterY)
+    local coordinateBottom = Coordinate(display.contentCenterX, display.contentCenterY + (itemsCount + 1) * size.height)
 
     local dropdownTop = Image(Resources.Images.dropdownTop, size, coordinateTop)
     local dropdownMiddle = Image(Resources.Images.dropdownMiddle, size, coordinateMiddle)
