@@ -7,7 +7,7 @@ local _next = next
 local List = function(initialList)
     local list = initialList or {}
 
-    ---@param index? any
+    ---@param index? unknown
     local function next(index)
         return _next(list, index)
     end
@@ -26,7 +26,7 @@ local List = function(initialList)
     ---@param callback function
     local function foreach(callback)
         for key, value in pairs(list) do
-            ---@param newValue any
+            ---@param newValue unknown
             local function set(newValue)
                 list[key] = newValue
             end
@@ -36,7 +36,7 @@ local List = function(initialList)
     end
 
     local function getkeys()
-        ---@type table<any>
+        ---@type table<unknown>
         local keys = {}
 
         for key, _ in pairs(list) do
@@ -52,7 +52,7 @@ local List = function(initialList)
     end
 
     local function getvalues()
-        ---@type table<any>
+        ---@type table<unknown>
         local values = {}
 
         for _, value in pairs(list) do
@@ -62,7 +62,7 @@ local List = function(initialList)
         return values
     end
 
-    ---@param pattern any
+    ---@param pattern unknown
     local function getkey(pattern)
         for key, value in pairs(list) do
             if value == pattern then
@@ -73,7 +73,7 @@ local List = function(initialList)
         return nil
     end
 
-    ---@param value any
+    ---@param value unknown
     local function insert(value)
         table.insert(list, value)
     end

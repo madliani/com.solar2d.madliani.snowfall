@@ -11,7 +11,7 @@ local itemCount = 5
 local size = Size(190, 24)
 
 local MenuBackground = function()
-    ---@type any[]
+    ---@type unknown[]
     local menuBackground = {}
 
     local pool = Pool(menuBackground)

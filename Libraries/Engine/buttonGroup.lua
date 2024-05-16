@@ -3,7 +3,7 @@ local Pool = require "Libraries.Engine.pool"
 
 ---@param buttons table
 local ButtonGroup = function(buttons)
-    ---@type any[]
+    ---@type unknown[]
     local buttonGroup = {}
 
     local pool = Pool(buttonGroup)

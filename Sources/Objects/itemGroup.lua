@@ -12,7 +12,7 @@ local color = Color(0, 0, 0)
 
 ---@param items table
 local ItemGroup = function(items)
-    ---@type any[]
+    ---@type unknown[]
     local itemGroup = {}
 
     local buttonGroup = ButtonGroup(itemGroup)
