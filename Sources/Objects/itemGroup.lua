@@ -7,14 +7,13 @@ local Coordinate = require "Libraries.Engine.coordinate"
 local Font = require "Libraries.Engine.font"
 local Label = require "Libraries.Engine.label"
 
+local font = Font(native.systemFont, 48)
+local color = Color(0, 0, 0)
+
 ---@param items table
 local ItemGroup = function(items)
     ---@type any[]
     local itemGroup = {}
-
-    local font = Font(native.systemFont, 48)
-
-    local color = Color(0, 0, 0)
 
     for i = 1, #items, 1 do
         local title = items[i].title
