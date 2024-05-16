@@ -6,15 +6,6 @@ local ButtonGroup = function(buttons)
     ---@type any[]
     local buttonGroup = {}
 
-    for i = 1, #buttons, 1 do
-        local label = buttons[i].label
-        local action = buttons[i].action
-
-        local button = Button(label, action)
-
-        table.insert(buttonGroup, button)
-    end
-
     local pool = Pool(buttonGroup)
 
     local function destroy()
@@ -23,6 +14,15 @@ local ButtonGroup = function(buttons)
 
     ---@param group table
     local function create(group)
+        for i = 1, #buttons, 1 do
+            local label = buttons[i].label
+            local action = buttons[i].action
+
+            local button = Button(label, action)
+
+            table.insert(buttonGroup, button)
+        end
+
         pool.create(group)
     end
 
