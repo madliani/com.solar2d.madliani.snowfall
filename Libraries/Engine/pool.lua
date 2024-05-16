@@ -1,4 +1,4 @@
----@param objects table
+---@param objects unknown[]
 local Pool = function(objects)
     local pool = objects
 

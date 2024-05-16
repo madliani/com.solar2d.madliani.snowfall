@@ -3,7 +3,7 @@ local table = require "table"
 local _unpack = unpack
 local _next = next
 
----@param initialList? table
+---@param initialList? unknown[]
 local List = function(initialList)
     local list = initialList or {}
 

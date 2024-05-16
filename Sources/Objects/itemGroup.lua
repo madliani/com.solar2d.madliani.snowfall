@@ -10,7 +10,7 @@ local Label = require "Libraries.Engine.label"
 local font = Font(native.systemFont, 48)
 local color = Color(0, 0, 0)
 
----@param items table
+---@param items table<any>[]
 local ItemGroup = function(items)
     ---@type unknown[]
     local itemGroup = {}

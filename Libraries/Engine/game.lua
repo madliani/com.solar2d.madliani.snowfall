@@ -41,7 +41,7 @@ local Game = (function()
         end
     end
 
-    ---@param scenes table
+    ---@param scenes table<any>
     return function(scenes)
         startScene = scenes.start
         worldScene = scenes.world

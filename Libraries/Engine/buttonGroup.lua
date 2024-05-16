@@ -1,7 +1,7 @@
 local Button = require "Libraries.Engine.button"
 local Pool = require "Libraries.Engine.pool"
 
----@param buttons table
+---@param buttons table<any>[]
 local ButtonGroup = function(buttons)
     ---@type unknown[]
     local buttonGroup = {}

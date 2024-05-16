@@ -2,7 +2,7 @@ local composer = require "composer"
 
 local Pool = require "Libraries.Engine.pool"
 
----@param objects table
+---@param objects unknown[]
 local Scene = function(objects)
     local pool = Pool(objects)
 
