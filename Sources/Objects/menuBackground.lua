@@ -12,9 +12,9 @@ local size = Size(190, 24)
 
 local MenuBackground = function()
     ---@type any[]
-    local dropdown = {}
+    local menuBackground = {}
 
-    local pool = Pool(dropdown)
+    local pool = Pool(menuBackground)
 
     local function destroy()
         pool.destroy()
@@ -26,14 +26,14 @@ local MenuBackground = function()
             local coordinate = Coordinate(display.contentCenterX, display.contentCenterY - i * size.height)
             local dropdownMiddle = Image(Resources.Images.dropdownMiddle, size, coordinate)
 
-            table.insert(dropdown, dropdownMiddle)
+            table.insert(menuBackground, dropdownMiddle)
         end
 
         for i = 1, itemCount, 1 do
             local coordinate = Coordinate(display.contentCenterX, display.contentCenterY + i * size.height)
             local dropdownMiddle = Image(Resources.Images.dropdownMiddle, size, coordinate)
 
-            table.insert(dropdown, dropdownMiddle)
+            table.insert(menuBackground, dropdownMiddle)
         end
 
         local coordinateTop =
@@ -46,9 +46,9 @@ local MenuBackground = function()
         local dropdownMiddle = Image(Resources.Images.dropdownMiddle, size, coordinateMiddle)
         local dropdownBottom = Image(Resources.Images.dropdownBottom, size, coordinateBottom)
 
-        table.insert(dropdown, dropdownTop)
-        table.insert(dropdown, dropdownMiddle)
-        table.insert(dropdown, dropdownBottom)
+        table.insert(menuBackground, dropdownTop)
+        table.insert(menuBackground, dropdownMiddle)
+        table.insert(menuBackground, dropdownBottom)
 
         pool.create(group)
     end
