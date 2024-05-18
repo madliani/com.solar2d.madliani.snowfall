@@ -33,7 +33,7 @@ local ItemGroup = function(items)
             local step = i - 1
 
             local title = Title(items[i].text, native.systemFont, color, 24)
-            local coordinate = Coordinate(display.contentCenterX, 100 + gap * step)
+            local coordinate = Coordinate(display.contentCenterX, 150 + gap * step)
 
             local item = {
                 path = Resources.Images.yellowButton,
