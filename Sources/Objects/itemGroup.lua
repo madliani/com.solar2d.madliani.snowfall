@@ -4,14 +4,14 @@ local native = require "native"
 local Resources = require "resources"
 
 local ButtonGroup = require "Libraries.Engine.buttonGroup"
-local Font = require "Libraries.Engine.font"
 local Color = require "Libraries.Engine.color"
 local Coordinate = require "Libraries.Engine.coordinate"
+local Font = require "Libraries.Engine.font"
 local Size = require "Libraries.Engine.size"
 local Title = require "Libraries.Engine.title"
 
 local gap = 100
-local systemFont = Font("system")
+local systemFont = Font "system"
 local color = Color(0, 0, 0)
 local size = Size(190, 45)
 
