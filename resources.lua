@@ -1,4 +1,7 @@
 return {
+    Fonts = {
+        architectsDaughter = "Assets/Fonts/architects_daughter_regular.ttf",
+    },
     Images = {
         yellowButton = "Assets/Images/yellow_button.png",
         background = "Assets/Images/background.png",
