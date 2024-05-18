@@ -4,14 +4,16 @@ local native = require "native"
 local Resources = require "resources"
 
 local ButtonGroup = require "Libraries.Engine.buttonGroup"
+local Font = require "Libraries.Engine.font"
 local Color = require "Libraries.Engine.color"
 local Coordinate = require "Libraries.Engine.coordinate"
 local Size = require "Libraries.Engine.size"
 local Title = require "Libraries.Engine.title"
 
 local gap = 100
-local size = Size(190, 45)
+local systemFont = Font("system")
 local color = Color(0, 0, 0)
+local size = Size(190, 45)
 
 ---@param items table<any>[]
 local ItemGroup = function(items)
@@ -32,7 +34,7 @@ local ItemGroup = function(items)
         for i = 1, #items, 1 do
             local step = i - 1
 
-            local title = Title(items[i].text, native.systemFont, color, 24)
+            local title = Title(items[i].text, systemFont, color, 24)
             local coordinate = Coordinate(display.contentCenterX, 150 + gap * step)
 
             local item = {

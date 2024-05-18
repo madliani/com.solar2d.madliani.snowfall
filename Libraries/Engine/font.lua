@@ -1,9 +1,13 @@
 local native = require "native"
 
----@param path string
-local Font = function(path)
+---@param filename string
+local Font = function(filename)
+	if filename == "system" then
+		return native.systemFont
+	end
+
     ---@class Font
-    return native.newFont(path)
+    return native.newFont(filename)
 end
 
 return Font
