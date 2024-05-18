@@ -32,7 +32,7 @@ local ItemGroup = function(items)
         for i = 1, #items, 1 do
             local step = i - 1
 
-            local title = Title(color, items[i].text, native.systemFont, 24)
+            local title = Title(items[i].text, native.systemFont, color, 24)
             local coordinate = Coordinate(display.contentCenterX, 100 + gap * step)
 
             local item = {

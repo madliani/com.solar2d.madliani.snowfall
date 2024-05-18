@@ -12,7 +12,7 @@ local color = Color(0, 0, 0)
 local Count = function(initialCount)
     local count = initialCount
 
-    local title = Title(color, tostring(count), native.systemFont, 36)
+    local title = Title(tostring(count), native.systemFont, color, 36)
     local coordinate = Coordinate(display.contentCenterX, 1)
     local label = Label(title, coordinate)
 

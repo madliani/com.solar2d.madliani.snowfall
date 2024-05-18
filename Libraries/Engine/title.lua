@@ -1,17 +1,17 @@
----@param color Color
----@param font string
----@param size integer
 ---@param text string
-local Title = function(color, text, font, size)
+---@param font string
+---@param color Color
+---@param size integer
+local Title = function(text, font, color, size)
     ---@class Title
-    ---@field color Color
     ---@field text string
     ---@field font string
+    ---@field color Color
     ---@field size integer
     return {
-        color = color,
         text = text,
         font = font,
+        color = color,
         size = size,
     }
 end
