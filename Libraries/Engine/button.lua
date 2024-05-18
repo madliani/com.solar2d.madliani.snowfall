@@ -1,29 +1,29 @@
-local display = require "display"
+local Image = require "Libraries.Engine.image"
+local Label = require "Libraries.Engine.label"
 
----@param label Label
----@param action? Action
-local Button = function(label, action)
-    local title = label.title
-    local coordinate = label.coordinate
-    local font = label.font
-    local color = label.color
+---@param path string
+---@param title Title
+---@param size Size
+---@param coordinate Coordinate
+---@param event Event
+local Button = function(path, title, size, coordinate, event)
+    ---@type Image | nil
+    local image = Image(path, size, coordinate, event)
 
-    ---@type table | nil
-    local button = nil
+    ---@type Label | nil
+    local label = Label(title, coordinate)
 
     ---@type table | nil
     local sceneGroup = nil
 
-    ---@type string | nil
-    local titleBackup = nil
-
     local function destroy()
-        if button ~= nil and sceneGroup ~= nil and titleBackup ~= nil then
-            sceneGroup.remove(sceneGroup, button)
+        if image ~= nil and label ~= nil and sceneGroup ~= nil then
+            image.destroy()
+            label.destroy()
 
-            button = nil
+            image = nil
+            label = nil
             sceneGroup = nil
-            titleBackup = nil
         end
     end
 
@@ -31,34 +31,23 @@ local Button = function(label, action)
     local function create(group)
         sceneGroup = group
 
-        if button == nil and sceneGroup ~= nil then
-            button = display.newText(title, coordinate.x, coordinate.y, font.family, font.size)
-
-            button.setFillColor(button, color.red, color.green, color.blue)
-
-            sceneGroup.insert(sceneGroup, button)
-        end
-
-        if button ~= nil and action ~= nil then
-            button.addEventListener(button, action.type, action.method)
+        if image ~= nil and label ~= nil then
+            image.create(group)
+            label.create(group)
         end
     end
 
     local function show()
-        if button ~= nil and titleBackup ~= nil then
-            button.text = titleBackup
+        if image ~= nil and label ~= nil then
+            image.show()
+            label.show()
         end
     end
 
     local function hide()
-        if button ~= nil then
-            button.text = ""
-        end
-    end
-
-    local function updateTitle(newTitle)
-        if button ~= nil then
-            button.text = newTitle
+        if image ~= nil and label ~= nil then
+            image.hide()
+            label.hide()
         end
     end
 
@@ -67,13 +56,11 @@ local Button = function(label, action)
     ---@field destroy function
     ---@field hide function
     ---@field show function
-    ---@field updateTitle function
     return {
         create = create,
         destroy = destroy,
         hide = hide,
         show = show,
-        updateTitle = updateTitle,
     }
 end
 

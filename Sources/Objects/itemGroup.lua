@@ -1,13 +1,16 @@
 local display = require "display"
 local native = require "native"
 
+local Resources = require "resources"
+
 local ButtonGroup = require "Libraries.Engine.buttonGroup"
 local Color = require "Libraries.Engine.color"
 local Coordinate = require "Libraries.Engine.coordinate"
-local Font = require "Libraries.Engine.font"
-local Label = require "Libraries.Engine.label"
+local Size = require "Libraries.Engine.size"
+local Title = require "Libraries.Engine.title"
 
-local font = Font(native.systemFont, 48)
+local gap = 100
+local size = Size(190, 45)
 local color = Color(0, 0, 0)
 
 ---@param items table<any>[]
@@ -15,41 +18,49 @@ local ItemGroup = function(items)
     ---@type unknown[]
     local itemGroup = {}
 
-    local buttonGroup = ButtonGroup(itemGroup)
+    ---@type ButtonGroup | nil
+    local buttonGroup = nil
 
     local function destroy()
-        buttonGroup.destroy()
+        if buttonGroup ~= nil then
+            buttonGroup.destroy()
+        end
     end
 
     ---@param group table
     local function create(group)
         for i = 1, #items, 1 do
-            local title = items[i].title
-            local action = items[i].action
-
-            local gap = 100
             local step = i - 1
 
+            local title = Title(color, items[i].text, native.systemFont, 24)
             local coordinate = Coordinate(display.contentCenterX, 100 + gap * step)
-            local label = Label(title, coordinate, font, color)
 
             local item = {
-                label = label,
-                action = action,
+                path = Resources.Images.yellowButton,
+                title = title,
+                size = size,
+                coordinate = coordinate,
+                event = items[i].event,
             }
 
             table.insert(itemGroup, item)
         end
 
+        buttonGroup = ButtonGroup(itemGroup)
+
         buttonGroup.create(group)
     end
 
     local function show()
-        buttonGroup.show()
+        if buttonGroup ~= nil then
+            buttonGroup.show()
+        end
     end
 
     local function hide()
-        buttonGroup.hide()
+        if buttonGroup ~= nil then
+            buttonGroup.hide()
+        end
     end
 
     ---@class ItemGroup

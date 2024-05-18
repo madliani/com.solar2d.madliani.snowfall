@@ -3,7 +3,8 @@ local display = require "display"
 ---@param path string
 ---@param size Size
 ---@param coordinate Coordinate
-local Image = function(path, size, coordinate)
+---@param event Event?
+local Image = function(path, size, coordinate, event)
     ---@type table | nil
     local imageRect = nil
 
@@ -30,6 +31,10 @@ local Image = function(path, size, coordinate)
 
             imageRect.x = coordinate.x
             imageRect.y = coordinate.y
+
+            if event ~= nil then
+                imageRect.addEventListener(imageRect, event.type, event.action)
+            end
 
             sceneGroup.insert(sceneGroup, imageRect)
         end

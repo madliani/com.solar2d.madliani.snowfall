@@ -1,5 +1,6 @@
 return {
     Images = {
+        yellowButton = "Assets/Images/yellow_button.png",
         background = "Assets/Images/background.png",
         dropdownBottom = "Assets/Images/dropdown_bottom.png",
         dropdownMiddle = "Assets/Images/dropdown_middle.png",

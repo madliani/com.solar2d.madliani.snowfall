@@ -5,35 +5,32 @@ local Scene = require "Libraries.Engine.scene"
 
 local Snowfall = require "Sources.snowfall"
 
-local MenuBackground = require "Sources.Objects.menuBackground"
 local ItemGroup = require "Sources.Objects.itemGroup"
 
 local background = Background(Resources.Images.background)
 
-local menuBackground = MenuBackground()
-
 local itemGroup = ItemGroup {
     {
-        title = "Start Game",
-        action = {
+        text = "Start Game",
+        event = {
             type = "tap",
-            method = function()
+            action = function()
                 Snowfall.start()
             end,
         },
     },
     {
-        title = "About Game",
-        action = {
+        text = "About Game",
+        event = {
             type = "tap",
-            method = function() end,
+            action = function() end,
         },
     },
     {
-        title = "Exit",
-        action = {
+        text = "Exit",
+        event = {
             type = "tap",
-            method = function()
+            action = function()
                 Snowfall.exit()
             end,
         },
@@ -42,6 +39,5 @@ local itemGroup = ItemGroup {
 
 return Scene {
     background,
-    menuBackground,
     itemGroup,
 }
