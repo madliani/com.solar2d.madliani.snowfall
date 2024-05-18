@@ -12,7 +12,7 @@ local Title = require "Libraries.Engine.title"
 
 local Snowfall = require "Sources.snowfall"
 
-local ItemGroup = require "Sources.Objects.itemGroup"
+local Menu = require "Sources.Objects.menu"
 
 local architectsDaughter = Font(Resources.Fonts.architectsDaughter)
 local color = Color(0, 0, 0)
@@ -22,7 +22,7 @@ local coordinate = Coordinate(display.contentCenterX, display.contentCenterY - 2
 local heading = Label(title, coordinate)
 local background = Background(Resources.Images.background)
 
-local itemGroup = ItemGroup {
+local menu = Menu {
     {
         text = "Start Game",
         event = {
@@ -53,5 +53,5 @@ local itemGroup = ItemGroup {
 return Scene {
     background,
     heading,
-    itemGroup,
+    menu,
 }

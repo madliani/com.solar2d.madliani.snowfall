@@ -16,9 +16,9 @@ local color = Color(0, 0, 0)
 local size = Size(190, 45)
 
 ---@param items table<any>[]
-local ItemGroup = function(items)
+local Menu = function(items)
     ---@type unknown[]
-    local itemGroup = {}
+    local menu = {}
 
     ---@type ButtonGroup | nil
     local buttonGroup = nil
@@ -45,10 +45,10 @@ local ItemGroup = function(items)
                 event = items[i].event,
             }
 
-            table.insert(itemGroup, item)
+            table.insert(menu, item)
         end
 
-        buttonGroup = ButtonGroup(itemGroup)
+        buttonGroup = ButtonGroup(menu)
 
         buttonGroup.create(group)
     end
@@ -78,4 +78,4 @@ local ItemGroup = function(items)
     }
 end
 
-return ItemGroup
+return Menu
