@@ -2,13 +2,13 @@ local display = require "display"
 
 local Resources = require "resources"
 
-local Background = require "Libraries.Engine.background"
-local Color = require "Libraries.Engine.color"
-local Coordinate = require "Libraries.Engine.coordinate"
-local Font = require "Libraries.Engine.font"
-local Label = require "Libraries.Engine.label"
-local Scene = require "Libraries.Engine.scene"
-local Title = require "Libraries.Engine.title"
+local Background = require "Libraries.Engine.Widgets.background"
+local Color = require "Libraries.Engine.Core.color"
+local Coordinate = require "Libraries.Engine.Core.coordinate"
+local Font = require "Libraries.Engine.Core.font"
+local Label = require "Libraries.Engine.Widgets.label"
+local Scene = require "Libraries.Engine.Core.scene"
+local Title = require "Libraries.Engine.Core.title"
 
 local Snowfall = require "Sources.snowfall"
 

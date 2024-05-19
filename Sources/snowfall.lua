@@ -1,4 +1,4 @@
-local Game = require "Libraries.Engine.game"
+local Game = require "Libraries.Engine.Core.game"
 
 local Snowfall = Game {
     start = "Sources.Scenes.startMenu",

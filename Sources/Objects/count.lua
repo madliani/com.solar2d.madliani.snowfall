@@ -1,10 +1,10 @@
 local display = require "display"
 local native = require "native"
 
-local Color = require "Libraries.Engine.color"
-local Coordinate = require "Libraries.Engine.coordinate"
-local Label = require "Libraries.Engine.label"
-local Title = require "Libraries.Engine.title"
+local Color = require "Libraries.Engine.Core.color"
+local Coordinate = require "Libraries.Engine.Core.coordinate"
+local Label = require "Libraries.Engine.Widgets.label"
+local Title = require "Libraries.Engine.Core.title"
 
 local color = Color(0, 0, 0)
 

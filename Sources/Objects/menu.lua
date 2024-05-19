@@ -3,12 +3,12 @@ local native = require "native"
 
 local Resources = require "resources"
 
-local ButtonGroup = require "Libraries.Engine.buttonGroup"
-local Color = require "Libraries.Engine.color"
-local Coordinate = require "Libraries.Engine.coordinate"
-local Font = require "Libraries.Engine.font"
-local Size = require "Libraries.Engine.size"
-local Title = require "Libraries.Engine.title"
+local ButtonGroup = require "Libraries.Engine.Widgets.buttonGroup"
+local Color = require "Libraries.Engine.Core.color"
+local Coordinate = require "Libraries.Engine.Core.coordinate"
+local Font = require "Libraries.Engine.Core.font"
+local Size = require "Libraries.Engine.Core.size"
+local Title = require "Libraries.Engine.Core.title"
 
 local gap = 100
 local systemFont = Font "system"

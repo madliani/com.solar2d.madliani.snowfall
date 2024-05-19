@@ -1,7 +1,7 @@
 local Resources = require "resources"
 
-local Background = require "Libraries.Engine.background"
-local Scene = require "Libraries.Engine.scene"
+local Background = require "Libraries.Engine.Widgets.background"
+local Scene = require "Libraries.Engine.Core.scene"
 
 local Blizzard = require "Sources.Objects.blizzard"
 local Count = require "Sources.Objects.count"

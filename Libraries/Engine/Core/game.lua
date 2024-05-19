@@ -3,7 +3,7 @@ local os = require "os"
 
 local Resources = require "resources"
 
-local Sound = require "Libraries.Engine.sound"
+local Sound = require "Libraries.Engine.Core.sound"
 
 local Game = (function()
     ---@type string | nil
