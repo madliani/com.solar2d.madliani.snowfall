@@ -3,6 +3,7 @@ local native = require "native"
 ---@param filename string
 local Font = function(filename)
     if filename == "system" then
+        ---@class Font
         return native.systemFont
     end
 
