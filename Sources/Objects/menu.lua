@@ -1,5 +1,4 @@
 local display = require "display"
-local native = require "native"
 
 local Resources = require "resources"
 
