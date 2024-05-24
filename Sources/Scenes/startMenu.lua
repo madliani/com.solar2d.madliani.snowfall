@@ -8,7 +8,7 @@ local Snowfall = require "Sources.snowfall"
 local Heading = require "Sources.Objects.heading"
 local Menu = require "Sources.Objects.menu"
 
-local heading = Heading("Snowfall")
+local heading = Heading "Snowfall"
 local background = Background(Resources.Images.background)
 
 local menu = Menu {

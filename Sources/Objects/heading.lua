@@ -14,11 +14,11 @@ local coordinate = Coordinate(display.contentCenterX, display.contentCenterY - 2
 local size = 48
 
 ---@param heading string
-local Heading = function (heading)
-	local title = Title(heading, architectsDaughter, color, size)
+local Heading = function(heading)
+    local title = Title(heading, architectsDaughter, color, size)
 
-	---@class Heading
-	return Label(title, coordinate)
+    ---@class Heading
+    return Label(title, coordinate)
 end
 
 return Heading
