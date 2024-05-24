@@ -5,7 +5,7 @@
 ---@param collection Collection<T>
 ---@param iteratee fun(item: T): U
 local map = function(collection, iteratee)
-	---@generic U
+    ---@generic U
     ---@type Collection<U>
     local mappedCollection = {}
 
@@ -20,7 +20,7 @@ end
 ---@param collection Collection<T>
 ---@param mixin Collection<T>
 local merge = function(collection, mixin)
-	---@generic T
+    ---@generic T
     ---@type Collection<T>
     local mergedCollection = {}
 
