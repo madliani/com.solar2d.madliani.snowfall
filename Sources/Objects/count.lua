@@ -1,18 +1,21 @@
 local display = require "display"
-local native = require "native"
+
+local Resources = require "resources"
 
 local Color = require "Libraries.Engine.Core.color"
 local Coordinate = require "Libraries.Engine.Core.coordinate"
+local Font = require "Libraries.Engine.Core.font"
 local Label = require "Libraries.Engine.Widgets.label"
 local Title = require "Libraries.Engine.Core.title"
 
 local color = Color(0, 0, 0)
+local font = Font(Resources.Fonts.architectsDaughter)
 
 ---@param initialCount integer
 local Count = function(initialCount)
     local count = initialCount
 
-    local title = Title(tostring(count), native.systemFont, color, 36)
+    local title = Title(tostring(count), font, color, 48)
     local coordinate = Coordinate(display.contentCenterX, 1)
     local label = Label(title, coordinate)
 
