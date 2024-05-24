@@ -10,7 +10,7 @@ local Size = require "Libraries.Engine.Core.size"
 local Title = require "Libraries.Engine.Core.title"
 
 local gap = 100
-local systemFont = Font "system"
+local font = Font(Resources.Fonts.architectsDaughter)
 local color = Color(0, 0, 0)
 local size = Size(190, 45)
 
@@ -33,7 +33,7 @@ local Menu = function(items)
         for i = 1, #items, 1 do
             local step = i - 1
 
-            local title = Title(items[i].text, systemFont, color, 24)
+            local title = Title(items[i].text, font, color, 24)
             local coordinate = Coordinate(display.contentCenterX, 150 + gap * step)
 
             local item = {
