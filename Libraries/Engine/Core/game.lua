@@ -1,61 +1,45 @@
-local composer = require "composer"
 local os = require "os"
 
 local Resources = require "resources"
 
-local Sound = require "Libraries.Engine.Core.sound"
+local Singleton = require "Libraries.Prelude.singleton"
 
-local Game = (function()
-    ---@type string | nil
-    local startScene = nil
+---@class Game
+---@field exit fun(self?: table<Attribute>)
+---@field run fun(self?: table<Attribute>)
+---@field start fun(self?: table<Attribute>)
 
-    ---@type string | nil
-    local worldScene = nil
+---@type fun(initial: table<unknown>): Game
+local Game = Singleton {
+    id = "Game",
+    attributes = {
+        scenes = nil,
+        sound = nil,
+    },
+    methods = {
+        exit = function(self)
+            if self.sound ~= nil then
+                self.sound.finalize()
+                self.scenes.destroy()
 
-    ---@type Sound | nil
-    local sound = Sound()
+                self.sound = nil
+                self.scenes = nil
 
-    local function destroy()
-        if sound ~= nil then
-            sound.initialize()
-
-            startScene = nil
-            worldScene = nil
-            sound = nil
-
-            os.exit()
-        end
-    end
-
-    local function create()
-        if sound ~= nil and startScene ~= nil then
-            sound.initialize(Resources.Sounds.background)
-            composer.gotoScene(startScene)
-        end
-    end
-
-    local function start()
-        if startScene ~= nil and worldScene ~= nil then
-            composer.removeScene(startScene)
-            composer.gotoScene(worldScene)
-        end
-    end
-
-    ---@param scenes table<any>
-    return function(scenes)
-        startScene = scenes.start
-        worldScene = scenes.world
-
-        ---@class Game
-        ---@field exit function
-        ---@field run function
-        ---@field start function
-        return {
-            exit = destroy,
-            run = create,
-            start = start,
-        }
-    end
-end)()
+                os.exit()
+            end
+        end,
+        run = function(self)
+            if self.sound ~= nil and self.scenes ~= nil then
+                self.sound.initialize(Resources.Sounds.background)
+                self.scenes.gotoStart()
+            end
+        end,
+        start = function(self)
+            if self.scenes ~= nil then
+                self.scenes.gotoWorld()
+            end
+        end,
+    },
+}
 
 return Game
