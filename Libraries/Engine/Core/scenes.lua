@@ -8,10 +8,10 @@ local composer = require "composer"
 
 ---@param paths ScenePaths
 local Scenes = function(paths)
-	---@type ScenePaths | nil
-	local scenes = paths
+    ---@type ScenePaths | nil
+    local scenes = paths
 
-	---@type string | nil
+    ---@type string | nil
     local activeScene = nil
 
     local function destroy()
@@ -20,7 +20,7 @@ local Scenes = function(paths)
         scenes.start = nil
         scenes.world = nil
 
-		scenes = nil
+        scenes = nil
     end
 
     local function gotoScene(scene)
@@ -35,14 +35,14 @@ local Scenes = function(paths)
 
     local function gotoStart()
         if scenes ~= nil then
-			gotoScene(scenes.start)
-		end
+            gotoScene(scenes.start)
+        end
     end
 
     local function gotoWorld()
         if scenes ~= nil then
-			gotoScene(scenes.world)
-		end
+            gotoScene(scenes.world)
+        end
     end
 
     return {
