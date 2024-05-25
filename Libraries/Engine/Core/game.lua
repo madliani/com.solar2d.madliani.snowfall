@@ -2,41 +2,59 @@ local os = require "os"
 
 local Resources = require "resources"
 
-local Singleton = require "Libraries.Prelude.singleton"
+---@alias GameIdentificator string
+
+---@class GameAttributes
+---@field sceneManager SceneManager | nil
+---@field sound Sound | nil
+
+---@class GameMethods
+---@field exit fun(self: GameAttributes)
+---@field run fun(self: GameAttributes)
+---@field start fun(self: GameAttributes)
+
+---@class GameClass
+---@field id GameIdentificator
+---@field attributes GameAttributes
+---@field methods GameMethods
 
 ---@class Game
----@field exit fun(self?: table<Attribute>)
----@field run fun(self?: table<Attribute>)
----@field start fun(self?: table<Attribute>)
+---@field exit fun()
+---@field run fun()
+---@field start fun()
 
----@type fun(initial: table<unknown>): Game
+---@alias GameSingleton fun(class: GameClass): Game
+
+---@type GameSingleton
+local Singleton = require "Libraries.Prelude.singleton"
+
 local Game = Singleton {
     id = "Game",
     attributes = {
-        scenes = nil,
+        sceneManager = nil,
         sound = nil,
     },
     methods = {
         exit = function(self)
-            if self.sound ~= nil then
+            if self.sound ~= nil and self.sceneManager ~= nil then
                 self.sound.finalize()
-                self.scenes.destroy()
+                self.sceneManager.destroy()
 
                 self.sound = nil
-                self.scenes = nil
+                self.sceneManager = nil
 
                 os.exit()
             end
         end,
         run = function(self)
-            if self.sound ~= nil and self.scenes ~= nil then
+            if self.sound ~= nil and self.sceneManager ~= nil then
                 self.sound.initialize(Resources.Sounds.background)
-                self.scenes.gotoStart()
+                self.sceneManager.gotoStart()
             end
         end,
         start = function(self)
-            if self.scenes ~= nil then
-                self.scenes.gotoWorld()
+            if self.sceneManager ~= nil then
+                self.sceneManager.gotoWorld()
             end
         end,
     },

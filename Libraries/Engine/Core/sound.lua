@@ -1,56 +1,67 @@
 local audio = require "audio"
 
-local Sound = (function()
-    ---@type table | nil
-    local sound = nil
+---@class SoundAttributes
+---@field sound table | nil
+---@field volume integer | nil
 
-    ---@type integer | nil
-    local volume = nil
+---@class SoundMethods
+---@field finalize fun(self: SoundAttributes)
+---@field initialize fun(self: SoundAttributes, path: string)
+---@field unmute fun(self: SoundAttributes)
+---@field mute fun(self: SoundAttributes)
 
-    local function destroy()
-        if sound ~= nil and volume ~= nil then
-            audio.setVolume(0)
+---@class SoundClass
+---@field attributes SoundAttributes
+---@field methods SoundMethods
 
-            sound = nil
-            volume = nil
-        end
-    end
+---@class Sound
+---@field finalize fun()
+---@field initialize fun(path: string)
+---@field unmute fun()
+---@field mute fun()
 
-    ---@param path string
-    local function create(path)
-        if sound == nil and volume == nil then
-            sound = audio.loadSound(path)
-            volume = audio.getVolume()
+---@alias SoundSingleton fun(class: SoundClass): Sound
 
-            audio.play(sound)
-        end
-    end
+---@type SoundSingleton
+local Singleton = require "Libraries.Prelude.singleton"
 
-    local function show()
-        if sound ~= nil then
-            audio.setVolume(volume)
-        end
-    end
+local Sound = Singleton {
+    attributes = {
+        sound = nil,
+        volume = nil,
+    },
 
-    local function hide()
-        if sound ~= nil then
-            audio.setVolume(0)
-        end
-    end
+    methods = {
+        finalize = function(self)
+            if self.sound ~= nil and self.volume ~= nil then
+                audio.setVolume(0)
 
-    return function()
-        ---@class Sound
-        ---@field finalize function
-        ---@field initialize function
-        ---@field mute function
-        ---@field unmute function
-        return {
-            finalize = destroy,
-            initialize = create,
-            mute = hide,
-            unmute = show,
-        }
-    end
-end)()
+                self.sound = nil
+                self.volume = nil
+            end
+        end,
+
+        initialize = function(self, path)
+            if self.sound == nil and self.volume == nil then
+                self.sound = audio.loadSound(path)
+                self.volume = audio.getVolume()
+
+                audio.play(self.sound)
+            end
+        end,
+
+        unmute = function(self)
+            if self.sound ~= nil then
+                audio.setVolume(self.volume)
+            end
+        end,
+
+        mute = function(self)
+            if self.sound ~= nil then
+                audio.setVolume(0)
+            end
+        end,
+    },
+}
 
 return Sound
