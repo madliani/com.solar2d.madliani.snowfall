@@ -1,6 +1,5 @@
-local os = require "os"
-
 local Resources = require "resources"
+local os = require "os"
 
 ---@alias GameIdentificator string
 
