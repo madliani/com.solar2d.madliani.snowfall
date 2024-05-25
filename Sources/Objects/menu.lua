@@ -1,13 +1,11 @@
-local display = require "display"
-
-local Resources = require "resources"
-
 local ButtonGroup = require "Libraries.Engine.Widgets.buttonGroup"
 local Color = require "Libraries.Engine.Core.color"
 local Coordinate = require "Libraries.Engine.Core.coordinate"
 local Font = require "Libraries.Engine.Core.font"
+local Resources = require "resources"
 local Size = require "Libraries.Engine.Core.size"
 local Title = require "Libraries.Engine.Core.title"
+local display = require "display"
 
 local gap = 100
 local font = Font(Resources.Fonts.architectsDaughter)
