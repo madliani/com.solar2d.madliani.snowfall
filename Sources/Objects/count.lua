@@ -1,12 +1,10 @@
-local display = require "display"
-
-local Resources = require "resources"
-
 local Color = require "Libraries.Engine.Core.color"
 local Coordinate = require "Libraries.Engine.Core.coordinate"
 local Font = require "Libraries.Engine.Core.font"
 local Label = require "Libraries.Engine.Widgets.label"
+local Resources = require "resources"
 local Title = require "Libraries.Engine.Core.title"
+local display = require "display"
 
 local color = Color(0, 0, 0)
 local font = Font(Resources.Fonts.architectsDaughter)
