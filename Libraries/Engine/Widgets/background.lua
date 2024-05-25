@@ -1,8 +1,7 @@
-local display = require "display"
-
 local Coordinate = require "Libraries.Engine.Core.coordinate"
 local Image = require "Libraries.Engine.Core.image"
 local Size = require "Libraries.Engine.Core.size"
+local display = require "display"
 
 local size = Size(display.pixelWidth, display.pixelHeight)
 local coordinate = Coordinate(display.contentCenterX, display.contentCenterY)
