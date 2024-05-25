@@ -6,7 +6,7 @@ local Resources = require "resources"
 local Title = require "Libraries.Engine.Core.title"
 local display = require "display"
 
-local architectsDaughter = Font(Resources.Fonts.architectsDaughter)
+local architectsDaughter = Font(Resources.Fonts.main)
 local color = Color(0, 0, 0)
 local coordinate = Coordinate(display.contentCenterX, display.contentCenterY - 200)
 local size = 48

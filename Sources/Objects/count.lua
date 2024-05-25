@@ -7,7 +7,7 @@ local Title = require "Libraries.Engine.Core.title"
 local display = require "display"
 
 local color = Color(0, 0, 0)
-local font = Font(Resources.Fonts.architectsDaughter)
+local font = Font(Resources.Fonts.main)
 
 ---@param initialCount integer
 local Count = function(initialCount)

@@ -8,7 +8,7 @@ local Title = require "Libraries.Engine.Core.title"
 local display = require "display"
 
 local gap = 100
-local font = Font(Resources.Fonts.architectsDaughter)
+local font = Font(Resources.Fonts.main)
 local color = Color(0, 0, 0)
 local size = Size(190, 45)
 
