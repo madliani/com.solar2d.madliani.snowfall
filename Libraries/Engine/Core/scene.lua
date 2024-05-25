@@ -1,6 +1,5 @@
-local composer = require "composer"
-
 local Pool = require "Libraries.Engine.Core.pool"
+local composer = require "composer"
 
 ---@param objects unknown[]
 local Scene = function(objects)
