@@ -5,8 +5,8 @@ local Resources = require "resources"
 local Scene = require "Libraries.Engine.Core.scene"
 local Snowfall = require "Sources.snowfall"
 
-local heading = Heading "Snowfall"
 local background = Background(Resources.Images.background)
+local heading = Heading "Snowfall"
 
 local menu = Menu {
     {
