@@ -1,8 +1,6 @@
 local Instance = require "Libraries.Prelude.instance"
 
----@alias InitialAttributes any[]
-
----@param class Class
+---@param class Metaclass
 local Singleton = function(class)
     ---@type Instance | nil
     local instance = nil

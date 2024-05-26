@@ -1,13 +1,11 @@
----@meta
+local Instance = require "Libraries.Prelude.instance"
 
----@alias Identificator string
+---@param metaclass Metaclass
+local Class = function(metaclass)
+    ---@param initial InitialAttributes?
+    return function(initial)
+        return Instance(metaclass, initial)
+    end
+end
 
----@alias Attribute any
----@alias Method fun(self: Attributes, args: any[]?): any
-
----@alias Attributes table<Attribute>
----@alias Methods table<Method>
-
----@class Class
----@field attributes Attributes
----@field methods Methods?
+return Class
