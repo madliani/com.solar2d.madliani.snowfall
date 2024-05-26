@@ -7,7 +7,7 @@ local composer = require "composer"
 ---@field world ScenePath
 
 ---@param paths ScenePaths
-local Composer = function(paths)
+local SceneManager = function(paths)
     ---@type ScenePaths | nil
     local scenePaths = paths
 
@@ -45,15 +45,21 @@ local Composer = function(paths)
         end
     end
 
-    ---@class Composer
+    local function newScene()
+        return composer.newScene()
+    end
+
+    ---@class SceneManager
     ---@field destroy function
     ---@field gotoStart function
     ---@field gotoWorld function
+    ---@field newScene function
     return {
         destroy = destroy,
         gotoStart = gotoStart,
         gotoWorld = gotoWorld,
+        newScene = newScene,
     }
 end
 
-return Composer
+return SceneManager
