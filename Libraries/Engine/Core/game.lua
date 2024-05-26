@@ -4,7 +4,7 @@ local os = require "os"
 ---@alias GameIdentificator string
 
 ---@class GameAttributes
----@field sceneManager SceneManager | nil
+---@field composer Composer | nil
 ---@field sound Sound | nil
 
 ---@class GameMethods
@@ -30,30 +30,30 @@ local Singleton = require "Libraries.Prelude.singleton"
 local Game = Singleton {
     id = "Game",
     attributes = {
-        sceneManager = nil,
+        composer = nil,
         sound = nil,
     },
     methods = {
         exit = function(self)
-            if self.sound ~= nil and self.sceneManager ~= nil then
+            if self.sound ~= nil and self.composer ~= nil then
                 self.sound.finalize()
-                self.sceneManager.destroy()
+                self.composer.destroy()
 
                 self.sound = nil
-                self.sceneManager = nil
+                self.composer = nil
 
                 os.exit()
             end
         end,
         run = function(self)
-            if self.sound ~= nil and self.sceneManager ~= nil then
+            if self.sound ~= nil and self.composer ~= nil then
                 self.sound.initialize(Resources.Sounds.background)
-                self.sceneManager.gotoStart()
+                self.composer.gotoStart()
             end
         end,
         start = function(self)
-            if self.sceneManager ~= nil then
-                self.sceneManager.gotoWorld()
+            if self.composer ~= nil then
+                self.composer.gotoWorld()
             end
         end,
     },

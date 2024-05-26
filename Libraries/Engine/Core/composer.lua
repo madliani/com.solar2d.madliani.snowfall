@@ -7,15 +7,15 @@ local composer = require "composer"
 ---@field world ScenePath
 
 ---@param paths ScenePaths
-local SceneManager = function(paths)
+local Composer = function(paths)
     ---@type ScenePaths | nil
     local scenePaths = paths
 
     ---@type string | nil
-    local activePath = nil
+    local activeScene = nil
 
     local function destroy()
-        activePath = nil
+        activeScene = nil
 
         scenePaths.start = nil
         scenePaths.world = nil
@@ -24,11 +24,11 @@ local SceneManager = function(paths)
     end
 
     local function gotoScene(scene)
-        if activePath ~= nil then
-            composer.removeScene(activePath)
+        if activeScene ~= nil then
+            composer.removeScene(activeScene)
         end
 
-        activePath = scene
+        activeScene = scene
 
         composer.gotoScene(scene)
     end
@@ -45,7 +45,7 @@ local SceneManager = function(paths)
         end
     end
 
-    ---@class SceneManager
+    ---@class Composer
     ---@field destroy function
     ---@field gotoStart function
     ---@field gotoWorld function
@@ -56,4 +56,4 @@ local SceneManager = function(paths)
     }
 end
 
-return SceneManager
+return Composer
