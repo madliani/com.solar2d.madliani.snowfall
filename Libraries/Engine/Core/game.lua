@@ -44,7 +44,7 @@ local Singleton = require "Libraries.Prelude.singleton"
 local sceneManager = SceneManager()
 
 local Game = Singleton {
-    id = "Game",
+    id = "game",
     attributes = {
         scenePaths = nil,
         sound = nil,
