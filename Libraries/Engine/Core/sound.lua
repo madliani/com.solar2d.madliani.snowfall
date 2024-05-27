@@ -1,5 +1,13 @@
 local audio = require "audio"
 
+---@class Sound
+---@field finalize fun()
+---@field initialize fun(path: string)
+---@field unmute fun()
+---@field mute fun()
+
+---@alias SoundClass fun(): Sound
+
 ---@alias SoundIdentificator string
 
 ---@class SoundAttributes
@@ -24,14 +32,6 @@ local audio = require "audio"
 ---@field id SoundIdentificator
 ---@field attributes SoundAttributes
 ---@field methods SoundMethods
-
----@class Sound
----@field finalize fun()
----@field initialize fun(path: string)
----@field unmute fun()
----@field mute fun()
-
----@alias SoundClass fun(): Sound
 
 ---@alias SoundSingleton fun(metaclass: SoundMetaclass): SoundClass
 
