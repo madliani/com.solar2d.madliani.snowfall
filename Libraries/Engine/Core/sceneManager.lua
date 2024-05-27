@@ -1,5 +1,7 @@
 local composer = require "composer"
 
+---@alias SceneManagerIdentificator string
+
 ---@alias ScenePath string
 
 ---@class ScenePaths
@@ -29,6 +31,7 @@ local composer = require "composer"
 ---@field newScene fun(self: SceneManagerSelf)
 
 ---@class SceneManagerMetaclass
+---@field id SceneManagerIdentificator
 ---@field attributes SceneManagerAttributes
 ---@field methods SceneManagerMethods
 
@@ -48,6 +51,8 @@ local composer = require "composer"
 local Singleton = require "Libraries.Prelude.singleton"
 
 local SceneManager = Singleton {
+    id = "scene_manager",
+
     attributes = {
         scenes = nil,
         activeScene = nil,
