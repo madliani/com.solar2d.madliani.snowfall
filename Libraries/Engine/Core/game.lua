@@ -25,7 +25,7 @@ local os = require "os"
 ---@field attributes GameAttributes
 ---@field methods GameMethods
 
----@class GameClassArguments
+---@class GameClassInitial
 ---@field scenePaths ScenePaths
 ---@field sound Sound
 
@@ -34,7 +34,7 @@ local os = require "os"
 ---@field run fun()
 ---@field start fun()
 
----@alias GameClass fun(arguments: GameClassArguments): Game
+---@alias GameClass fun(initial: GameClassInitial): Game
 
 ---@alias GameSingleton fun(metaclass: GameMetaclass): GameClass
 
