@@ -10,7 +10,7 @@ local audio = require "audio"
 ---@field unmute fun(self: SoundAttributes)
 ---@field mute fun(self: SoundAttributes)
 
----@class SoundClass
+---@class SoundMetaclass
 ---@field attributes SoundAttributes
 ---@field methods SoundMethods
 
@@ -20,7 +20,9 @@ local audio = require "audio"
 ---@field unmute fun()
 ---@field mute fun()
 
----@alias SoundSingleton fun(class: SoundClass): Sound
+---@alias SoundClass fun(): Sound
+
+---@alias SoundSingleton fun(metaclass: SoundMetaclass): SoundClass
 
 ---@type SoundSingleton
 local Singleton = require "Libraries.Prelude.singleton"
