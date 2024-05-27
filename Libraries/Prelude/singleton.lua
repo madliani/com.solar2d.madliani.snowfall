@@ -5,7 +5,7 @@ local Singleton = function(class)
     ---@type Instance | nil
     local instance = nil
 
-    ---@param initial InitialArguments?
+    ---@param initial Initial?
     return function(initial)
         if instance == nil then
             instance = Instance(class, initial)

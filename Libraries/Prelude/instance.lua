@@ -1,10 +1,10 @@
 local _ = require "Libraries.Prelude.enumerable"
 
 ---@alias Instance table<Function>
----@alias InitialArguments Arguments
+---@alias Initial Arguments
 
 ---@param metaclass Metaclass
----@param initial InitialArguments?
+---@param initial Initial?
 local Instance = function(metaclass, initial)
     local self = _.merge(metaclass.attributes, metaclass.methods)
 
