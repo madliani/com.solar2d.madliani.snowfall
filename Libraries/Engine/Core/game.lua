@@ -45,10 +45,12 @@ local sceneManager = SceneManager()
 
 local Game = Singleton {
     id = "game",
+
     attributes = {
         scenePaths = nil,
         sound = nil,
     },
+
     methods = {
         exit = function(self)
             if self.sound ~= nil and self.scenePaths ~= nil then
