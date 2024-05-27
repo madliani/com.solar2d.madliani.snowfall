@@ -8,10 +8,17 @@ local os = require "os"
 ---@field scenePaths ScenePaths | nil
 ---@field sound Sound | nil
 
+---@class GameSelf
+---@field scenePaths ScenePaths
+---@field sound Sound
+---@field exit fun(self: GameSelf)
+---@field run fun(self: GameSelf)
+---@field start fun(self: GameSelf)
+
 ---@class GameMethods
----@field exit fun(self: GameAttributes)
----@field run fun(self: GameAttributes)
----@field start fun(self: GameAttributes)
+---@field exit fun(self: GameSelf)
+---@field run fun(self: GameSelf)
+---@field start fun(self: GameSelf)
 
 ---@class GameMetaclass
 ---@field id GameIdentificator
