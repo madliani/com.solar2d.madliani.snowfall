@@ -40,7 +40,9 @@ local composer = require "composer"
 ---@field gotoWorld fun()
 ---@field newScene fun()
 
----@alias SceneManagerSingleton fun(metaclass: SceneManagerMetaclass): SceneManager
+---@alias SceneManagerClass fun(): SceneManager
+
+---@alias SceneManagerSingleton fun(metaclass: SceneManagerMetaclass): SceneManagerClass
 
 ---@type SceneManagerSingleton
 local Singleton = require "Libraries.Prelude.singleton"
