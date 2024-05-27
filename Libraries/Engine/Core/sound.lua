@@ -1,5 +1,7 @@
 local audio = require "audio"
 
+---@alias SoundIdentificator string
+
 ---@class SoundAttributes
 ---@field sound table | nil
 ---@field volume integer | nil
@@ -11,6 +13,7 @@ local audio = require "audio"
 ---@field mute fun(self: SoundAttributes)
 
 ---@class SoundMetaclass
+---@field id SoundIdentificator
 ---@field attributes SoundAttributes
 ---@field methods SoundMethods
 
@@ -28,6 +31,8 @@ local audio = require "audio"
 local Singleton = require "Libraries.Prelude.singleton"
 
 local Sound = Singleton {
+    id = "sound",
+
     attributes = {
         sound = nil,
         volume = nil,
