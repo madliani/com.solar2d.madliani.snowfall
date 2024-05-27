@@ -13,17 +13,23 @@ local os = require "os"
 ---@field run fun(self: GameAttributes)
 ---@field start fun(self: GameAttributes)
 
----@class GameClass
+---@class GameMetaclass
 ---@field id GameIdentificator
 ---@field attributes GameAttributes
 ---@field methods GameMethods
+
+---@class GameClassArguments
+---@field scenePaths ScenePaths
+---@field sound Sound
 
 ---@class Game
 ---@field exit fun()
 ---@field run fun()
 ---@field start fun()
 
----@alias GameSingleton fun(class: GameClass): Game
+---@alias GameClass fun(arguments: GameClassArguments): Game
+
+---@alias GameSingleton fun(metaclass: GameMetaclass): GameClass
 
 ---@type GameSingleton
 local Singleton = require "Libraries.Prelude.singleton"
