@@ -11,6 +11,8 @@ local os = require "os"
 ---@field run fun()
 ---@field start fun()
 
+---@alias GameClass fun(initial: GameClassInitial): Game
+
 ---@alias GameIdentificator string
 
 ---@class GameAttributes
@@ -33,8 +35,6 @@ local os = require "os"
 ---@field id GameIdentificator
 ---@field attributes GameAttributes
 ---@field methods GameMethods
-
----@alias GameClass fun(initial: GameClassInitial): Game
 
 ---@alias GameSingleton fun(metaclass: GameMetaclass): GameClass
 
