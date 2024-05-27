@@ -1,5 +1,15 @@
 local composer = require "composer"
 
+---@class SceneManager
+---@field initialize fun(paths: ScenePaths)
+---@field finalize fun()
+---@field gotoScene fun(scene: ScenePath)
+---@field gotoStart fun()
+---@field gotoWorld fun()
+---@field newScene fun()
+
+---@alias SceneManagerClass fun(): SceneManager
+
 ---@alias SceneManagerIdentificator string
 
 ---@alias ScenePath string
@@ -34,16 +44,6 @@ local composer = require "composer"
 ---@field id SceneManagerIdentificator
 ---@field attributes SceneManagerAttributes
 ---@field methods SceneManagerMethods
-
----@class SceneManager
----@field initialize fun(paths: ScenePaths)
----@field finalize fun()
----@field gotoScene fun(scene: ScenePath)
----@field gotoStart fun()
----@field gotoWorld fun()
----@field newScene fun()
-
----@alias SceneManagerClass fun(): SceneManager
 
 ---@alias SceneManagerSingleton fun(metaclass: SceneManagerMetaclass): SceneManagerClass
 
