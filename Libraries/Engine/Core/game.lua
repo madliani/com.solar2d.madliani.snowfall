@@ -1,10 +1,11 @@
 local Resources = require "resources"
+local SceneManager = require "Libraries.Engine.Core.sceneManager"
 local os = require "os"
 
 ---@alias GameIdentificator string
 
 ---@class GameAttributes
----@field sceneManager SceneManager | nil
+---@field scenePaths ScenePaths | nil
 ---@field sound Sound | nil
 
 ---@class GameMethods
@@ -27,34 +28,38 @@ local os = require "os"
 ---@type GameSingleton
 local Singleton = require "Libraries.Prelude.singleton"
 
+local sceneManager = SceneManager()
+
 local Game = Singleton {
     id = "Game",
     attributes = {
-        sceneManager = nil,
+        scenePaths = nil,
         sound = nil,
     },
     methods = {
         exit = function(self)
-            if self.sound ~= nil and self.sceneManager ~= nil then
+            if self.sound ~= nil and self.scenePaths ~= nil then
                 self.sound.finalize()
-                self.sceneManager.destroy()
+
+                sceneManager.finalize()
 
                 self.sound = nil
-                self.sceneManager = nil
+                self.scenePaths = nil
 
                 os.exit()
             end
         end,
         run = function(self)
-            if self.sound ~= nil and self.sceneManager ~= nil then
+            if self.sound ~= nil and self.scenePaths ~= nil then
                 self.sound.initialize(Resources.Sounds.background)
-                self.sceneManager.gotoStart()
+
+                sceneManager.initialize(self.scenePaths)
+
+                sceneManager.gotoStart()
             end
         end,
-        start = function(self)
-            if self.sceneManager ~= nil then
-                self.sceneManager.gotoWorld()
-            end
+        start = function()
+            sceneManager.gotoWorld()
         end,
     },
 }

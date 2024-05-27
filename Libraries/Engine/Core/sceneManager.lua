@@ -6,60 +6,93 @@ local composer = require "composer"
 ---@field start ScenePath
 ---@field world ScenePath
 
----@param paths ScenePaths
-local SceneManager = function(paths)
-    ---@type ScenePaths | nil
-    local scenePaths = paths
+---@class SceneManagerAttributes
+---@field scenes ScenePaths | nil
+---@field activeScene ScenePath | nil
 
-    ---@type string | nil
-    local activeScene = nil
+---@class SceneManagerSelf
+---@field scenes ScenePaths | nil
+---@field activeScene ScenePath | nil
+---@field initialize fun(self: SceneManagerSelf, paths: ScenePaths)
+---@field finalize fun(self: SceneManagerSelf)
+---@field gotoScene fun(self: SceneManagerSelf, scene: ScenePath)
+---@field gotoStart fun(self: SceneManagerSelf)
+---@field gotoWorld fun(self: SceneManagerSelf)
+---@field newScene fun(self: SceneManagerSelf)
 
-    local function destroy()
-        activeScene = nil
+---@class SceneManagerMethods
+---@field initialize fun(self: SceneManagerSelf, paths: ScenePaths)
+---@field finalize fun(self: SceneManagerSelf)
+---@field gotoScene fun(self: SceneManagerSelf, scene: ScenePath)
+---@field gotoStart fun(self: SceneManagerSelf)
+---@field gotoWorld fun(self: SceneManagerSelf)
+---@field newScene fun(self: SceneManagerSelf)
 
-        scenePaths.start = nil
-        scenePaths.world = nil
+---@class SceneManagerMetaclass
+---@field attributes SceneManagerAttributes
+---@field methods SceneManagerMethods
 
-        scenePaths = nil
-    end
+---@class SceneManager
+---@field initialize fun(paths: ScenePaths)
+---@field finalize fun()
+---@field gotoScene fun(scene: ScenePath)
+---@field gotoStart fun()
+---@field gotoWorld fun()
+---@field newScene fun()
 
-    local function gotoScene(scene)
-        if activeScene ~= nil then
-            composer.removeScene(activeScene)
-        end
+---@alias SceneManagerSingleton fun(metaclass: SceneManagerMetaclass): SceneManager
 
-        activeScene = scene
+---@type SceneManagerSingleton
+local Singleton = require "Libraries.Prelude.singleton"
 
-        composer.gotoScene(scene)
-    end
+local SceneManager = Singleton {
+    attributes = {
+        scenes = nil,
+        activeScene = nil,
+    },
 
-    local function gotoStart()
-        if scenePaths ~= nil then
-            gotoScene(scenePaths.start)
-        end
-    end
+    methods = {
+        initialize = function(self, paths)
+            if self.scenes == nil then
+                self.scenes = paths
+            end
+        end,
 
-    local function gotoWorld()
-        if scenePaths ~= nil then
-            gotoScene(scenePaths.world)
-        end
-    end
+        finalize = function(self)
+            self.activeScene = nil
 
-    local function newScene()
-        return composer.newScene()
-    end
+            self.scenes.start = nil
+            self.scenes.world = nil
 
-    ---@class SceneManager
-    ---@field destroy function
-    ---@field gotoStart function
-    ---@field gotoWorld function
-    ---@field newScene function
-    return {
-        destroy = destroy,
-        gotoStart = gotoStart,
-        gotoWorld = gotoWorld,
-        newScene = newScene,
-    }
-end
+            self.scenes = nil
+        end,
+
+        gotoScene = function(self, scene)
+            if self.activeScene ~= nil then
+                composer.removeScene(self.activeScene)
+            end
+
+            self.activeScene = scene
+
+            composer.gotoScene(scene)
+        end,
+
+        gotoStart = function(self)
+            if self.scenes ~= nil then
+                self.gotoScene(self, self.scenes.start)
+            end
+        end,
+
+        gotoWorld = function(self)
+            if self.scenes ~= nil then
+                self.gotoScene(self, self.scenes.world)
+            end
+        end,
+
+        newScene = function()
+            return composer.newScene()
+        end,
+    },
+}
 
 return SceneManager
