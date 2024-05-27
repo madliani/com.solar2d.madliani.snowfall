@@ -6,11 +6,19 @@ local audio = require "audio"
 ---@field sound table | nil
 ---@field volume integer | nil
 
+---@class SoundSelf
+---@field sound table | nil
+---@field volume integer | nil
+---@field finalize fun(self: SoundSelf)
+---@field initialize fun(self: SoundSelf, path: string)
+---@field unmute fun(self: SoundSelf)
+---@field mute fun(self: SoundSelf)
+
 ---@class SoundMethods
----@field finalize fun(self: SoundAttributes)
----@field initialize fun(self: SoundAttributes, path: string)
----@field unmute fun(self: SoundAttributes)
----@field mute fun(self: SoundAttributes)
+---@field finalize fun(self: SoundSelf)
+---@field initialize fun(self: SoundSelf, path: string)
+---@field unmute fun(self: SoundSelf)
+---@field mute fun(self: SoundSelf)
 
 ---@class SoundMetaclass
 ---@field id SoundIdentificator
