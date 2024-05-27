@@ -2,6 +2,15 @@ local Resources = require "resources"
 local SceneManager = require "Libraries.Engine.Core.sceneManager"
 local os = require "os"
 
+---@class GameClassInitial
+---@field scenePaths ScenePaths
+---@field sound Sound
+
+---@class Game
+---@field exit fun()
+---@field run fun()
+---@field start fun()
+
 ---@alias GameIdentificator string
 
 ---@class GameAttributes
@@ -24,15 +33,6 @@ local os = require "os"
 ---@field id GameIdentificator
 ---@field attributes GameAttributes
 ---@field methods GameMethods
-
----@class GameClassInitial
----@field scenePaths ScenePaths
----@field sound Sound
-
----@class Game
----@field exit fun()
----@field run fun()
----@field start fun()
 
 ---@alias GameClass fun(initial: GameClassInitial): Game
 
