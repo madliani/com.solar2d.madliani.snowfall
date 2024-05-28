@@ -1,10 +1,10 @@
-local Resources = require "resources"
 local SceneManager = require "Libraries.Engine.Core.sceneManager"
+local Sound = require "Libraries.Engine.Core.sound"
 local os = require "os"
 
 ---@class GameClassInitial
 ---@field scenePaths ScenePaths
----@field sound Sound
+---@field soundPath string
 
 ---@class Game
 ---@field exit fun()
@@ -17,11 +17,11 @@ local os = require "os"
 
 ---@class GameAttributes
 ---@field scenePaths ScenePaths | nil
----@field sound Sound | nil
+---@field soundPath string | nil
 
 ---@class GameSelf
 ---@field scenePaths ScenePaths | nil
----@field sound Sound | nil
+---@field soundPath string | nil
 ---@field exit fun(self: GameSelf)
 ---@field run fun(self: GameSelf)
 ---@field start fun(self: GameSelf)
@@ -42,23 +42,23 @@ local os = require "os"
 local Singleton = require "Libraries.Prelude.singleton"
 
 local sceneManager = SceneManager()
+local sound = Sound()
 
 local Game = Singleton {
     id = "game",
 
     attributes = {
         scenePaths = nil,
-        sound = nil,
+        soundPath = nil,
     },
 
     methods = {
         exit = function(self)
-            if self.sound ~= nil and self.scenePaths ~= nil then
-                self.sound.finalize()
-
+            if self.soundPath ~= nil and self.scenePaths ~= nil then
                 sceneManager.finalize()
+                sound.finalize()
 
-                self.sound = nil
+                self.soundPath = nil
                 self.scenePaths = nil
 
                 os.exit()
@@ -66,11 +66,9 @@ local Game = Singleton {
         end,
 
         run = function(self)
-            if self.sound ~= nil and self.scenePaths ~= nil then
-                self.sound.initialize(Resources.Sounds.background)
-
+            if self.soundPath ~= nil and self.scenePaths ~= nil then
+                sound.initialize(self.soundPath)
                 sceneManager.initialize(self.scenePaths)
-
                 sceneManager.gotoStart()
             end
         end,
