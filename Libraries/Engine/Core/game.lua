@@ -64,6 +64,7 @@ local Game = Singleton {
                 os.exit()
             end
         end,
+
         run = function(self)
             if self.sound ~= nil and self.scenePaths ~= nil then
                 self.sound.initialize(Resources.Sounds.background)
@@ -73,6 +74,7 @@ local Game = Singleton {
                 sceneManager.gotoStart()
             end
         end,
+
         start = function()
             sceneManager.gotoWorld()
         end,
