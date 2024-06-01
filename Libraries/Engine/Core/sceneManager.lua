@@ -1,16 +1,10 @@
 local composer = require "composer"
 
 ---@class SceneManager
----@field initialize fun(paths: ScenePaths)
----@field finalize fun()
 ---@field gotoScene fun(scene: ScenePath)
 ---@field gotoStart fun()
 ---@field gotoWorld fun()
 ---@field newScene fun()
-
----@alias SceneManagerClass fun(): SceneManager
-
----@alias SceneManagerIdentificator string
 
 ---@alias ScenePath string
 
@@ -18,32 +12,36 @@ local composer = require "composer"
 ---@field start ScenePath
 ---@field world ScenePath
 
+---@alias SceneManagerClass fun(paths: ScenePaths): SceneManager
+---@alias SceneManagerIdentificator string
+
 ---@class SceneManagerAttributes
 ---@field scenes ScenePaths | nil
 ---@field activeScene ScenePath | nil
 
 ---@class SceneManagerSelf
----@field scenes ScenePaths | nil
----@field activeScene ScenePath | nil
----@field initialize fun(self: SceneManagerSelf, paths: ScenePaths)
----@field finalize fun(self: SceneManagerSelf)
+---@field scenes ScenePaths
+---@field activeScene ScenePath
 ---@field gotoScene fun(self: SceneManagerSelf, scene: ScenePath)
 ---@field gotoStart fun(self: SceneManagerSelf)
 ---@field gotoWorld fun(self: SceneManagerSelf)
 ---@field newScene fun(self: SceneManagerSelf)
 
 ---@class SceneManagerMethods
----@field initialize fun(self: SceneManagerSelf, paths: ScenePaths)
----@field finalize fun(self: SceneManagerSelf)
 ---@field gotoScene fun(self: SceneManagerSelf, scene: ScenePath)
 ---@field gotoStart fun(self: SceneManagerSelf)
 ---@field gotoWorld fun(self: SceneManagerSelf)
 ---@field newScene fun(self: SceneManagerSelf)
 
+---@alias SceneManagerInitializer fun(paths: ScenePaths, attributes: SceneManagerAttributes)
+---@alias SceneManagerFinalizer fun(attributes: SceneManagerAttributes)
+
 ---@class SceneManagerMetaclass
 ---@field id SceneManagerIdentificator
 ---@field attributes SceneManagerAttributes
 ---@field methods SceneManagerMethods
+---@field initializer SceneManagerInitializer
+---@field finalizer SceneManagerFinalizer
 
 ---@alias SceneManagerSingleton fun(metaclass: SceneManagerMetaclass): SceneManagerClass
 
@@ -59,21 +57,6 @@ local SceneManager = Singleton {
     },
 
     methods = {
-        initialize = function(self, paths)
-            if self.scenes == nil then
-                self.scenes = paths
-            end
-        end,
-
-        finalize = function(self)
-            self.activeScene = nil
-
-            self.scenes.start = nil
-            self.scenes.world = nil
-
-            self.scenes = nil
-        end,
-
         gotoScene = function(self, scene)
             if self.activeScene ~= nil then
                 composer.removeScene(self.activeScene)
@@ -100,6 +83,23 @@ local SceneManager = Singleton {
             return composer.newScene()
         end,
     },
+
+    initializer = function(paths, attributes)
+        if attributes.scenes == nil then
+            attributes.scenes = paths
+        end
+    end,
+
+    finalizer = function(attributes)
+        if attributes.activeScene ~= nil and attributes.scenes ~= nil then
+            attributes.activeScene = nil
+
+            attributes.scenes.start = nil
+            attributes.scenes.world = nil
+
+            attributes.scenes = nil
+        end
+    end,
 }
 
 return SceneManager

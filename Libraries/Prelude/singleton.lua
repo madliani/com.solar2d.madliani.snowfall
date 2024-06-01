@@ -1,14 +1,18 @@
 local Instance = require "Libraries.Prelude.instance"
 
----@param class Metaclass
-local Singleton = function(class)
+---@param metaclass Metaclass
+local Singleton = function(metaclass)
     ---@type Instance | nil
     local instance = nil
 
     ---@param initial Initial?
     return function(initial)
         if instance == nil then
-            instance = Instance(class, initial)
+            if initial ~= nil then
+                metaclass.initializer(initial, metaclass.attributes)
+            end
+
+            instance = Instance(metaclass)
         end
 
         return instance

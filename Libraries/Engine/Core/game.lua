@@ -2,7 +2,7 @@ local SceneManager = require "Libraries.Engine.Core.sceneManager"
 local Sound = require "Libraries.Engine.Core.sound"
 local os = require "os"
 
----@class GameClassInitial
+---@class GameInitial
 ---@field scenePaths ScenePaths
 ---@field soundPath string
 
@@ -11,17 +11,16 @@ local os = require "os"
 ---@field run fun()
 ---@field start fun()
 
----@alias GameClass fun(initial: GameClassInitial): Game
-
+---@alias GameClass fun(initial: GameInitial): Game
 ---@alias GameIdentificator string
 
 ---@class GameAttributes
----@field scenePaths ScenePaths | nil
----@field soundPath string | nil
+---@field sceneManager SceneManager | nil
+---@field sound Sound | nil
 
 ---@class GameSelf
----@field scenePaths ScenePaths | nil
----@field soundPath string | nil
+---@field sceneManager SceneManager
+---@field sound Sound
 ---@field exit fun(self: GameSelf)
 ---@field run fun(self: GameSelf)
 ---@field start fun(self: GameSelf)
@@ -31,9 +30,14 @@ local os = require "os"
 ---@field run fun(self: GameSelf)
 ---@field start fun(self: GameSelf)
 
+---@alias GameInitializer fun(initial: GameInitial, attributes: GameAttributes)
+---@alias GameFinalizer fun(attributes: GameAttributes)
+
 ---@class GameMetaclass
 ---@field id GameIdentificator
 ---@field attributes GameAttributes
+---@field initializer GameInitializer
+---@field finalizer GameFinalizer
 ---@field methods GameMethods
 
 ---@alias GameSingleton fun(metaclass: GameMetaclass): GameClass
@@ -41,42 +45,42 @@ local os = require "os"
 ---@type GameSingleton
 local Singleton = require "Libraries.Prelude.singleton"
 
-local sceneManager = SceneManager()
-local sound = Sound()
-
 local Game = Singleton {
     id = "game",
 
     attributes = {
-        scenePaths = nil,
-        soundPath = nil,
+        iteratee = nil,
+        sceneManager = nil,
+        sound = nil,
     },
 
     methods = {
         exit = function(self)
-            if self.soundPath ~= nil and self.scenePaths ~= nil then
-                sceneManager.finalize()
-                sound.finalize()
-
-                self.soundPath = nil
-                self.scenePaths = nil
-
-                os.exit()
-            end
+            os.exit()
         end,
 
         run = function(self)
-            if self.soundPath ~= nil and self.scenePaths ~= nil then
-                sound.initialize(self.soundPath)
-                sceneManager.initialize(self.scenePaths)
-                sceneManager.gotoStart()
-            end
+            self.sceneManager.gotoStart()
         end,
 
-        start = function()
-            sceneManager.gotoWorld()
+        start = function(self)
+            self.sceneManager.gotoWorld()
         end,
     },
+
+    initializer = function(initial, attributes)
+        if attributes.sceneManager == nil and attributes.sound == nil then
+            attributes.sceneManager = SceneManager(initial.scenePaths)
+            attributes.sound = Sound(initial.soundPath)
+        end
+    end,
+
+    finalizer = function(attributes)
+        if attributes.sceneManager ~= nil and attributes.sound ~= nil then
+            attributes.sceneManager = nil
+            attributes.sound = nil
+        end
+    end,
 }
 
 return Game
