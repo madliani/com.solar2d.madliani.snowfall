@@ -59,7 +59,9 @@ local Blizzard = function(counter)
     local function show()
         if #snowflakes > 0 then
             for i = 1, #snowflakes, 1 do
-                snowflakes[i].show()
+                local snowflake = snowflakes[i]
+
+                snowflake.show()
             end
         end
     end
@@ -67,7 +69,9 @@ local Blizzard = function(counter)
     local function hide()
         if #snowflakes > 0 then
             for i = 1, #snowflakes, 1 do
-                snowflakes[i].hide()
+                local snowflake = snowflakes[i]
+
+                snowflake.hide()
             end
         end
     end
