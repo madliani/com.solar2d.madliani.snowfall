@@ -75,6 +75,16 @@ local Blizzard = function(counter)
         end
     end
 
+    local function pause()
+        timer.pause(generationLoop)
+        Runtime.removeEventListener(Runtime, "enterFrame", update)
+    end
+
+    local function resume()
+        timer.resume(generationLoop)
+        Runtime.addEventListener(Runtime, "enterFrame", update)
+    end
+
     local function hide()
         if #snowflakes > 0 then
             for i = 1, #snowflakes, 1 do
@@ -86,11 +96,15 @@ local Blizzard = function(counter)
     end
 
     ---@class Blizzard
+    ---@field pause function
+    ---@field resume function
     ---@field create function
     ---@field destroy function
     ---@field hide function
     ---@field show function
     return {
+        pause = pause,
+        resume = resume,
         create = create,
         destroy = destroy,
         hide = hide,
