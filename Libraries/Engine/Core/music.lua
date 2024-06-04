@@ -10,18 +10,28 @@ local audio = require "audio"
 ---@alias MusicIdentificator string
 
 ---@class MusicAttributes
----@field sound table | nil
+---@field audio table | nil
+---@field music table | nil
 ---@field volume integer | nil
 
 ---@class MusicSelf
----@field sound table
+---@field audio table
+---@field music table
 ---@field volume integer
----@field unmute fun(self: MusicSelf)
 ---@field mute fun(self: MusicSelf)
+---@field pause fun(self: MusicSelf)
+---@field play fun(self: MusicSelf)
+---@field resume fun(self: MusicSelf)
+---@field stop fun(self: MusicSelf)
+---@field unmute fun(self: MusicSelf)
 
 ---@class MusicMethods
----@field unmute fun(self: MusicSelf)
 ---@field mute fun(self: MusicSelf)
+---@field pause fun(self: MusicSelf)
+---@field play fun(self: MusicSelf)
+---@field resume fun(self: MusicSelf)
+---@field stop fun(self: MusicSelf)
+---@field unmute fun(self: MusicSelf)
 
 ---@alias MusicInitializer fun(initial: MusicPath, attributes: MusicAttributes)
 ---@alias MusicFinalizer fun(attributes: MusicAttributes)
@@ -42,34 +52,47 @@ local Music = Singleton {
     id = "music",
 
     attributes = {
-        sound = nil,
+        audio = nil,
+        music = nil,
         volume = nil,
     },
 
     methods = {
-        unmute = function(self)
-            audio.setVolume(self.volume)
-        end,
-
         mute = function()
             audio.setVolume(0)
+        end,
+
+        pause = function(self)
+            audio.pause(self.music)
+        end,
+
+        play = function(self)
+            self.music = audio.play(self.audio)
+        end,
+
+        resume = function(self)
+            audio.resume(self.music)
+        end,
+
+        stop = function(self)
+            audio.stop(self.music)
+        end,
+
+        unmute = function(self)
+            audio.setVolume(self.volume)
         end,
     },
 
     initializer = function(path, attributes)
-        if attributes.sound == nil and attributes.volume == nil then
-            attributes.sound = audio.loadSound(path)
-            attributes.volume = audio.getVolume()
+        if attributes.audio == nil and attributes.music == nil and attributes.volume == nil then
+            attributes.audio = audio.loadSound(path)
         end
-
-        audio.play(attributes.sound)
     end,
 
     finalizer = function(attributes)
-        audio.setVolume(0)
-
-        if attributes.sound ~= nil and attributes.volume ~= nil then
-            attributes.sound = nil
+        if attributes.audio == nil and attributes.music ~= nil and attributes.volume ~= nil then
+            attributes.audio = nil
+            attributes.music = nil
             attributes.volume = nil
         end
     end,
