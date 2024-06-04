@@ -4,7 +4,7 @@ local os = require "os"
 
 ---@class GameInitial
 ---@field scenePaths ScenePaths
----@field soundPath string
+---@field musicPath MusicPath
 
 ---@class Game
 ---@field exit fun()
@@ -71,7 +71,7 @@ local Game = Singleton {
     initializer = function(initial, attributes)
         if attributes.sceneManager == nil and attributes.music == nil then
             attributes.sceneManager = SceneManager(initial.scenePaths)
-            attributes.music = Music(initial.soundPath)
+            attributes.music = Music(initial.musicPath)
         end
     end,
 
