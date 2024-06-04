@@ -1,5 +1,5 @@
-local SceneManager = require "Libraries.Engine.Core.sceneManager"
 local Music = require "Libraries.Engine.Core.music"
+local SceneManager = require "Libraries.Engine.Core.sceneManager"
 local os = require "os"
 
 ---@class GameInitial
