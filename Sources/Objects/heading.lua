@@ -11,9 +11,9 @@ local color = Color(1, 1, 1)
 local coordinate = Coordinate(display.contentCenterX, display.contentCenterY - 200)
 local size = 48
 
----@param heading string
-local Heading = function(heading)
-    local title = Title(heading, architectsDaughter, color, size)
+---@param text string
+local Heading = function(text)
+    local title = Title(text, architectsDaughter, color, size)
 
     ---@class Heading
     return Label(title, coordinate)
