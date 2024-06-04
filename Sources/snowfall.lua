@@ -6,7 +6,7 @@ local Snowfall = Game {
         start = "Sources.Scenes.startMenu",
         world = "Sources.Scenes.world",
     },
-    soundPath = Resources.Sounds.background,
+    musicPath = Resources.Sounds.background,
 }
 
 return Snowfall
