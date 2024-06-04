@@ -64,7 +64,7 @@ local SceneManager = Singleton {
 
             self.activeScene = scene
 
-            composer.gotoScene(scene)
+            composer.gotoScene(scene, { effect = "fade", time = 500 })
         end,
 
         gotoStart = function(self)
