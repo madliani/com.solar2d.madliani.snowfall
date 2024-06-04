@@ -13,7 +13,7 @@ local Blizzard = function(counter)
     ---@type table | nil
     local sceneGroup = nil
 
-    local function generateSnowflake()
+    local function generate()
         if sceneGroup ~= nil then
             local snowflake = Snowflake(Resources.Images.snowflake, counter)
 
@@ -60,7 +60,7 @@ local Blizzard = function(counter)
     local function create(group)
         sceneGroup = group
 
-        generationLoop = timer.performWithDelay(500, generateSnowflake, 0)
+        generationLoop = timer.performWithDelay(500, generate, 0)
 
         Runtime.addEventListener(Runtime, "enterFrame", update)
     end
