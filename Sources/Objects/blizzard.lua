@@ -8,6 +8,9 @@ local Blizzard = function(counter)
     local snowflakes = {}
 
     ---@type table | nil
+    local generationLoop = nil
+
+    ---@type table | nil
     local sceneGroup = nil
 
     local function generateSnowflake()
@@ -34,6 +37,14 @@ local Blizzard = function(counter)
     end
 
     local function destroy()
+        Runtime.removeEventListener(Runtime, "enterFrame", update)
+
+        if generationLoop ~= nil then
+            timer.cancel(generationLoop)
+
+            generationLoop = nil
+        end
+
         if #snowflakes > 0 and sceneGroup ~= nil then
             for i = 1, #snowflakes, 1 do
                 local snowflake = snowflakes[i]
@@ -49,7 +60,7 @@ local Blizzard = function(counter)
     local function create(group)
         sceneGroup = group
 
-        timer.performWithDelay(500, generateSnowflake, 0)
+        generationLoop = timer.performWithDelay(500, generateSnowflake, 0)
 
         Runtime.addEventListener(Runtime, "enterFrame", update)
     end
