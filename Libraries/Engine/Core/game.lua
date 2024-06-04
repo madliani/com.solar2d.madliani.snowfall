@@ -1,5 +1,5 @@
 local SceneManager = require "Libraries.Engine.Core.sceneManager"
-local Sound = require "Libraries.Engine.Core.sound"
+local Music = require "Libraries.Engine.Core.music"
 local os = require "os"
 
 ---@class GameInitial
@@ -16,11 +16,11 @@ local os = require "os"
 
 ---@class GameAttributes
 ---@field sceneManager SceneManager | nil
----@field sound Sound | nil
+---@field music Music | nil
 
 ---@class GameSelf
 ---@field sceneManager SceneManager
----@field sound Sound
+---@field music Music
 ---@field exit fun(self: GameSelf)
 ---@field run fun(self: GameSelf)
 ---@field start fun(self: GameSelf)
@@ -51,7 +51,7 @@ local Game = Singleton {
     attributes = {
         iteratee = nil,
         sceneManager = nil,
-        sound = nil,
+        music = nil,
     },
 
     methods = {
@@ -69,16 +69,16 @@ local Game = Singleton {
     },
 
     initializer = function(initial, attributes)
-        if attributes.sceneManager == nil and attributes.sound == nil then
+        if attributes.sceneManager == nil and attributes.music == nil then
             attributes.sceneManager = SceneManager(initial.scenePaths)
-            attributes.sound = Sound(initial.soundPath)
+            attributes.music = Music(initial.soundPath)
         end
     end,
 
     finalizer = function(attributes)
-        if attributes.sceneManager ~= nil and attributes.sound ~= nil then
+        if attributes.sceneManager ~= nil and attributes.music ~= nil then
             attributes.sceneManager = nil
-            attributes.sound = nil
+            attributes.music = nil
         end
     end,
 }

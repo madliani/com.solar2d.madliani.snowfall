@@ -1,45 +1,45 @@
 local audio = require "audio"
 
----@alias SoundPath string
+---@alias MusicPath string
 
----@class Sound
+---@class Music
 ---@field unmute fun()
 ---@field mute fun()
 
----@alias SoundClass fun(path: SoundPath): Sound
----@alias SoundIdentificator string
+---@alias MusicClass fun(path: MusicPath): Music
+---@alias MusicIdentificator string
 
----@class SoundAttributes
+---@class MusicAttributes
 ---@field sound table | nil
 ---@field volume integer | nil
 
----@class SoundSelf
+---@class MusicSelf
 ---@field sound table
 ---@field volume integer
----@field unmute fun(self: SoundSelf)
----@field mute fun(self: SoundSelf)
+---@field unmute fun(self: MusicSelf)
+---@field mute fun(self: MusicSelf)
 
----@class SoundMethods
----@field unmute fun(self: SoundSelf)
----@field mute fun(self: SoundSelf)
+---@class MusicMethods
+---@field unmute fun(self: MusicSelf)
+---@field mute fun(self: MusicSelf)
 
----@alias SoundInitializer fun(initial: SoundPath, attributes: SoundAttributes)
----@alias SoundFinalizer fun(attributes: SoundAttributes)
+---@alias MusicInitializer fun(initial: MusicPath, attributes: MusicAttributes)
+---@alias MusicFinalizer fun(attributes: MusicAttributes)
 
----@class SoundMetaclass
----@field id SoundIdentificator
----@field attributes SoundAttributes
----@field initializer SoundInitializer
----@field finalizer SoundFinalizer
----@field methods SoundMethods
+---@class MusicMetaclass
+---@field id MusicIdentificator
+---@field attributes MusicAttributes
+---@field initializer MusicInitializer
+---@field finalizer MusicFinalizer
+---@field methods MusicMethods
 
----@alias SoundSingleton fun(metaclass: SoundMetaclass): SoundClass
+---@alias MusicSingleton fun(metaclass: MusicMetaclass): MusicClass
 
----@type SoundSingleton
+---@type MusicSingleton
 local Singleton = require "Libraries.Prelude.singleton"
 
-local Sound = Singleton {
-    id = "sound",
+local Music = Singleton {
+    id = "music",
 
     attributes = {
         sound = nil,
@@ -75,4 +75,4 @@ local Sound = Singleton {
     end,
 }
 
-return Sound
+return Music
