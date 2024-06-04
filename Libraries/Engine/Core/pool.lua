@@ -30,8 +30,8 @@ local Pool = function(objects)
 
                 if object.show ~= nil then
                     object.show()
-                elseif object.unmute ~= nil then
-                    object.unmute()
+                elseif object.resume ~= nil then
+                    object.resume()
                 end
             end
         end
@@ -44,8 +44,8 @@ local Pool = function(objects)
 
                 if object.hide ~= nil then
                     object.hide()
-                elseif object.mute ~= nil then
-                    object.mute()
+                elseif object.pause ~= nil then
+                    object.pause()
                 end
             end
         end
