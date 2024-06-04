@@ -23,7 +23,7 @@ local Snowflake = function(path, counter)
     local function create(group)
         sceneGroup = group
 
-        if imageRect == nil and sceneGroup ~= nil then
+        if imageRect == nil and sceneGroup ~= nil and display ~= nil then
             local scale = math.random(5, 15)
             local width = display.pixelWidth / display.contentWidth * scale
             local height = display.pixelWidth / display.contentWidth * scale
@@ -56,27 +56,21 @@ local Snowflake = function(path, counter)
     end
 
     local function update()
-        local function isRemovable()
-            return imageRect ~= nil and imageRect.y >= display.contentHeight
-        end
-
         local function incCoordinateY()
             if imageRect ~= nil then
                 imageRect.y = imageRect.y + 1
             end
         end
 
-        if imageRect ~= nil then
-            if isRemovable() then
-                destroy()
-            else
-                incCoordinateY()
-            end
-        end
+        incCoordinateY()
     end
 
     local function isUnavable()
-        return imageRect == nil
+        if imageRect ~= nil and display ~= nil then
+            return imageRect.y >= display.contentHeight
+        end
+
+        return false
     end
 
     ---@class Snowflake
