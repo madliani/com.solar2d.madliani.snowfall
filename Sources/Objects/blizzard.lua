@@ -1,6 +1,10 @@
+local Event = require "Libraries.Engine.Core.event"
+local EventManager = require "Libraries.Engine.Core.eventManager"
 local Resources = require "resources"
 local Snowflake = require "Sources.Objects.snowflake"
 local timer = require "timer"
+
+local eventManager = EventManager()
 
 ---@param counter Counter
 local Blizzard = function(counter)
@@ -37,7 +41,7 @@ local Blizzard = function(counter)
     end
 
     local function destroy()
-        Runtime.removeEventListener(Runtime, "enterFrame", update)
+        eventManager.remove "blizzard.update"
 
         if generationLoop ~= nil then
             timer.cancel(generationLoop)
@@ -59,10 +63,11 @@ local Blizzard = function(counter)
     ---@param group table
     local function create(group)
         sceneGroup = group
-
         generationLoop = timer.performWithDelay(500, generate, 0)
 
-        Runtime.addEventListener(Runtime, "enterFrame", update)
+        local event = Event(update, "enterFrame")
+
+        eventManager.add(event, "blizzard.update")
     end
 
     local function show()
@@ -77,12 +82,15 @@ local Blizzard = function(counter)
 
     local function pause()
         timer.pause(generationLoop)
-        Runtime.removeEventListener(Runtime, "enterFrame", update)
+        eventManager.remove "blizzard.update"
     end
 
     local function resume()
         timer.resume(generationLoop)
-        Runtime.addEventListener(Runtime, "enterFrame", update)
+
+        local event = Event(update, "enterFrame")
+
+        eventManager.add(event, "blizzard.update")
     end
 
     local function hide()

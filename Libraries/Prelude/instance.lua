@@ -8,8 +8,8 @@ local Instance = function(metaclass)
 
     ---@type Instance
     return _.map(metaclass.methods, function(method)
-        return function(arguments)
-            method(self, arguments)
+        return function(...)
+            method(self, ...)
         end
     end)
 end
