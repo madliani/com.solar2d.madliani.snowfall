@@ -2,17 +2,16 @@ local Event = require "Libraries.Engine.Core.event"
 local EventManager = require "Libraries.Engine.Core.eventManager"
 local Resources = require "resources"
 local Snowflake = require "Sources.Objects.snowflake"
-local timer = require "timer"
+local Task = require "Libraries.Engine.Core.task"
+local TaskManager = require "Libraries.Engine.Core.taskManager"
 
 local eventManager = EventManager()
+local taskManager = TaskManager()
 
 ---@param counter Counter
 local Blizzard = function(counter)
     ---@type unknown[]
     local snowflakes = {}
-
-    ---@type table | nil
-    local generationLoop = nil
 
     ---@type table | nil
     local sceneGroup = nil
@@ -41,13 +40,8 @@ local Blizzard = function(counter)
     end
 
     local function destroy()
+        taskManager.remove "blizzard.generate"
         eventManager.remove "blizzard.update"
-
-        if generationLoop ~= nil then
-            timer.cancel(generationLoop)
-
-            generationLoop = nil
-        end
 
         if #snowflakes > 0 and sceneGroup ~= nil then
             for i = 1, #snowflakes, 1 do
@@ -63,10 +57,11 @@ local Blizzard = function(counter)
     ---@param group table
     local function create(group)
         sceneGroup = group
-        generationLoop = timer.performWithDelay(500, generate, 0)
 
+        local task = Task(generate, 500)
         local event = Event(update, "enterFrame")
 
+        taskManager.addInfinite(task, "blizzard.generate")
         eventManager.add(event, "blizzard.update")
     end
 
@@ -81,15 +76,14 @@ local Blizzard = function(counter)
     end
 
     local function pause()
-        timer.pause(generationLoop)
+        taskManager.pause "blizzard.generate"
         eventManager.remove "blizzard.update"
     end
 
     local function resume()
-        timer.resume(generationLoop)
-
         local event = Event(update, "enterFrame")
 
+        taskManager.pause "blizzard.generate"
         eventManager.add(event, "blizzard.update")
     end
 
