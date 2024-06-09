@@ -10,7 +10,7 @@
 ---@alias EventManagerIdentificator string
 
 ---@class EventManagerAttributes
----@field events Event | nil
+---@field events Event[] | nil
 
 ---@class EventManagerSelf: EventManagerMethods
 ---@field events Event[]
