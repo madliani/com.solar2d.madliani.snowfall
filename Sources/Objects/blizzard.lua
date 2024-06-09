@@ -83,7 +83,7 @@ local Blizzard = function(counter)
     local function resume()
         local event = Event(update, "enterFrame")
 
-        taskManager.pause "blizzard.generate"
+        taskManager.resume "blizzard.generate"
         eventManager.add(event, "blizzard.update")
     end
 
