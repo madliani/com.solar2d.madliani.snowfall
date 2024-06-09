@@ -3,21 +3,23 @@
 ---@class EventManager
 ---@field add fun(event: Event, id: EventIdentificator)
 ---@field remove fun(id: EventIdentificator)
+---@field pause fun(id: EventIdentificator)
+---@field resume fun(id: EventIdentificator)
 
 ---@alias EventManagerClass fun(): EventManager
 ---@alias EventManagerIdentificator string
 
 ---@class EventManagerAttributes
----@field events table<Event> | nil
+---@field events Event | nil
 
----@class EventManagerSelf
----@field events table<Event> | nil
----@field add fun(self: EventManagerSelf, event: Event, id: EventIdentificator)
----@field remove fun(self: EventManagerSelf, id: EventIdentificator)
+---@class EventManagerSelf: EventManagerMethods
+---@field events Event[]
 
 ---@class EventManagerMethods
 ---@field add fun(self: EventManagerSelf, event: Event, id: EventIdentificator)
 ---@field remove fun(self: EventManagerSelf, id: EventIdentificator)
+---@field pause fun(self: EventManagerSelf, id: EventIdentificator)
+---@field resume fun(self: EventManagerSelf, id: EventIdentificator)
 
 ---@class EventManagerMetaclass
 ---@field id EventManagerIdentificator
@@ -44,12 +46,23 @@ local EventManager = Singleton {
         end,
 
         remove = function(self, id)
-            local type = self.events[id].type
-            local action = self.events[id].action
+            local event = self.events[id]
 
-            Runtime.removeEventListener(Runtime, type, action)
+            Runtime.removeEventListener(Runtime, event.type, event.action)
 
             self.events[id] = nil
+        end,
+
+        pause = function(self, id)
+            local event = self.events[id]
+
+            Runtime.removeEventListener(Runtime, event.type, event.action)
+        end,
+
+        resume = function(self, id)
+            local event = self.events[id]
+
+            Runtime.addEventListener(Runtime, event.type, event.action)
         end,
     },
 }

@@ -77,14 +77,12 @@ local Blizzard = function(counter)
 
     local function pause()
         taskManager.pause "blizzard.generate"
-        eventManager.remove "blizzard.update"
+        eventManager.pause "blizzard.update"
     end
 
     local function resume()
-        local event = Event(update, "enterFrame")
-
         taskManager.resume "blizzard.generate"
-        eventManager.add(event, "blizzard.update")
+        eventManager.resume "blizzard.update"
     end
 
     local function hide()
