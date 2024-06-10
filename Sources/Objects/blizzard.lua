@@ -1,12 +1,11 @@
 local Event = require "Libraries.Engine.Core.event"
-local EventManager = require "Libraries.Engine.Core.eventManager"
+local Loop = require "Libraries.Engine.Core.loop"
+local LoopManager = require "Libraries.Engine.Core.loopManager"
 local Resources = require "resources"
 local Snowflake = require "Sources.Objects.snowflake"
 local Task = require "Libraries.Engine.Core.task"
-local TaskManager = require "Libraries.Engine.Core.taskManager"
 
-local eventManager = EventManager()
-local taskManager = TaskManager()
+local loopManager = LoopManager()
 
 ---@param counter Counter
 local Blizzard = function(counter)
@@ -40,8 +39,7 @@ local Blizzard = function(counter)
     end
 
     local function destroy()
-        taskManager.remove "blizzard.generate"
-        eventManager.remove "blizzard.update"
+        loopManager.remove "blizzard"
 
         if #snowflakes > 0 and sceneGroup ~= nil then
             for i = 1, #snowflakes, 1 do
@@ -60,9 +58,9 @@ local Blizzard = function(counter)
 
         local task = Task(generate, 500)
         local event = Event(update, "enterFrame")
+        local loop = Loop(task, event)
 
-        taskManager.addInfinite(task, "blizzard.generate")
-        eventManager.add(event, "blizzard.update")
+        loopManager.add(loop, "blizzard")
     end
 
     local function show()
@@ -76,13 +74,11 @@ local Blizzard = function(counter)
     end
 
     local function pause()
-        taskManager.pause "blizzard.generate"
-        eventManager.pause "blizzard.update"
+        loopManager.pause "blizzard"
     end
 
     local function resume()
-        taskManager.resume "blizzard.generate"
-        eventManager.resume "blizzard.update"
+        loopManager.resume "blizzard"
     end
 
     local function hide()
