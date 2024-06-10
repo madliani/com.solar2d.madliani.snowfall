@@ -1,3 +1,4 @@
+local LoopManager = require "Libraries.Engine.Core.loopManager"
 local Music = require "Libraries.Engine.Core.music"
 local SceneManager = require "Libraries.Engine.Core.sceneManager"
 local os = require "os"
@@ -22,11 +23,15 @@ local os = require "os"
 ---@field sceneManager SceneManager
 ---@field music Music
 ---@field exit fun(self: GameSelf)
+---@field pause fun(self: GameSelf)
+---@field resume fun(self: GameSelf)
 ---@field run fun(self: GameSelf)
 ---@field start fun(self: GameSelf)
 
 ---@class GameMethods
 ---@field exit fun(self: GameSelf)
+---@field pause fun()
+---@field resume fun()
 ---@field run fun(self: GameSelf)
 ---@field start fun(self: GameSelf)
 
@@ -45,6 +50,8 @@ local os = require "os"
 ---@type GameSingleton
 local Singleton = require "Libraries.Prelude.singleton"
 
+local loopManager = LoopManager()
+
 local Game = Singleton {
     id = "game",
 
@@ -55,8 +62,16 @@ local Game = Singleton {
     },
 
     methods = {
-        exit = function(self)
+        exit = function()
             os.exit()
+        end,
+
+        pause = function()
+            loopManager.pauseAll()
+        end,
+
+        resume = function()
+            loopManager.resumeAll()
         end,
 
         run = function(self)

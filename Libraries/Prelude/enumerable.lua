@@ -1,25 +1,29 @@
----@generic T
----@alias Collection table<T> | T[]
+---@alias Collection table<any> | any[]
 
----@generic T, U
----@alias Iteratee fun(item: T): U
+---@alias Iteratee fun(item: any, id: unknown?): any
 
----@generic T, U
----@alias Map fun(collection: Collection<T>, iteratee: Iteratee<T, U>): Collection<U>
----@alias Merge fun(collection: Collection<T>, mixin: Collection<T>): Collection<T>
+---@alias Each fun(collection: Collection, iteratee: Iteratee)
+---@alias Map fun(collection: Collection, iteratee: Iteratee): Collection
+---@alias Merge fun(collection: Collection, mixin: Collection): Collection
 
 ---@class Enumerable
+---@field each Each
 ---@field map Map
 ---@field merge Merge
 
+---@type Each
+local each = function(collection, iteratee)
+    for key, value in pairs(collection) do
+        iteratee(value, key)
+    end
+end
+
 ---@type Map
 local map = function(collection, iteratee)
-    ---@generic U
-    ---@type Collection<U>
     local mappedCollection = {}
 
     for key, value in pairs(collection) do
-        mappedCollection[key] = iteratee(value)
+        mappedCollection[key] = iteratee(value, key)
     end
 
     return mappedCollection
@@ -27,8 +31,6 @@ end
 
 ---@type Merge
 local merge = function(collection, mixin)
-    ---@generic T
-    ---@type Collection<T>
     local mergedCollection = {}
 
     for key, value in pairs(collection) do
@@ -43,9 +45,8 @@ local merge = function(collection, mixin)
 end
 
 ---@type Enumerable
-local enumerable = {
+return {
+    each = each,
     map = map,
     merge = merge,
 }
-
-return enumerable

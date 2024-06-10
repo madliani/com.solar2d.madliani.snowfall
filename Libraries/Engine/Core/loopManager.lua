@@ -1,28 +1,34 @@
 local EventManager = require "Libraries.Engine.Core.eventManager"
 local TaskManager = require "Libraries.Engine.Core.taskManager"
+local _ = require "Libraries.Prelude.enumerable"
 
 ---@alias LoopIdentificator string
 
 ---@class LoopManager
 ---@field add fun(loop: Loop, id: LoopIdentificator)
 ---@field remove fun(id: LoopIdentificator)
+---@field removeAll fun()
 ---@field pause fun(id: LoopIdentificator)
+---@field pauseAll fun()
 ---@field resume fun(id: LoopIdentificator)
+---@field resumeAll fun()
 
 ---@alias LoopManagerClass fun(): LoopManager
 ---@alias LoopManagerIdentificator string
 
+---@class LoopManagerSelf: LoopManagerAttributes, LoopManagerMethods
+
 ---@class LoopManagerAttributes
 ---@field loops Loop[] | nil
-
----@class LoopManagerSelf: LoopManagerMethods
----@field loops Loop[]
 
 ---@class LoopManagerMethods
 ---@field add fun(self: LoopManagerSelf, loop: Loop, id: LoopIdentificator)
 ---@field remove fun(self: LoopManagerSelf, id: LoopIdentificator)
+---@field removeAll fun(self: LoopManagerSelf)
 ---@field pause fun(self: LoopManagerSelf, id: LoopIdentificator)
+---@field pauseAll fun()
 ---@field resume fun(self: LoopManagerSelf, id: LoopIdentificator)
+---@field resumeAll fun()
 
 ---@class LoopManagerMetaclass
 ---@field id LoopManagerIdentificator
@@ -67,6 +73,17 @@ local LoopManager = Singleton {
             self.loops[id] = nil
         end,
 
+        removeAll = function(self)
+            taskManager.removeAll()
+            eventManager.removeAll()
+
+            self.loops = _.map(self.loops, function()
+                return nil
+            end)
+
+            self.loops = nil
+        end,
+
         pause = function(self, id)
             local loop = self.loops[id]
 
@@ -77,6 +94,11 @@ local LoopManager = Singleton {
             end
         end,
 
+        pauseAll = function()
+            taskManager.pauseAll()
+            eventManager.pauseAll()
+        end,
+
         resume = function(self, id)
             local loop = self.loops[id]
 
@@ -85,6 +107,11 @@ local LoopManager = Singleton {
             if loop.event ~= nil then
                 eventManager.resume(id)
             end
+        end,
+
+        resumeAll = function()
+            taskManager.resumeAll()
+            eventManager.removeAll()
         end,
     },
 }
