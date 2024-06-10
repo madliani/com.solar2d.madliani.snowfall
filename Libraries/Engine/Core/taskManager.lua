@@ -6,10 +6,10 @@ local timer = require "timer"
 ---@class TaskManager
 ---@field add fun(task: Task, id: TaskIdentificator)
 ---@field addInfinite fun(task: Task, id: TaskIdentificator)
----@field remove fun(id: TaskIdentificator)
----@field removeAll fun()
 ---@field pause fun(id: TaskIdentificator)
 ---@field pauseAll fun()
+---@field remove fun(id: TaskIdentificator)
+---@field removeAll fun()
 ---@field resume fun(id: TaskIdentificator)
 ---@field resumeAll fun()
 
@@ -24,10 +24,10 @@ local timer = require "timer"
 ---@class TaskManagerMethods
 ---@field add fun(self: TaskManagerSelf, task: Task, id: TaskIdentificator)
 ---@field addInfinite fun(self: TaskManagerSelf, task: Task, id: TaskIdentificator)
----@field remove fun(self: TaskManagerSelf, id: TaskIdentificator)
----@field removeAll fun(self: TaskManagerSelf)
 ---@field pause fun(self: TaskManagerSelf, id: TaskIdentificator)
 ---@field pauseAll fun()
+---@field remove fun(self: TaskManagerSelf, id: TaskIdentificator)
+---@field removeAll fun(self: TaskManagerSelf)
 ---@field resume fun(self: TaskManagerSelf, id: TaskIdentificator)
 ---@field resumeAll fun()
 
@@ -57,6 +57,16 @@ local TaskManager = Singleton {
             self.tasks[id] = timer.performWithDelay(task.time, task.action, 0)
         end,
 
+        pause = function(self, id)
+            local task = self.tasks[id]
+
+            timer.pause(task)
+        end,
+
+        pauseAll = function()
+            timer.pauseAll()
+        end,
+
         remove = function(self, id)
             local task = self.tasks[id]
 
@@ -73,16 +83,6 @@ local TaskManager = Singleton {
             end)
 
             self.tasks = nil
-        end,
-
-        pause = function(self, id)
-            local task = self.tasks[id]
-
-            timer.pause(task)
-        end,
-
-        pauseAll = function()
-            timer.pauseAll()
         end,
 
         resume = function(self, id)

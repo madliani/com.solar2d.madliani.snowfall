@@ -4,10 +4,10 @@ local _ = require "Libraries.Prelude.enumerable"
 
 ---@class EventManager
 ---@field add fun(event: Event, id: EventIdentificator)
----@field remove fun(id: EventIdentificator)
----@field removeAll fun()
 ---@field pause fun(id: EventIdentificator)
 ---@field pauseAll fun()
+---@field remove fun(id: EventIdentificator)
+---@field removeAll fun()
 ---@field resume fun(id: EventIdentificator)
 ---@field resumeAll fun()
 
@@ -21,10 +21,10 @@ local _ = require "Libraries.Prelude.enumerable"
 
 ---@class EventManagerMethods
 ---@field add fun(self: EventManagerSelf, event: Event, id: EventIdentificator)
----@field remove fun(self: EventManagerSelf, id: EventIdentificator)
----@field removeAll fun(self: EventManagerSelf)
 ---@field pause fun(self: EventManagerSelf, id: EventIdentificator)
 ---@field pauseAll fun(self: EventManagerSelf)
+---@field remove fun(self: EventManagerSelf, id: EventIdentificator)
+---@field removeAll fun(self: EventManagerSelf)
 ---@field resume fun(self: EventManagerSelf, id: EventIdentificator)
 ---@field resumeAll fun(self: EventManagerSelf)
 
@@ -52,6 +52,18 @@ local EventManager = Singleton {
             Runtime.addEventListener(Runtime, event.type, event.action)
         end,
 
+        pause = function(self, id)
+            local event = self.events[id]
+
+            Runtime.removeEventListener(Runtime, event.type, event.action)
+        end,
+
+        pauseAll = function(self)
+            _.each(self.events, function(event)
+                Runtime.removeEventListener(Runtime, event.type, event.action)
+            end)
+        end,
+
         remove = function(self, id)
             local event = self.events[id]
 
@@ -70,18 +82,6 @@ local EventManager = Singleton {
             end)
 
             self.events = nil
-        end,
-
-        pause = function(self, id)
-            local event = self.events[id]
-
-            Runtime.removeEventListener(Runtime, event.type, event.action)
-        end,
-
-        pauseAll = function(self)
-            _.each(self.events, function(event)
-                Runtime.removeEventListener(Runtime, event.type, event.action)
-            end)
         end,
 
         resume = function(self, id)

@@ -6,10 +6,10 @@ local _ = require "Libraries.Prelude.enumerable"
 
 ---@class LoopManager
 ---@field add fun(loop: Loop, id: LoopIdentificator)
----@field remove fun(id: LoopIdentificator)
----@field removeAll fun()
 ---@field pause fun(id: LoopIdentificator)
 ---@field pauseAll fun()
+---@field remove fun(id: LoopIdentificator)
+---@field removeAll fun()
 ---@field resume fun(id: LoopIdentificator)
 ---@field resumeAll fun()
 
@@ -23,10 +23,10 @@ local _ = require "Libraries.Prelude.enumerable"
 
 ---@class LoopManagerMethods
 ---@field add fun(self: LoopManagerSelf, loop: Loop, id: LoopIdentificator)
----@field remove fun(self: LoopManagerSelf, id: LoopIdentificator)
----@field removeAll fun(self: LoopManagerSelf)
 ---@field pause fun(self: LoopManagerSelf, id: LoopIdentificator)
 ---@field pauseAll fun()
+---@field remove fun(self: LoopManagerSelf, id: LoopIdentificator)
+---@field removeAll fun(self: LoopManagerSelf)
 ---@field resume fun(self: LoopManagerSelf, id: LoopIdentificator)
 ---@field resumeAll fun()
 
@@ -61,6 +61,21 @@ local LoopManager = Singleton {
             end
         end,
 
+        pause = function(self, id)
+            local loop = self.loops[id]
+
+            taskManager.pause(id)
+
+            if loop.event ~= nil then
+                eventManager.pause(id)
+            end
+        end,
+
+        pauseAll = function()
+            taskManager.pauseAll()
+            eventManager.pauseAll()
+        end,
+
         remove = function(self, id)
             local loop = self.loops[id]
 
@@ -82,21 +97,6 @@ local LoopManager = Singleton {
             end)
 
             self.loops = nil
-        end,
-
-        pause = function(self, id)
-            local loop = self.loops[id]
-
-            taskManager.pause(id)
-
-            if loop.event ~= nil then
-                eventManager.pause(id)
-            end
-        end,
-
-        pauseAll = function()
-            taskManager.pauseAll()
-            eventManager.pauseAll()
         end,
 
         resume = function(self, id)
