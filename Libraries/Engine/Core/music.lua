@@ -3,8 +3,12 @@ local audio = require "audio"
 ---@alias MusicPath string
 
 ---@class Music
----@field unmute fun()
 ---@field mute fun()
+---@field pause fun()
+---@field play fun()
+---@field resume fun()
+---@field stop fun()
+---@field unmute fun()
 
 ---@alias MusicClass fun(path: MusicPath): Music
 ---@alias MusicIdentificator string

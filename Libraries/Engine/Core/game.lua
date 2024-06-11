@@ -16,22 +16,16 @@ local os = require "os"
 ---@alias GameIdentificator string
 
 ---@class GameAttributes
----@field sceneManager SceneManager | nil
+---@field loopManager LoopManager | nil
 ---@field music Music | nil
+---@field sceneManager SceneManager | nil
 
----@class GameSelf
----@field sceneManager SceneManager
----@field music Music
----@field exit fun(self: GameSelf)
----@field pause fun(self: GameSelf)
----@field resume fun(self: GameSelf)
----@field run fun(self: GameSelf)
----@field start fun(self: GameSelf)
+---@class GameSelf: GameAttributes, GameMethods
 
 ---@class GameMethods
 ---@field exit fun(self: GameSelf)
----@field pause fun()
----@field resume fun()
+---@field pause fun(self: GameSelf)
+---@field resume fun(self: GameSelf)
 ---@field run fun(self: GameSelf)
 ---@field start fun(self: GameSelf)
 
@@ -50,12 +44,11 @@ local os = require "os"
 ---@type GameSingleton
 local Singleton = require "Libraries.Prelude.singleton"
 
-local loopManager = LoopManager()
-
 local Game = Singleton {
     id = "game",
 
     attributes = {
+        loopManager = nil,
         iteratee = nil,
         sceneManager = nil,
         music = nil,
@@ -66,16 +59,17 @@ local Game = Singleton {
             os.exit()
         end,
 
-        pause = function()
-            loopManager.pauseAll()
+        pause = function(self)
+            self.loopManager.pauseAll()
         end,
 
-        resume = function()
-            loopManager.resumeAll()
+        resume = function(self)
+            self.loopManager.resumeAll()
         end,
 
         run = function(self)
             self.sceneManager.gotoStart()
+            self.music.play()
         end,
 
         start = function(self)
@@ -84,14 +78,16 @@ local Game = Singleton {
     },
 
     initializer = function(initial, attributes)
-        if attributes.sceneManager == nil and attributes.music == nil then
+        if attributes.loopManager == nil and attributes.sceneManager == nil and attributes.music == nil then
+            attributes.loopManager = LoopManager()
             attributes.sceneManager = SceneManager(initial.scenePaths)
             attributes.music = Music(initial.musicPath)
         end
     end,
 
     finalizer = function(attributes)
-        if attributes.sceneManager ~= nil and attributes.music ~= nil then
+        if attributes.loopManager ~= nil and attributes.sceneManager ~= nil and attributes.music ~= nil then
+            attributes.loopManager = nil
             attributes.sceneManager = nil
             attributes.music = nil
         end
