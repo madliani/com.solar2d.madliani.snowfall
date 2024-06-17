@@ -49,7 +49,6 @@ local Game = Singleton {
 
     attributes = {
         loopManager = nil,
-        iteratee = nil,
         sceneManager = nil,
         music = nil,
     },
