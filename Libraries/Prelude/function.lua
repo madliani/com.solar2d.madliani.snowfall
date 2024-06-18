@@ -1,4 +1,4 @@
 ---@meta
 
 ---@alias Arguments any[]
----@alias Function fun(arguments: Arguments?): any
+---@alias Function fun(...: Arguments?): any

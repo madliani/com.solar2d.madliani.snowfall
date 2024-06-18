@@ -1,14 +1,14 @@
 ---@meta
 
+---@alias Initial any
 ---@alias Identificator string
 ---@alias Attribute any
----@alias Initial any
----@alias Method fun(self: Attribute, arguments: Arguments?): any
+---@alias Method fun(self: Self, ...: Arguments?): any
+---@alias Attributes table<Attribute>
+---@alias Methods table<Method>
+---@alias Self table<any>
 ---@alias Initializer fun(initial: Initial, attributes: Attributes, methods: Methods?)
 ---@alias Finalizer fun(attributes: Attributes, methods: Methods?)
-
----@alias Attributes table<Attribute>
----@alias Methods table<Method | Initializer | Finalizer>
 
 ---@class Metaclass
 ---@field id Identificator
