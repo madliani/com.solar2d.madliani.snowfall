@@ -9,6 +9,8 @@ local os = require "os"
 
 ---@class Game
 ---@field exit fun()
+---@field pause fun()
+---@field resume fun()
 ---@field run fun()
 ---@field start fun()
 
@@ -60,10 +62,12 @@ local Game = Singleton {
 
         pause = function(self)
             self.loopManager.pauseAll()
+            self.music.pause()
         end,
 
         resume = function(self)
             self.loopManager.resumeAll()
+            self.music.resume()
         end,
 
         run = function(self)

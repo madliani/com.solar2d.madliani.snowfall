@@ -1,22 +1,22 @@
-local Color = require "Libraries.Engine.Core.color"
 local Coordinate = require "Libraries.Engine.Core.coordinate"
-local Font = require "Libraries.Engine.Core.font"
-local Label = require "Libraries.Engine.Widgets.label"
+local Event = require "Libraries.Engine.Core.event"
+local Image = require "Libraries.Engine.Core.image"
 local Resources = require "resources"
-local Title = require "Libraries.Engine.Core.title"
+local Size = require "Libraries.Engine.Core.size"
+local Snowfall = require "Sources.snowfall"
 local display = require "display"
 
-local architectsDaughter = Font(Resources.Fonts.main)
-local color = Color(1, 1, 1)
-local coordinate = Coordinate(display.contentCenterX, display.contentCenterY - 200)
-local size = 48
+local coordinate = Coordinate(50, display.contentCenterY - 225)
+local size = Size(25, 25)
+local path = Resources.Images.transparrentPause
 
----@param text string
-local Heading = function(text)
-    local title = Title(text, architectsDaughter, color, size)
+local event = Event(function()
+    Snowfall.pause()
+end, "tap")
 
-    ---@class Heading
-    return Label(title, coordinate)
+local Pause = function()
+    ---@class Pause
+    return Image(path, size, coordinate, event)
 end
 
-return Heading
+return Pause
