@@ -5,11 +5,10 @@ local Singleton = function(metaclass)
     ---@type Instance | nil
     local instance = nil
 
-    ---@param initial Initial?
-    return function(initial)
+    return function(...)
         if instance == nil then
             if metaclass.initializer ~= nil then
-                metaclass.initializer(initial, metaclass.attributes)
+                metaclass.initializer(..., metaclass.attributes)
             end
 
             instance = Instance(metaclass)
