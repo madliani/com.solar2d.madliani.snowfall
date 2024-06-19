@@ -8,7 +8,7 @@ local Singleton = function(metaclass)
     ---@param initial Initial?
     return function(initial)
         if instance == nil then
-            if initial ~= nil then
+            if metaclass.initializer ~= nil then
                 metaclass.initializer(initial, metaclass.attributes)
             end
 
