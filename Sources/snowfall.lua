@@ -3,6 +3,7 @@ local Resources = require "resources"
 
 local Snowfall = Game {
     scenePaths = {
+        pause = "Sources.Scenes.pauseMenu",
         start = "Sources.Scenes.startMenu",
         world = "Sources.Scenes.world",
     },

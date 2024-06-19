@@ -10,6 +10,7 @@ local os = require "os"
 ---@class Game
 ---@field exit fun()
 ---@field pause fun()
+---@field restart fun()
 ---@field resume fun()
 ---@field run fun()
 ---@field start fun()
@@ -27,6 +28,7 @@ local os = require "os"
 ---@class GameMethods
 ---@field exit fun(self: GameSelf)
 ---@field pause fun(self: GameSelf)
+---@field restart fun(self: GameSelf)
 ---@field resume fun(self: GameSelf)
 ---@field run fun(self: GameSelf)
 ---@field start fun(self: GameSelf)
@@ -63,11 +65,19 @@ local Game = Singleton {
         pause = function(self)
             self.loopManager.pauseAll()
             self.music.pause()
+            self.sceneManager.gotoPause()
+        end,
+
+        restart = function(self)
+            self.music.stop()
+            self.sceneManager.gotoWorld(true)
+            self.music.play()
         end,
 
         resume = function(self)
-            self.loopManager.resumeAll()
+            self.sceneManager.gotoWorld()
             self.music.resume()
+            self.loopManager.resumeAll()
         end,
 
         run = function(self)
@@ -76,7 +86,9 @@ local Game = Singleton {
         end,
 
         start = function(self)
-            self.sceneManager.gotoWorld()
+            self.music.stop()
+            self.sceneManager.gotoWorld(true)
+            self.music.play()
         end,
     },
 
