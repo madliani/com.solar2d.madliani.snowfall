@@ -2,10 +2,9 @@ local Instance = require "Libraries.Prelude.instance"
 
 ---@param metaclass Metaclass
 local Class = function(metaclass)
-    ---@param initial Initial?
-    return function(initial)
+    return function(...)
         if metaclass.initializer ~= nil then
-            metaclass.initializer(initial, metaclass.attributes)
+            metaclass.initializer(..., metaclass.attributes)
         end
 
         return Instance(metaclass)
