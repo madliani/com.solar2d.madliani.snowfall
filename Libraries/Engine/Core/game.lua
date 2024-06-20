@@ -58,7 +58,9 @@ local Game = Singleton {
     },
 
     methods = {
-        exit = function()
+        exit = function(self)
+            self.loopManager.removeAll()
+            self.music.stop()
             os.exit()
         end,
 
