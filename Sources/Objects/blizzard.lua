@@ -71,17 +71,13 @@ local Blizzard = function(counter)
                 snowflake.show()
             end
         end
-    end
 
-    local function pause()
-        loopManager.pause "blizzard"
-    end
-
-    local function resume()
         loopManager.resume "blizzard"
     end
 
     local function hide()
+        loopManager.pause "blizzard"
+
         if #snowflakes > 0 then
             for i = 1, #snowflakes, 1 do
                 local snowflake = snowflakes[i]
@@ -92,15 +88,11 @@ local Blizzard = function(counter)
     end
 
     ---@class Blizzard
-    ---@field pause function
-    ---@field resume function
     ---@field create function
     ---@field destroy function
     ---@field hide function
     ---@field show function
     return {
-        pause = pause,
-        resume = resume,
         create = create,
         destroy = destroy,
         hide = hide,
