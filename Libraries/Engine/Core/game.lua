@@ -71,6 +71,7 @@ local Game = Singleton {
         end,
 
         restart = function(self)
+            self.loopManager.removeAll()
             self.music.stop()
             self.sceneManager.gotoWorld(true)
             self.music.play()
