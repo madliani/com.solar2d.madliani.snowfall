@@ -111,7 +111,7 @@ local LoopManager = Singleton {
 
         resumeAll = function()
             taskManager.resumeAll()
-            eventManager.removeAll()
+            eventManager.resumeAll()
         end,
     },
 }
