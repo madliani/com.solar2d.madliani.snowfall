@@ -71,13 +71,9 @@ local Blizzard = function(counter)
                 snowflake.show()
             end
         end
-
-        loopManager.resume "blizzard"
     end
 
     local function hide()
-        loopManager.pause "blizzard"
-
         if #snowflakes > 0 then
             for i = 1, #snowflakes, 1 do
                 local snowflake = snowflakes[i]
