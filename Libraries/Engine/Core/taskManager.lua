@@ -81,8 +81,6 @@ local TaskManager = Singleton {
             self.tasks = _.map(self.tasks, function()
                 return nil
             end)
-
-            self.tasks = nil
         end,
 
         resume = function(self, id)
