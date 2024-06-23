@@ -83,8 +83,6 @@ local LoopManager = Singleton {
             self.loops = _.map(self.loops, function()
                 return nil
             end)
-
-            self.loops = nil
         end,
 
         resume = function(_, id)
