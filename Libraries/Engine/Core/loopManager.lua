@@ -56,9 +56,7 @@ local LoopManager = Singleton {
 
             taskManager.addInfinite(loop.task, id)
 
-            if loop.event ~= nil then
-                eventManager.add(loop.event, id)
-            end
+            eventManager.add(loop.event, id)
         end,
 
         pause = function(self, id)
@@ -66,9 +64,7 @@ local LoopManager = Singleton {
 
             taskManager.pause(id)
 
-            if loop.event ~= nil then
-                eventManager.pause(id)
-            end
+            eventManager.pause(id)
         end,
 
         pauseAll = function()
@@ -81,9 +77,7 @@ local LoopManager = Singleton {
 
             taskManager.remove(id)
 
-            if loop.event ~= nil then
-                eventManager.remove(id)
-            end
+            eventManager.remove(id)
 
             self.loops[id] = nil
         end,
@@ -104,9 +98,7 @@ local LoopManager = Singleton {
 
             taskManager.resume(id)
 
-            if loop.event ~= nil then
-                eventManager.resume(id)
-            end
+            eventManager.resume(id)
         end,
 
         resumeAll = function()
