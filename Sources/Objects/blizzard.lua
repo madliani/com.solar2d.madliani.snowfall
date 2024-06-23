@@ -15,29 +15,6 @@ local Blizzard = function(counter)
     ---@type table | nil
     local sceneGroup = nil
 
-    local function generate()
-        if sceneGroup ~= nil then
-            local snowflake = Snowflake(Resources.Images.snowflake, counter)
-
-            snowflake.create(sceneGroup)
-            table.insert(snowflakes, snowflake)
-        end
-    end
-
-    local function update()
-        if #snowflakes > 0 then
-            for i = #snowflakes, 1, -1 do
-                local snowflake = snowflakes[i]
-
-                if snowflake.isUnavable() then
-                    snowflake.destroy()
-                else
-                    snowflake.update()
-                end
-            end
-        end
-    end
-
     local function destroy()
         loopManager.remove "blizzard"
 
@@ -55,6 +32,29 @@ local Blizzard = function(counter)
     ---@param group table
     local function create(group)
         sceneGroup = group
+
+        local function generate()
+            if sceneGroup ~= nil then
+                local snowflake = Snowflake(Resources.Images.snowflake, counter)
+
+                snowflake.create(sceneGroup)
+                table.insert(snowflakes, snowflake)
+            end
+        end
+
+        local function update()
+            if #snowflakes > 0 then
+                for i = #snowflakes, 1, -1 do
+                    local snowflake = snowflakes[i]
+
+                    if snowflake.isUnavable() then
+                        snowflake.destroy()
+                    else
+                        snowflake.update()
+                    end
+                end
+            end
+        end
 
         local task = Task(generate, 500)
         local event = Event(update, "enterFrame")
