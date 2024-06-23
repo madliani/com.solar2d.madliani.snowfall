@@ -70,10 +70,7 @@ local LoopManager = Singleton {
         end,
 
         remove = function(self, id)
-            local loop = self.loops[id]
-
             taskManager.remove(id)
-
             eventManager.remove(id)
 
             self.loops[id] = nil
