@@ -80,8 +80,6 @@ local EventManager = Singleton {
             self.events = _.map(self.events, function()
                 return nil
             end)
-
-            self.events = nil
         end,
 
         resume = function(self, id)
