@@ -59,11 +59,8 @@ local LoopManager = Singleton {
             eventManager.add(loop.event, id)
         end,
 
-        pause = function(self, id)
-            local loop = self.loops[id]
-
+        pause = function(_, id)
             taskManager.pause(id)
-
             eventManager.pause(id)
         end,
 
@@ -93,11 +90,8 @@ local LoopManager = Singleton {
             self.loops = nil
         end,
 
-        resume = function(self, id)
-            local loop = self.loops[id]
-
+        resume = function(_, id)
             taskManager.resume(id)
-
             eventManager.resume(id)
         end,
 
