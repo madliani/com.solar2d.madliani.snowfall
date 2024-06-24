@@ -55,7 +55,6 @@ local LoopManager = Singleton {
             self.loops[id] = loop
 
             taskManager.addInfinite(loop.task, id)
-
             eventManager.add(loop.event, id)
         end,
 
