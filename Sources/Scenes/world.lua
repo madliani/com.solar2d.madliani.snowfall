@@ -15,6 +15,6 @@ local pause = Pause()
 return Scene {
     background,
     count,
-    blizzard,
     pause,
+    blizzard
 }
