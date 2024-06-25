@@ -7,7 +7,7 @@ local Size = require "Libraries.Engine.Core.size"
 local Snowfall = require "Sources.snowfall"
 local display = require "display"
 
-local coordinate = Coordinate(50, display.contentCenterY - 225)
+local coordinate = Coordinate(50, display.contentHeight + 25)
 local size = Size(25, 25)
 local path = Resources.Images.transparrentPause
 
