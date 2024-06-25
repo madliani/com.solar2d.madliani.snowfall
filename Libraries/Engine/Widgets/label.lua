@@ -41,14 +41,14 @@ local Label = function(title, coordinate, event)
     end
 
     local function show()
-        if label ~= nil and textBackup ~= nil then
-            label.text = textBackup
+        if label ~= nil then
+            label.isVisible = true
         end
     end
 
     local function hide()
         if label ~= nil then
-            label.text = ""
+            label.isVisible = false
         end
     end
 
