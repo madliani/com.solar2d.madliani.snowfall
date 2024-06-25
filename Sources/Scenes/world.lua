@@ -9,8 +9,8 @@ local Scene = require "Libraries.Engine.Core.scene"
 local background = Background(Resources.Images.background)
 local count = Count(0)
 local counter = Counter(count)
-local blizzard = Blizzard(counter)
 local pause = Pause()
+local blizzard = Blizzard(counter)
 
 return Scene {
     background,
