@@ -16,8 +16,6 @@ local Blizzard = function(counter)
     local sceneGroup = nil
 
     local function destroy()
-        loopManager.remove "blizzard"
-
         if #snowflakes > 0 and sceneGroup ~= nil then
             for i = 1, #snowflakes, 1 do
                 local snowflake = snowflakes[i]
