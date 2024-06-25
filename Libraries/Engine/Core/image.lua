@@ -29,8 +29,7 @@ local Image = function(path, size, coordinate, event)
         if imageRect == nil and sceneGroup ~= nil then
             imageRect = display.newImageRect(path, size.width, size.height)
 
-            imageRect.x = coordinate.x
-            imageRect.y = coordinate.y
+            imageRect.translate(imageRect, coordinate.x, coordinate.y)
 
             if event ~= nil then
                 imageRect.addEventListener(imageRect, event.type, event.action)
