@@ -14,7 +14,7 @@ local Count = function(initialCount)
     local count = initialCount
 
     local title = Title(tostring(count), font, color, 48)
-    local coordinate = Coordinate(display.contentCenterX, 25)
+    local coordinate = Coordinate(display.contentCenterX, 0)
     local label = Label(title, coordinate)
 
     local function destroy()
