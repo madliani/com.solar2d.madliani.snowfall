@@ -1,19 +1,19 @@
 local LoopManager = require "Libraries.Engine.Core.loopManager"
 local Music = require "Libraries.Engine.Core.music"
 local SceneManager = require "Libraries.Engine.Core.sceneManager"
+local _ = require "Libraries.Prelude.enumerable"
 local os = require "os"
 
 ---@class GameInitial
----@field scenePaths ScenePaths
 ---@field musicPath MusicPath
 
 ---@class Game
----@field exit fun()
----@field pause fun()
----@field restart fun()
----@field resume fun()
----@field run fun()
----@field start fun()
+---@field exit fun(scenePaths: table<ScenePath>)
+---@field pause fun(destionation: ScenePath)
+---@field restart fun(source: ScenePath, destionation: ScenePath)
+---@field resume fun(source: ScenePath, destionation: ScenePath)
+---@field run fun(destionation: ScenePath)
+---@field start fun(source: ScenePath, destionation: ScenePath)
 
 ---@alias GameClass fun(initial: GameInitial): Game
 ---@alias GameIdentificator string
@@ -26,12 +26,12 @@ local os = require "os"
 ---@class GameSelf: GameAttributes, GameMethods
 
 ---@class GameMethods
----@field exit fun(self: GameSelf)
----@field pause fun(self: GameSelf)
----@field restart fun(self: GameSelf)
----@field resume fun(self: GameSelf)
----@field run fun(self: GameSelf)
----@field start fun(self: GameSelf)
+---@field exit fun(self: GameSelf, scenePaths: table<ScenePath>)
+---@field pause fun(self: GameSelf, destionation: ScenePath)
+---@field restart fun(self: GameSelf, source: ScenePath, destionation: ScenePath)
+---@field resume fun(self: GameSelf, source: ScenePath, destionation: ScenePath)
+---@field run fun(self: GameSelf, destionation: ScenePath)
+---@field start fun(self: GameSelf, source: ScenePath, destionation: ScenePath)
 
 ---@alias GameInitializer fun(initial: GameInitial, attributes: GameAttributes)
 ---@alias GameFinalizer fun(attributes: GameAttributes)
@@ -58,39 +58,54 @@ local Game = Singleton {
     },
 
     methods = {
-        exit = function(self)
+        exit = function(self, scenePaths)
             self.loopManager.removeAll()
             self.music.stop()
+
+            _.each(scenePaths, function(scenePath)
+                self.sceneManager.removeScene(scenePath)
+            end)
+
             os.exit()
         end,
 
-        pause = function(self)
+        pause = function(self, destination)
             self.loopManager.pauseAll()
             self.music.pause()
-            self.sceneManager.gotoPause()
+
+            self.sceneManager.gotoScene(destination)
         end,
 
-        restart = function(self)
+        restart = function(self, source, destionation)
             self.loopManager.removeAll()
             self.music.stop()
-            self.sceneManager.gotoWorld(true)
+
+            self.sceneManager.removeScene(destionation)
+            self.sceneManager.removeScene(source)
+            self.sceneManager.gotoScene(destionation)
+
             self.music.play()
         end,
 
-        resume = function(self)
-            self.sceneManager.gotoWorld()
+        resume = function(self, source, destionation)
+            self.sceneManager.removeScene(source)
+            self.sceneManager.gotoScene(destionation)
+
             self.music.resume()
             self.loopManager.resumeAll()
         end,
 
-        run = function(self)
-            self.sceneManager.gotoStart()
+        run = function(self, destionation)
+            self.sceneManager.gotoScene(destionation)
             self.music.play()
         end,
 
-        start = function(self)
+        start = function(self, source, destionation)
             self.music.stop()
-            self.sceneManager.gotoWorld(true)
+
+            self.sceneManager.removeScene(source)
+            self.sceneManager.gotoScene(destionation)
+
             self.music.play()
         end,
     },
@@ -98,7 +113,7 @@ local Game = Singleton {
     initializer = function(initial, attributes)
         if attributes.loopManager == nil and attributes.sceneManager == nil and attributes.music == nil then
             attributes.loopManager = LoopManager()
-            attributes.sceneManager = SceneManager(initial.scenePaths)
+            attributes.sceneManager = SceneManager()
             attributes.music = Music(initial.musicPath)
         end
     end,

@@ -3,6 +3,7 @@ local Heading = require "Sources.Objects.heading"
 local Menu = require "Sources.Objects.menu"
 local Resources = require "resources"
 local Scene = require "Libraries.Engine.Core.scene"
+local ScenePaths = require "Sources.scenePaths"
 local Snowfall = require "Sources.snowfall"
 
 local background = Background(Resources.Images.background)
@@ -14,7 +15,7 @@ local menu = Menu {
         event = {
             type = "tap",
             action = function()
-                Snowfall.resume()
+                Snowfall.resume(ScenePaths.pauseMenu, ScenePaths.world)
             end,
         },
     },
@@ -23,7 +24,7 @@ local menu = Menu {
         event = {
             type = "tap",
             action = function()
-                Snowfall.restart()
+                Snowfall.restart(ScenePaths.pauseMenu, ScenePaths.world)
             end,
         },
     },
@@ -32,7 +33,7 @@ local menu = Menu {
         event = {
             type = "tap",
             action = function()
-                Snowfall.exit()
+                Snowfall.exit(ScenePaths)
             end,
         },
     },
