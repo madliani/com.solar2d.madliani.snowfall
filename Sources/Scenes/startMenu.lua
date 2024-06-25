@@ -31,7 +31,7 @@ local menu = Menu {
         event = {
             type = "tap",
             action = function()
-                Snowfall.exit(ScenePaths)
+                Snowfall.exit()
             end,
         },
     },

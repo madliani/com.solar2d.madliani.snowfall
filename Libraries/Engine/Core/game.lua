@@ -8,7 +8,7 @@ local os = require "os"
 ---@field musicPath MusicPath
 
 ---@class Game
----@field exit fun(scenePaths: table<ScenePath>)
+---@field exit fun()
 ---@field pause fun(destionation: ScenePath)
 ---@field restart fun(source: ScenePath, destionation: ScenePath)
 ---@field resume fun(source: ScenePath, destionation: ScenePath)
@@ -26,7 +26,7 @@ local os = require "os"
 ---@class GameSelf: GameAttributes, GameMethods
 
 ---@class GameMethods
----@field exit fun(self: GameSelf, scenePaths: table<ScenePath>)
+---@field exit fun(self: GameSelf)
 ---@field pause fun(self: GameSelf, destionation: ScenePath)
 ---@field restart fun(self: GameSelf, source: ScenePath, destionation: ScenePath)
 ---@field resume fun(self: GameSelf, source: ScenePath, destionation: ScenePath)
@@ -58,14 +58,7 @@ local Game = Singleton {
     },
 
     methods = {
-        exit = function(self, scenePaths)
-            self.loopManager.removeAll()
-            self.music.stop()
-
-            _.each(scenePaths, function(scenePath)
-                self.sceneManager.removeScene(scenePath)
-            end)
-
+        exit = function(_)
             os.exit()
         end,
 
