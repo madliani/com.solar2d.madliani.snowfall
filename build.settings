@@ -24,4 +24,10 @@ settings = {
     },
 
     plugins = {},
+
+    window = {
+        titleText = {
+            default = "Snowfall",
+        },
+    },
 }
