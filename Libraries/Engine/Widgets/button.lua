@@ -1,4 +1,4 @@
-local Image = require "Libraries.Engine.Core.image"
+local Image = require "Libraries.Engine.Widgets.image"
 local Label = require "Libraries.Engine.Widgets.label"
 
 ---@param path string

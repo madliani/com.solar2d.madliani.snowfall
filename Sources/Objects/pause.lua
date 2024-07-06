@@ -1,6 +1,6 @@
 local Coordinate = require "Libraries.Engine.Core.coordinate"
 local Event = require "Libraries.Engine.Core.event"
-local Image = require "Libraries.Engine.Core.image"
+local Image = require "Libraries.Engine.Widgets.image"
 local Resources = require "resources"
 local ScenePaths = require "Sources.scenePaths"
 local Size = require "Libraries.Engine.Core.size"
