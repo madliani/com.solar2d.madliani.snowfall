@@ -15,7 +15,7 @@ local menu = Menu {
         event = {
             type = "tap",
             action = function()
-                Snowfall.resume(paths.Scenes.pauseMenu, paths.Scenes.pauseMenu)
+                Snowfall.resume(paths.Scenes.pauseMenu, paths.Scenes.world)
             end,
         },
     },
