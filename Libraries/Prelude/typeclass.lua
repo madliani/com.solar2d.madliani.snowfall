@@ -1,7 +1,7 @@
 local Instance = require "Libraries.Prelude.instance"
 
 ---@param metaclass Metaclass
-local Class = function(metaclass)
+local Typeclass = function(metaclass)
     return function(...)
         if metaclass.initializer ~= nil then
             metaclass.initializer(..., metaclass.attributes)
@@ -11,4 +11,4 @@ local Class = function(metaclass)
     end
 end
 
-return Class
+return Typeclass

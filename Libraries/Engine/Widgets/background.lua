@@ -3,41 +3,84 @@ local Image = require "Libraries.Engine.Widgets.image"
 local Size = require "Libraries.Engine.Core.size"
 local display = require "display"
 
-local size = Size(display.pixelWidth, display.pixelHeight)
-local coordinate = Coordinate(display.contentCenterX, display.contentCenterY)
+---@class Background
+---@field create fun(group: SceneGroup)
+---@field destroy fun()
+---@field show fun()
+---@field hide fun()
 
----@param path string
-local Background = function(path)
-    local image = Image(path, size, coordinate)
+---@alias ImagePath string
+---@alias BackgroundClass fun(path: ImagePath): Background
+---@alias BackgroundIdentificator string
 
-    local function destroy()
-        image.destroy()
-    end
+---@class BackgroundAttributes
+---@field image Image | nil
 
-    ---@param group table
-    local function create(group)
-        image.create(group)
-    end
+---@class BackgroundSelf: BackgroundAttributes, BackgroundMethods
 
-    local function show()
-        image.show()
-    end
+---@class BackgroundMethods
+---@field create fun(self: BackgroundSelf, group: SceneGroup)
+---@field destroy fun(self: BackgroundSelf)
+---@field show fun(self: BackgroundSelf)
+---@field hide fun(self: BackgroundSelf)
 
-    local function hide()
-        image.hide()
-    end
+---@alias BackgroundInitializer fun(path: ImagePath, attributes: BackgroundAttributes)
+---@alias BackgroundFinalizer fun(attributes: BackgroundAttributes)
 
-    ---@class Background
-    ---@field create function
-    ---@field destroy function
-    ---@field hide function
-    ---@field show function
-    return {
-        create = create,
-        destroy = destroy,
-        hide = hide,
-        show = show,
-    }
-end
+---@class BackgroundMetaclass
+---@field id BackgroundIdentificator
+---@field attributes BackgroundAttributes
+---@field methods BackgroundMethods
+---@field initializer BackgroundInitializer?
+---@field finalizer BackgroundFinalizer?
+
+---@alias BackgroundTypeclass fun(metaclass: BackgroundMetaclass): BackgroundClass
+
+---@type BackgroundTypeclass
+local Typeclass = require "Libraries.Prelude.typeclass"
+
+local Background = Typeclass {
+    id = "background",
+
+    attributes = {
+        image = nil,
+    },
+
+    methods = {
+        create = function(self, group)
+            if self.image ~= nil then
+                self.image.create(group)
+            end
+        end,
+
+        destroy = function(self)
+            if self.image ~= nil then
+                self.image.destroy()
+
+                self.image = nil
+            end
+        end,
+
+        hide = function(self)
+            if self.image ~= nil then
+                self.image.hide()
+            end
+        end,
+
+        show = function(self)
+            if self.image ~= nil then
+                self.image.show()
+            end
+        end,
+    },
+
+    initializer = function(path, attributes)
+        attributes.image = Image(
+            path,
+            Size(display.pixelWidth, display.pixelHeight),
+            Coordinate(display.contentCenterX, display.contentCenterY)
+        )
+    end,
+}
 
 return Background
