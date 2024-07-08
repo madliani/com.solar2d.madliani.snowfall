@@ -3,7 +3,7 @@ local Heading = require "Sources.Objects.heading"
 local Menu = require "Sources.Objects.menu"
 local Resources = require "resources"
 local Scene = require "Libraries.Engine.Core.scene"
-local ScenePaths = require "Sources.scenePaths"
+local paths = require "Sources.paths"
 local Snowfall = require "Sources.snowfall"
 
 local background = Background(Resources.Images.background)
@@ -15,7 +15,7 @@ local menu = Menu {
         event = {
             type = "tap",
             action = function()
-                Snowfall.start(ScenePaths.startMenu, ScenePaths.world)
+                Snowfall.start(paths.Scenes.startMenu, paths.Scenes.world)
             end,
         },
     },
