@@ -10,7 +10,7 @@
 ---@alias Initializer fun(initial: Initial, attributes: Attributes, methods: Methods?)
 ---@alias Finalizer fun(attributes: Attributes, methods: Methods?)
 
----@class Metaclass
+---@class Prototype
 ---@field id Identificator
 ---@field attributes Attributes
 ---@field methods Methods

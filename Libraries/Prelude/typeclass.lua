@@ -1,13 +1,13 @@
 local Object = require "Libraries.Prelude.object"
 
----@param metaclass Metaclass
-local Typeclass = function(metaclass)
+---@param prototype Prototype
+local Typeclass = function(prototype)
     return function(...)
-        if metaclass.initializer ~= nil then
-            metaclass.initializer(metaclass.attributes, ...)
+        if prototype.initializer ~= nil then
+            prototype.initializer(prototype.attributes, ...)
         end
 
-        return Object(metaclass)
+        return Object(prototype)
     end
 end
 

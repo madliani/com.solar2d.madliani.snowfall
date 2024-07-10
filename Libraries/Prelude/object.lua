@@ -2,12 +2,12 @@ local _ = require "Libraries.Prelude.enumerable"
 
 ---@alias Object table<Function>
 
----@param metaclass Metaclass
-local Object = function(metaclass)
-    local self = _.merge(metaclass.attributes, metaclass.methods)
+---@param prototype Prototype
+local Object = function(prototype)
+    local self = _.merge(prototype.attributes, prototype.methods)
 
     ---@type Object
-    return _.map(metaclass.methods, function(method)
+    return _.map(prototype.methods, function(method)
         return function(...)
             method(self, ...)
         end
