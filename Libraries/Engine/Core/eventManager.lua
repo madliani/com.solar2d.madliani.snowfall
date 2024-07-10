@@ -28,12 +28,12 @@ local _ = require "Libraries.Prelude.enumerable"
 ---@field resume fun(self: EventManagerSelf, id: EventIdentificator)
 ---@field resumeAll fun(self: EventManagerSelf)
 
----@class EventManagerMetaclass
+---@class EventManagerPrototype
 ---@field id EventManagerIdentificator
 ---@field attributes EventManagerAttributes
 ---@field methods EventManagerMethods
 
----@alias EventManagerSingleton fun(metaclass: EventManagerMetaclass): EventManagerClass
+---@alias EventManagerSingleton fun(prototype: EventManagerPrototype): EventManagerClass
 
 ---@type EventManagerSingleton
 local Singleton = require "Libraries.Prelude.singleton"

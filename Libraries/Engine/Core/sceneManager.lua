@@ -17,12 +17,12 @@ local composer = require "composer"
 ---@field gotoScene fun(self: SceneManagerSelf, scene: ScenePath)
 ---@field removeScene fun(self: SceneManagerSelf, scene: ScenePath)
 
----@class SceneManagerMetaclass
+---@class SceneManagerPrototype
 ---@field id SceneManagerIdentificator
 ---@field attributes SceneManagerAttributes
 ---@field methods SceneManagerMethods
 
----@alias SceneManagerSingleton fun(metaclass: SceneManagerMetaclass): SceneManagerClass
+---@alias SceneManagerSingleton fun(prototype: SceneManagerPrototype): SceneManagerClass
 
 ---@type SceneManagerSingleton
 local Singleton = require "Libraries.Prelude.singleton"

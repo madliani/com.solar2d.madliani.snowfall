@@ -31,12 +31,12 @@ local timer = require "timer"
 ---@field resume fun(self: TaskManagerSelf, id: TaskIdentificator)
 ---@field resumeAll fun()
 
----@class TaskManagerMetaclass
+---@class TaskManagerPrototype
 ---@field id TaskManagerIdentificator
 ---@field attributes TaskManagerAttributes
 ---@field methods TaskManagerMethods
 
----@alias TaskManagerSingleton fun(metaclass: TaskManagerMetaclass): TaskManagerClass
+---@alias TaskManagerSingleton fun(prototype: TaskManagerPrototype): TaskManagerClass
 
 ---@type TaskManagerSingleton
 local Singleton = require "Libraries.Prelude.singleton"

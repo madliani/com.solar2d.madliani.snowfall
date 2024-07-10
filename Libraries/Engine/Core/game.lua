@@ -36,14 +36,14 @@ local os = require "os"
 ---@alias GameInitializer fun(initial: GameInitial, attributes: GameAttributes)
 ---@alias GameFinalizer fun(attributes: GameAttributes)
 
----@class GameMetaclass
+---@class GamePrototype
 ---@field id GameIdentificator
 ---@field attributes GameAttributes
 ---@field initializer GameInitializer
 ---@field finalizer GameFinalizer
 ---@field methods GameMethods
 
----@alias GameSingleton fun(metaclass: GameMetaclass): GameClass
+---@alias GameSingleton fun(prototype: GamePrototype): GameClass
 
 ---@type GameSingleton
 local Singleton = require "Libraries.Prelude.singleton"

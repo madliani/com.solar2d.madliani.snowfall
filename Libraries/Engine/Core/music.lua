@@ -40,14 +40,14 @@ local audio = require "audio"
 ---@alias MusicInitializer fun(initial: MusicPath, attributes: MusicAttributes)
 ---@alias MusicFinalizer fun(attributes: MusicAttributes)
 
----@class MusicMetaclass
+---@class MusicPrototype
 ---@field id MusicIdentificator
 ---@field attributes MusicAttributes
 ---@field initializer MusicInitializer
 ---@field finalizer MusicFinalizer
 ---@field methods MusicMethods
 
----@alias MusicSingleton fun(metaclass: MusicMetaclass): MusicClass
+---@alias MusicSingleton fun(prototype: MusicPrototype): MusicClass
 
 ---@type MusicSingleton
 local Singleton = require "Libraries.Prelude.singleton"

@@ -30,12 +30,12 @@ local _ = require "Libraries.Prelude.enumerable"
 ---@field resume fun(self: LoopManagerSelf, id: LoopIdentificator)
 ---@field resumeAll fun()
 
----@class LoopManagerMetaclass
+---@class LoopManagerPrototype
 ---@field id LoopManagerIdentificator
 ---@field attributes LoopManagerAttributes
 ---@field methods LoopManagerMethods
 
----@alias LoopManagerSingleton fun(metaclass: LoopManagerMetaclass): LoopManagerClass
+---@alias LoopManagerSingleton fun(prototype: LoopManagerPrototype): LoopManagerClass
 
 ---@type LoopManagerSingleton
 local Singleton = require "Libraries.Prelude.singleton"
