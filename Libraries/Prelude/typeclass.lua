@@ -1,4 +1,4 @@
-local Instance = require "Libraries.Prelude.instance"
+local Object = require "Libraries.Prelude.object"
 
 ---@param metaclass Metaclass
 local Typeclass = function(metaclass)
@@ -7,7 +7,7 @@ local Typeclass = function(metaclass)
             metaclass.initializer(metaclass.attributes, ...)
         end
 
-        return Instance(metaclass)
+        return Object(metaclass)
     end
 end
 
