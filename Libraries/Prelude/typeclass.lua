@@ -4,7 +4,7 @@ local Instance = require "Libraries.Prelude.instance"
 local Typeclass = function(metaclass)
     return function(...)
         if metaclass.initializer ~= nil then
-            metaclass.initializer(..., metaclass.attributes)
+            metaclass.initializer(metaclass.attributes, ...)
         end
 
         return Instance(metaclass)

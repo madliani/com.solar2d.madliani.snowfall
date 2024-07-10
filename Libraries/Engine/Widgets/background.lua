@@ -24,7 +24,7 @@ local display = require "display"
 ---@field show fun(self: BackgroundSelf)
 ---@field hide fun(self: BackgroundSelf)
 
----@alias BackgroundInitializer fun(path: ImagePath, attributes: BackgroundAttributes)
+---@alias BackgroundInitializer fun(attributes: BackgroundAttributes, path: ImagePath)
 ---@alias BackgroundFinalizer fun(attributes: BackgroundAttributes)
 
 ---@class BackgroundMetaclass
@@ -74,7 +74,7 @@ local Background = Typeclass {
         end,
     },
 
-    initializer = function(path, attributes)
+    initializer = function(attributes, path)
         attributes.image = Image(
             path,
             Size(display.pixelWidth, display.pixelHeight),
