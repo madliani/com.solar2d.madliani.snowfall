@@ -27,14 +27,14 @@ local display = require "display"
 ---@alias BackgroundInitializer fun(attributes: BackgroundAttributes, path: ImagePath)
 ---@alias BackgroundFinalizer fun(attributes: BackgroundAttributes)
 
----@class BackgroundMetaclass
+---@class BackgroundPrototype
 ---@field id BackgroundIdentificator
 ---@field attributes BackgroundAttributes
 ---@field methods BackgroundMethods
 ---@field initializer BackgroundInitializer?
 ---@field finalizer BackgroundFinalizer?
 
----@alias BackgroundTypeclass fun(metaclass: BackgroundMetaclass): BackgroundClass
+---@alias BackgroundTypeclass fun(prototype: BackgroundPrototype): BackgroundClass
 
 ---@type BackgroundTypeclass
 local Typeclass = require "Libraries.Prelude.typeclass"

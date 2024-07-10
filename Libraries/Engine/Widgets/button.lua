@@ -26,14 +26,14 @@ local Label = require "Libraries.Engine.Widgets.label"
 ---@alias ButtonInitializer fun(attributes: ButtonAttributes, path: ImagePath, title: Title, size: Size, coordinate: Coordinate, event: Event)
 ---@alias ButtonFinalizer fun(attributes: ButtonAttributes)
 
----@class ButtonMetaclass
+---@class ButtonPrototype
 ---@field id ButtonIdentificator
 ---@field attributes ButtonAttributes
 ---@field methods ButtonMethods
 ---@field initializer ButtonInitializer?
 ---@field finalizer ButtonFinalizer?
 
----@alias ButtonTypeclass fun(metaclass: ButtonMetaclass): ButtonClass
+---@alias ButtonTypeclass fun(prototype: ButtonPrototype): ButtonClass
 
 ---@type ButtonTypeclass
 local Typeclass = require "Libraries.Prelude.typeclass"
