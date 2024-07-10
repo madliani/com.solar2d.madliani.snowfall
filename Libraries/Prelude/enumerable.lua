@@ -1,4 +1,4 @@
----@alias Collection table<any> | any[]
+---@alias Collection table<unknown, any> | any[]
 
 ---@alias Iteratee fun(item: any, id: unknown?): any
 
