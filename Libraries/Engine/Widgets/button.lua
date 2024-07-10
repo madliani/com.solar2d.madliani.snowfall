@@ -1,67 +1,92 @@
 local Image = require "Libraries.Engine.Widgets.image"
 local Label = require "Libraries.Engine.Widgets.label"
 
----@param path string
----@param title Title
----@param size Size
----@param coordinate Coordinate
----@param event Event
-local Button = function(path, title, size, coordinate, event)
-    ---@type Image | nil
-    local image = Image(path, size, coordinate, event)
+---@class Button
+---@field create fun(group: SceneGroup)
+---@field destroy fun()
+---@field show fun()
+---@field hide fun()
 
-    ---@type Label | nil
-    local label = Label(title, coordinate)
+---@alias ButtonClass fun(path: ImagePath, title: Title, size: Size, coordinate: Coordinate, event: Event): Button
+---@alias ButtonIdentificator string
 
-    ---@type table | nil
-    local sceneGroup = nil
+---@class ButtonAttributes
+---@field image Image | nil
+---@field label Label | nil
+---@field sceneGroup table | nil
 
-    local function destroy()
-        if image ~= nil and label ~= nil and sceneGroup ~= nil then
-            image.destroy()
-            label.destroy()
+---@class ButtonSelf: ButtonAttributes, ButtonMethods
 
-            image = nil
-            label = nil
-            sceneGroup = nil
-        end
-    end
+---@class ButtonMethods
+---@field create fun(self: ButtonSelf, group: SceneGroup)
+---@field destroy fun(self: ButtonSelf)
+---@field show fun(self: ButtonSelf)
+---@field hide fun(self: ButtonSelf)
 
-    ---@param group table
-    local function create(group)
-        sceneGroup = group
+---@alias ButtonInitializer fun(attributes: ButtonAttributes, path: ImagePath, title: Title, size: Size, coordinate: Coordinate, event: Event)
+---@alias ButtonFinalizer fun(attributes: ButtonAttributes)
 
-        if image ~= nil and label ~= nil then
-            image.create(group)
-            label.create(group)
-        end
-    end
+---@class ButtonMetaclass
+---@field id ButtonIdentificator
+---@field attributes ButtonAttributes
+---@field methods ButtonMethods
+---@field initializer ButtonInitializer?
+---@field finalizer ButtonFinalizer?
 
-    local function show()
-        if image ~= nil and label ~= nil then
-            image.show()
-            label.show()
-        end
-    end
+---@alias ButtonTypeclass fun(metaclass: ButtonMetaclass): ButtonClass
 
-    local function hide()
-        if image ~= nil and label ~= nil then
-            image.hide()
-            label.hide()
-        end
-    end
+---@type ButtonTypeclass
+local Typeclass = require "Libraries.Prelude.typeclass"
 
-    ---@class Button
-    ---@field create function
-    ---@field destroy function
-    ---@field hide function
-    ---@field show function
-    return {
-        create = create,
-        destroy = destroy,
-        hide = hide,
-        show = show,
-    }
-end
+local Button = Typeclass {
+    id = "button",
+
+    attributes = {
+        image = nil,
+        label = nil,
+        sceneGroup = nil,
+    },
+
+    methods = {
+        create = function(self, group)
+            if self.image ~= nil and self.label ~= nil then
+                self.image.create(group)
+                self.label.create(group)
+
+                self.sceneGroup = group
+            end
+        end,
+
+        destroy = function(self)
+            if self.image ~= nil and self.label ~= nil and self.sceneGroup ~= nil then
+                self.image.destroy()
+                self.label.destroy()
+
+                self.image = nil
+                self.label = nil
+                self.sceneGroup = nil
+            end
+        end,
+
+        hide = function(self)
+            if self.image ~= nil and self.label ~= nil then
+                self.image.hide()
+                self.label.hide()
+            end
+        end,
+
+        show = function(self)
+            if self.image ~= nil and self.label ~= nil then
+                self.image.show()
+                self.label.show()
+            end
+        end,
+    },
+
+    initializer = function(attributes, path, title, size, coordinate, event)
+        attributes.image = Image(path, size, coordinate, event)
+        attributes.label = Label(title, coordinate)
+    end,
+}
 
 return Button
