@@ -33,12 +33,12 @@ local Label = require "Libraries.Engine.Widgets.label"
 ---@field initializer ButtonInitializer?
 ---@field finalizer ButtonFinalizer?
 
----@alias ButtonTypeclass fun(prototype: ButtonPrototype): ButtonClass
+---@alias ButtonMetaclass fun(prototype: ButtonPrototype): ButtonClass
 
----@type ButtonTypeclass
-local Typeclass = require "Libraries.Prelude.typeclass"
+---@type ButtonMetaclass
+local Metaclass = require "Libraries.Prelude.metaclass"
 
-local Button = Typeclass {
+local Button = Metaclass {
     id = "button",
 
     attributes = {

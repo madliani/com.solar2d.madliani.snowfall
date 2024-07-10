@@ -34,12 +34,12 @@ local display = require "display"
 ---@field initializer BackgroundInitializer?
 ---@field finalizer BackgroundFinalizer?
 
----@alias BackgroundTypeclass fun(prototype: BackgroundPrototype): BackgroundClass
+---@alias BackgroundMetaclass fun(prototype: BackgroundPrototype): BackgroundClass
 
----@type BackgroundTypeclass
-local Typeclass = require "Libraries.Prelude.typeclass"
+---@type BackgroundMetaclass
+local Metaclass = require "Libraries.Prelude.metaclass"
 
-local Background = Typeclass {
+local Background = Metaclass {
     id = "background",
 
     attributes = {
