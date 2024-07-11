@@ -1,4 +1,4 @@
 local Snowfall = require "Sources.snowfall"
-local paths = require "Sources.paths"
+local paths = require "paths"
 
 Snowfall.run(paths.Scenes.startMenu)

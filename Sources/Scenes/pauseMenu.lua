@@ -3,7 +3,7 @@ local Heading = require "Sources.Objects.heading"
 local Menu = require "Sources.Objects.menu"
 local Resources = require "resources"
 local Scene = require "Libraries.Engine.Core.scene"
-local paths = require "Sources.paths"
+local paths = require "paths"
 local Snowfall = require "Sources.snowfall"
 
 local background = Background(Resources.Images.background)
