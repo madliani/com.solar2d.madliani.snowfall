@@ -1,5 +1,8 @@
 ---@meta
 
+---@alias Arguments any[]
+---@alias Function fun(...: Arguments?): any
+
 ---@alias Identificator string
 ---@alias Attribute any
 ---@alias Method fun(self: Self, ...: Arguments?): any

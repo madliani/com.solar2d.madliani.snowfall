@@ -1,3 +1,0 @@
----@meta
-
----@alias Arguments any[]
