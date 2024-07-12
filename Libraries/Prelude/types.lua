@@ -12,7 +12,7 @@
 ---@alias PrototypeMethod fun(self: PrototypeSelf, ...: Arguments?): any
 ---@alias PrototypeAttributes table<PrototypeAttributeIdentificator, PrototypeAttribute>
 ---@alias PrototypeMethods table<PrototypeMethodIdentificator, PrototypeMethod>
----@alias PrototypeSelf table<unknown, any>
+---@alias PrototypeSelf table<string, any>
 ---@alias PrototypeInitializer fun(attributes: PrototypeAttributes, ...: Arguments?)
 ---@alias PrototypeFinalizer fun(attributes: PrototypeAttributes, methods: PrototypeMethods?)
 
