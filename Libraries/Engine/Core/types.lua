@@ -1,8 +1,9 @@
 ---@meta
 
----@alias GroupIndex number
----@alias GroupIndexIdentificator string
----@alias GroupIndexes table<GroupIndexIdentificator, GroupIndex>
+---@alias GroupItem any
+---@alias GroupItemIdentificator string
+---@alias GroupItemIndex number
+---@alias GroupItemIndexes table<GroupItemIdentificator, GroupItemIndex>
 
 ---@class Playable
 ---@field create fun(group: Group)
@@ -11,5 +12,5 @@
 ---@field hide fun()
 
 ---@class Group
----@field insert fun(self: Group, index: GroupIndex, item: any)
----@field remove fun(self: Group, index: GroupIndex)
+---@field insert fun(self: Group, index: GroupItemIndex, item: GroupItem)
+---@field remove fun(self: Group, index: GroupItemIndex)
