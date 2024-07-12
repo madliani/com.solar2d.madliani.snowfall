@@ -1,5 +1,5 @@
 ---@meta
 
----@class SceneGroup
----@field insert fun(self: SceneGroup, item: any)
+---@class Group
+---@field insert fun(self: Group, item: any)
 ---@field remove fun(item: any)

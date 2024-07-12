@@ -2,7 +2,7 @@ local Image = require "Libraries.Engine.Widgets.image"
 local Label = require "Libraries.Engine.Widgets.label"
 
 ---@class Button
----@field create fun(group: SceneGroup)
+---@field create fun(group: Group)
 ---@field destroy fun()
 ---@field show fun()
 ---@field hide fun()
@@ -18,7 +18,7 @@ local Label = require "Libraries.Engine.Widgets.label"
 ---@class ButtonSelf: ButtonAttributes, ButtonMethods
 
 ---@class ButtonMethods
----@field create fun(self: ButtonSelf, group: SceneGroup)
+---@field create fun(self: ButtonSelf, group: Group)
 ---@field destroy fun(self: ButtonSelf)
 ---@field show fun(self: ButtonSelf)
 ---@field hide fun(self: ButtonSelf)

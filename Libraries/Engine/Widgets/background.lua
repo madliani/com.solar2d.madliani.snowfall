@@ -4,7 +4,7 @@ local Size = require "Libraries.Engine.Core.size"
 local display = require "display"
 
 ---@class Background
----@field create fun(group: SceneGroup)
+---@field create fun(group: Group)
 ---@field destroy fun()
 ---@field show fun()
 ---@field hide fun()
@@ -19,7 +19,7 @@ local display = require "display"
 ---@class BackgroundSelf: BackgroundAttributes, BackgroundMethods
 
 ---@class BackgroundMethods
----@field create fun(self: BackgroundSelf, group: SceneGroup)
+---@field create fun(self: BackgroundSelf, group: Group)
 ---@field destroy fun(self: BackgroundSelf)
 ---@field show fun(self: BackgroundSelf)
 ---@field hide fun(self: BackgroundSelf)
