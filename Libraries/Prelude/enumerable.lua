@@ -1,13 +1,19 @@
----@alias Collection table<unknown, any> | any[]
+---@alias CollectionItemKey unknown
+---@alias CollectionItemValue any
+---@alias Collection table<CollectionItemKey, CollectionItemValue> | CollectionItemValue[]
 
----@alias Iteratee fun(item: any, id: unknown?): any
+---@alias Iteratee fun(value: CollectionItemValue, key: CollectionItemKey?): any
 
 ---@alias Each fun(collection: Collection, iteratee: Iteratee)
+---@alias Fill fun(collection: Collection, value: CollectionItemValue): Collection
+---@alias FillInto fun(collection: Collection, value: CollectionItemValue)
 ---@alias Map fun(collection: Collection, iteratee: Iteratee): Collection
 ---@alias Merge fun(collection: Collection, mixin: Collection): Collection
 
 ---@class Enumerable
 ---@field each Each
+---@field fill Fill
+---@field fillInto FillInto
 ---@field map Map
 ---@field merge Merge
 
@@ -15,6 +21,24 @@
 local each = function(collection, iteratee)
     for key, value in pairs(collection) do
         iteratee(value, key)
+    end
+end
+
+---@type Fill
+local fill = function(collection, value)
+    local filledCollection = {}
+
+    for key, _ in pairs(collection) do
+        filledCollection[key] = value
+    end
+
+    return filledCollection
+end
+
+---@type FillInto
+local fillInto = function(collection, value)
+    for key, _ in pairs(collection) do
+        collection[key] = value
     end
 end
 
@@ -45,8 +69,12 @@ local merge = function(collection, mixin)
 end
 
 ---@type Enumerable
-return {
+local Enumerable = {
     each = each,
+    fill = fill,
+    fillInto = fillInto,
     map = map,
     merge = merge,
 }
+
+return Enumerable
