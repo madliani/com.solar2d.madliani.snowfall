@@ -4,18 +4,18 @@
 ---@alias Function fun(...: Arguments?): any
 ---@alias Class fun(...: Arguments?): Object
 
----@alias Identificator string
----@alias Attribute any
----@alias Method fun(self: Self, ...: Arguments?): any
----@alias Attributes table<string, Attribute>
----@alias Methods table<string, Method>
----@alias Self table<unknown, any>
----@alias Initializer fun(attributes: Attributes, ...: Arguments?)
----@alias Finalizer fun(attributes: Attributes, methods: Methods?)
+---@alias PrototypeIdentificator string
+---@alias PrototypeAttribute any
+---@alias PrototypeMethod fun(self: PrototypeSelf, ...: Arguments?): any
+---@alias PrototypeAttributes table<string, PrototypeAttribute>
+---@alias PrototypeMethods table<string, PrototypeMethod>
+---@alias PrototypeSelf table<unknown, any>
+---@alias PrototypeInitializer fun(attributes: PrototypeAttributes, ...: Arguments?)
+---@alias PrototypeFinalizer fun(attributes: PrototypeAttributes, methods: PrototypeMethods?)
 
 ---@class Prototype
----@field id Identificator
----@field attributes Attributes
----@field methods Methods
----@field initializer Initializer?
----@field finalizer Finalizer?
+---@field id PrototypeIdentificator
+---@field attributes PrototypeAttributes
+---@field methods PrototypeMethods
+---@field initializer PrototypeInitializer?
+---@field finalizer PrototypeFinalizer?
