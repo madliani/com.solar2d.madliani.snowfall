@@ -2,6 +2,7 @@
 
 ---@alias Arguments any[]
 ---@alias Function fun(...: Arguments?): any
+---@alias Class fun(...: Arguments?): Object
 
 ---@alias Identificator string
 ---@alias Attribute any
