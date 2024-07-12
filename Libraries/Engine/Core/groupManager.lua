@@ -1,10 +1,10 @@
 local _ = require "Libraries.Prelude.enumerable"
 
----@alias ItemIdentificator string
+---@alias GroupItem any
 
 ---@class GroupManager
----@field add fun(item: any, id: ItemIdentificator)
----@field remove fun(id: ItemIdentificator)
+---@field add fun(item: GroupItem, id: GroupIndexIdentificator)
+---@field remove fun(id: GroupIndexIdentificator)
 ---@field removeAll fun()
 
 ---@alias GroupManagerClass fun(): GroupManager
@@ -18,8 +18,8 @@ local _ = require "Libraries.Prelude.enumerable"
 ---@field indexes GroupIndexes | nil
 
 ---@class GroupManagerMethods
----@field add fun(self: GroupManagerSelf, item: any, id: ItemIdentificator)
----@field remove fun(self: GroupManagerSelf, id: ItemIdentificator)
+---@field add fun(self: GroupManagerSelf, item: GroupItem, id: GroupIndexIdentificator)
+---@field remove fun(self: GroupManagerSelf, id: GroupIndexIdentificator)
 ---@field removeAll fun(self: GroupManagerSelf)
 
 ---@alias GroupManagerInitializer fun(attributes: GroupManagerAttributes, group: Group)
