@@ -1,6 +1,7 @@
 local _ = require "Libraries.Prelude.enumerable"
 
----@alias Object table<string, Function>
+---@alias ObjectFieldId FieldId
+---@alias Object table<ObjectFieldId, Function>
 
 ---@param prototype Prototype
 local Object = function(prototype)
