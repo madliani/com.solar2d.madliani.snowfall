@@ -1,19 +1,79 @@
 local Button = require "Libraries.Engine.Widgets.button"
 local Pool = require "Libraries.Engine.Core.pool"
 
----@param buttons table<any>[]
-local ButtonGroup = function(buttons)
-    ---@type unknown[]
-    local buttonGroup = {}
+---@class ButtonGroup
+---@field create fun(group: Group)
+---@field destroy fun()
+---@field show fun()
+---@field hide fun()
 
-    local pool = Pool(buttonGroup)
+---@alias ButtonGroupClass fun(buttons: any[]): ButtonGroup
+---@alias ButtonGroupIdentificator string
 
-    local function destroy()
-        pool.destroy()
-    end
+---@class ButtonGroupAttributes
+---@field buttonGroup Button[] | nil
+---@field pool Pool | nil
 
-    ---@param group table
-    local function create(group)
+---@class ButtonGroupSelf: ButtonGroupAttributes, ButtonGroupMethods
+
+---@class ButtonGroupMethods
+---@field create fun(self: ButtonGroupSelf, group: Group)
+---@field destroy fun(self: ButtonGroupSelf)
+---@field show fun(self: ButtonGroupSelf)
+---@field hide fun(self: ButtonGroupSelf)
+
+---@alias ButtonGroupInitializer fun(attributes: ButtonGroupAttributes, buttons: any[])
+---@alias ButtonGroupFinalizer fun(attributes: ButtonGroupAttributes)
+
+---@class ButtonGroupPrototype
+---@field id ButtonGroupIdentificator
+---@field attributes ButtonGroupAttributes
+---@field methods ButtonGroupMethods
+---@field initializer ButtonGroupInitializer?
+---@field finalizer ButtonGroupFinalizer?
+
+---@alias ButtonGroupMetaclass fun(prototype: ButtonGroupPrototype): ButtonGroupClass
+
+---@type ButtonGroupMetaclass
+local Metaclass = require "Libraries.Prelude.metaclass"
+
+local ButtonGroup = Metaclass {
+    id = "button_group",
+
+    attributes = {
+        buttonGroup = nil,
+        pool = nil,
+    },
+
+    methods = {
+        create = function(self, group)
+            self.pool = Pool(self.buttonGroup)
+
+            for i = 1, #self.buttonGroup, 1 do
+                local button = self.buttonGroup[i]
+
+                button.create(group)
+            end
+        end,
+
+        destroy = function(self)
+            self.pool.destroy()
+
+            self.pool = nil
+        end,
+
+        show = function(self)
+            self.pool.show()
+        end,
+
+        hide = function(self)
+            self.pool.hide()
+        end,
+    },
+
+    initializer = function(attributes, buttons)
+        attributes.buttonGroup = {}
+
         for i = 1, #buttons, 1 do
             local path = buttons[i].path
             local title = buttons[i].title
@@ -23,31 +83,9 @@ local ButtonGroup = function(buttons)
 
             local button = Button(path, title, size, coordinate, event)
 
-            table.insert(buttonGroup, button)
+            table.insert(attributes.buttonGroup, button)
         end
-
-        pool.create(group)
-    end
-
-    local function show()
-        pool.show()
-    end
-
-    local function hide()
-        pool.hide()
-    end
-
-    ---@class ButtonGroup
-    ---@field create function
-    ---@field destroy function
-    ---@field hide function
-    ---@field show function
-    return {
-        create = create,
-        destroy = destroy,
-        hide = hide,
-        show = show,
-    }
-end
+    end,
+}
 
 return ButtonGroup
