@@ -1,4 +1,3 @@
-local Button = require "Libraries.Engine.Widgets.button"
 local Pool = require "Libraries.Engine.Core.pool"
 
 ---@class ButtonGroup
@@ -7,12 +6,11 @@ local Pool = require "Libraries.Engine.Core.pool"
 ---@field show fun()
 ---@field hide fun()
 
----@alias ButtonGroupClass fun(buttons: any[]): ButtonGroup
+---@alias ButtonGroupClass fun(buttons: Button[]): ButtonGroup
 ---@alias ButtonGroupIdentificator string
 
 ---@class ButtonGroupAttributes
----@field buttonGroup Button[] | nil
----@field pool Pool | nil
+---@field buttonGroup Pool | nil
 
 ---@class ButtonGroupSelf: ButtonGroupAttributes, ButtonGroupMethods
 
@@ -22,7 +20,7 @@ local Pool = require "Libraries.Engine.Core.pool"
 ---@field show fun(self: ButtonGroupSelf)
 ---@field hide fun(self: ButtonGroupSelf)
 
----@alias ButtonGroupInitializer fun(attributes: ButtonGroupAttributes, buttons: any[])
+---@alias ButtonGroupInitializer fun(attributes: ButtonGroupAttributes, buttons: Button[])
 ---@alias ButtonGroupFinalizer fun(attributes: ButtonGroupAttributes)
 
 ---@class ButtonGroupPrototype
@@ -42,49 +40,30 @@ local ButtonGroup = Metaclass {
 
     attributes = {
         buttonGroup = nil,
-        pool = nil,
     },
 
     methods = {
         create = function(self, group)
-            self.pool = Pool(self.buttonGroup)
-
-            for i = 1, #self.buttonGroup, 1 do
-                local button = self.buttonGroup[i]
-
-                button.create(group)
-            end
+            self.buttonGroup.create(group)
         end,
 
         destroy = function(self)
-            self.pool.destroy()
+            self.buttonGroup.destroy()
 
-            self.pool = nil
+            self.buttonGroup = nil
         end,
 
         show = function(self)
-            self.pool.show()
+            self.buttonGroup.show()
         end,
 
         hide = function(self)
-            self.pool.hide()
+            self.buttonGroup.hide()
         end,
     },
 
     initializer = function(attributes, buttons)
-        attributes.buttonGroup = {}
-
-        for i = 1, #buttons, 1 do
-            local path = buttons[i].path
-            local title = buttons[i].title
-            local size = buttons[i].size
-            local coordinate = buttons[i].coordinate
-            local event = buttons[i].event
-
-            local button = Button(path, title, size, coordinate, event)
-
-            table.insert(attributes.buttonGroup, button)
-        end
+        attributes.buttonGroup = Pool(buttons)
     end,
 }
 

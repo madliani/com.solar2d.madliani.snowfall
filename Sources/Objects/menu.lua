@@ -1,3 +1,4 @@
+local Button = require "Libraries.Engine.Widgets.button"
 local ButtonGroup = require "Libraries.Engine.Widgets.buttonGroup"
 local Color = require "Libraries.Engine.Core.color"
 local Coordinate = require "Libraries.Engine.Core.coordinate"
@@ -33,16 +34,9 @@ local Menu = function(items)
 
             local title = Title(items[i].text, font, color, 24)
             local coordinate = Coordinate(display.contentCenterX, 150 + gap * step)
+            local button = Button(Resources.Images.yellowButton, title, size, coordinate, items[i].event)
 
-            local item = {
-                path = Resources.Images.yellowButton,
-                title = title,
-                size = size,
-                coordinate = coordinate,
-                event = items[i].event,
-            }
-
-            table.insert(menu, item)
+            table.insert(menu, button)
         end
 
         buttonGroup = ButtonGroup(menu)
