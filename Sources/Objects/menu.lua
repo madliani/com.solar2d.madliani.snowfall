@@ -1,8 +1,8 @@
 local Button = require "Libraries.Engine.Widgets.button"
-local ButtonGroup = require "Libraries.Engine.Widgets.buttonGroup"
 local Color = require "Libraries.Engine.Core.color"
 local Coordinate = require "Libraries.Engine.Core.coordinate"
 local Font = require "Libraries.Engine.Core.font"
+local Pool = require "Libraries.Engine.Core.pool"
 local Resources = require "resources"
 local Size = require "Libraries.Engine.Core.size"
 local Title = require "Libraries.Engine.Core.title"
@@ -18,7 +18,7 @@ local Menu = function(items)
     ---@type unknown[]
     local menu = {}
 
-    ---@type ButtonGroup | nil
+    ---@type Pool | nil
     local buttonGroup = nil
 
     local function destroy()
@@ -39,7 +39,7 @@ local Menu = function(items)
             table.insert(menu, button)
         end
 
-        buttonGroup = ButtonGroup(menu)
+        buttonGroup = Pool(menu)
 
         buttonGroup.create(group)
     end
