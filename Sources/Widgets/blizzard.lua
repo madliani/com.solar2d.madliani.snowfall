@@ -1,6 +1,6 @@
 local Event = require "Libraries.Engine.Core.event"
 local Loop = require "Libraries.Engine.Core.loop"
-local LoopManager = require "Libraries.Engine.Core.loopManager"
+local LoopManager = require "Libraries.Engine.Middleware.loopManager"
 local Resources = require "resources"
 local Snowflake = require "Sources.Widgets.snowflake"
 local Task = require "Libraries.Engine.Core.task"

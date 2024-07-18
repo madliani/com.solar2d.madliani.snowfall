@@ -1,5 +1,5 @@
-local EventManager = require "Libraries.Engine.Core.eventManager"
-local TaskManager = require "Libraries.Engine.Core.taskManager"
+local EventManager = require "Libraries.Engine.Middleware.eventManager"
+local TaskManager = require "Libraries.Engine.Middleware.taskManager"
 local _ = require "Libraries.Prelude.enumerable"
 
 ---@alias LoopIdentificator string

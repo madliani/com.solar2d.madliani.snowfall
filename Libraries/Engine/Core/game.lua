@@ -1,6 +1,6 @@
-local LoopManager = require "Libraries.Engine.Core.loopManager"
+local LoopManager = require "Libraries.Engine.Middleware.loopManager"
 local Music = require "Libraries.Engine.Core.music"
-local SceneManager = require "Libraries.Engine.Core.sceneManager"
+local SceneManager = require "Libraries.Engine.Middleware.sceneManager"
 local _ = require "Libraries.Prelude.enumerable"
 local os = require "os"
 
