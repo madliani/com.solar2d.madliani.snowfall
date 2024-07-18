@@ -1,4 +1,4 @@
-local Button = require "Libraries.Engine.Widgets.button"
+local Button = require "Libraries.Engine.Nodes.button"
 local Color = require "Libraries.Engine.Core.color"
 local Coordinate = require "Libraries.Engine.Core.coordinate"
 local Font = require "Libraries.Engine.Core.font"

@@ -1,5 +1,5 @@
 local Coordinate = require "Libraries.Engine.Core.coordinate"
-local Image = require "Libraries.Engine.Widgets.image"
+local Image = require "Libraries.Engine.Nodes.image"
 local Size = require "Libraries.Engine.Core.size"
 local display = require "display"
 

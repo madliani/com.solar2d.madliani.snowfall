@@ -1,4 +1,4 @@
-local Background = require "Libraries.Engine.Widgets.background"
+local Background = require "Libraries.Engine.Nodes.background"
 local Heading = require "Sources.Widgets.heading"
 local Menu = require "Sources.Widgets.menu"
 local Resources = require "resources"

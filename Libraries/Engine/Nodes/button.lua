@@ -1,5 +1,5 @@
-local Image = require "Libraries.Engine.Widgets.image"
-local Label = require "Libraries.Engine.Widgets.label"
+local Image = require "Libraries.Engine.Nodes.image"
+local Label = require "Libraries.Engine.Nodes.label"
 
 ---@class Button
 ---@field create fun(group: Group)

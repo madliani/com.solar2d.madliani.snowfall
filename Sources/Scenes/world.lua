@@ -1,4 +1,4 @@
-local Background = require "Libraries.Engine.Widgets.background"
+local Background = require "Libraries.Engine.Nodes.background"
 local Blizzard = require "Sources.Widgets.blizzard"
 local Count = require "Sources.Widgets.count"
 local Counter = require "Sources.Middleware.counter"
