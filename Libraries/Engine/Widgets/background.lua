@@ -9,7 +9,6 @@ local display = require "display"
 ---@field show fun()
 ---@field hide fun()
 
----@alias ImagePath string
 ---@alias BackgroundClass fun(path: ImagePath): Background
 ---@alias BackgroundIdentificator string
 

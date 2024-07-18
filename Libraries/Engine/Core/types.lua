@@ -14,3 +14,5 @@
 ---@class Group
 ---@field insert fun(self: Group, index: GroupItemIndex, item: GroupItem)
 ---@field remove fun(self: Group, index: GroupItemIndex)
+
+---@alias ImagePath string
