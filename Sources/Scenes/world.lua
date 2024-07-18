@@ -16,5 +16,5 @@ return Scene {
     background,
     count,
     pause,
-    blizzard
+    blizzard,
 }

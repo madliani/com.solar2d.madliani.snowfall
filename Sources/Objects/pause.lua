@@ -2,10 +2,10 @@ local Coordinate = require "Libraries.Engine.Core.coordinate"
 local Event = require "Libraries.Engine.Core.event"
 local Image = require "Libraries.Engine.Widgets.image"
 local Resources = require "resources"
-local paths = require "paths"
 local Size = require "Libraries.Engine.Core.size"
 local Snowfall = require "Sources.snowfall"
 local display = require "display"
+local paths = require "paths"
 
 local coordinate = Coordinate(50, display.contentHeight + 25)
 local size = Size(25, 25)
