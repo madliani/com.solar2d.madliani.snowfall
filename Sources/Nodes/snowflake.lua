@@ -1,8 +1,8 @@
 local display = require "display"
 
 ---@param path string
----@param counter Counter
-local Snowflake = function(path, counter)
+---@param scoreCounter ScoreCounter
+local Snowflake = function(path, scoreCounter)
     ---@type table | nil
     local imageRect = nil
 
@@ -30,7 +30,7 @@ local Snowflake = function(path, counter)
 
             local function onTap()
                 destroy()
-                counter.inc()
+                scoreCounter.inc()
             end
 
             imageRect = display.newImageRect(path, width, height)

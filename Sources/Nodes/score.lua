@@ -10,7 +10,7 @@ local color = Color(0, 0, 0)
 local font = Font(Resources.Fonts.main)
 
 ---@param initialCount integer
-local Count = function(initialCount)
+local Score = function(initialCount)
     local count = initialCount
 
     local title = Title(tostring(count), font, color, 48)
@@ -46,7 +46,7 @@ local Count = function(initialCount)
         label.updateText(tostring(count))
     end
 
-    ---@class Count
+    ---@class Score
     ---@field create function
     ---@field dec function
     ---@field destroy function
@@ -63,4 +63,4 @@ local Count = function(initialCount)
     }
 end
 
-return Count
+return Score

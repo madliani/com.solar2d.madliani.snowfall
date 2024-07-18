@@ -1,14 +1,14 @@
----@param count Count
-local Counter = function(count)
+---@param score Score
+local ScoreCounter = function(score)
     local function inc()
-        count.inc()
+        score.inc()
     end
 
     local function dec()
-        count.dec()
+        score.dec()
     end
 
-    ---@class Counter
+    ---@class ScoreCounter
     ---@field dec function
     ---@field inc function
     return {
@@ -17,4 +17,4 @@ local Counter = function(count)
     }
 end
 
-return Counter
+return ScoreCounter

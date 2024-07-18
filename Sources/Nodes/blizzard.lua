@@ -7,8 +7,8 @@ local Task = require "Libraries.Engine.Core.task"
 
 local loopManager = LoopManager()
 
----@param counter Counter
-local Blizzard = function(counter)
+---@param scoreCounter ScoreCounter
+local Blizzard = function(scoreCounter)
     ---@type unknown[]
     local snowflakes = {}
 
@@ -33,7 +33,7 @@ local Blizzard = function(counter)
 
         local function generate()
             if sceneGroup ~= nil then
-                local snowflake = Snowflake(Resources.Images.snowflake, counter)
+                local snowflake = Snowflake(Resources.Images.snowflake, scoreCounter)
 
                 snowflake.create(sceneGroup)
                 table.insert(snowflakes, snowflake)
