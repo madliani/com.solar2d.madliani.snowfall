@@ -1,76 +1,94 @@
 local display = require "display"
 
----@param title Title
----@param coordinate Coordinate
----@param event Event?
-local Label = function(title, coordinate, event)
-    ---@type table | nil
-    local label = nil
+---@class Label
+---@field create fun(group: Group)
+---@field destroy fun()
+---@field hide fun()
+---@field show fun()
+---@field updateText fun(newText: string)
 
-    ---@type table | nil
-    local sceneGroup = nil
+---@alias LabelClass fun(title: Title, coordinate: Coordinate, event: Event?): Label
+---@alias LabelIdentificator string
 
-    ---@type string | nil
-    local textBackup = nil
+---@class LabelAttributes
+---@field label table<any, any> | nil
+---@field sceneGroup table<any, any> | nil
+---@field textBackup string | nil
 
-    local function destroy()
-        if label ~= nil and sceneGroup ~= nil and textBackup ~= nil then
-            sceneGroup.remove(sceneGroup, label)
+---@class LabelSelf: LabelAttributes, LabelMethods
 
-            label = nil
-            sceneGroup = nil
-            textBackup = nil
+---@class LabelMethods
+---@field create fun(self: LabelSelf, group: Group)
+---@field destroy fun(self: LabelSelf)
+---@field hide fun(self: LabelSelf)
+---@field show fun(self: LabelSelf)
+---@field updateText fun(self: LabelSelf, newText: string)
+
+---@alias LabelInitializer fun(attributes: LabelAttributes, title: Title, coordinate: Coordinate, event: Event?)
+---@alias LabelFinalizer fun(attributes: LabelAttributes)
+
+---@class LabelPrototype
+---@field id LabelIdentificator
+---@field attributes LabelAttributes
+---@field methods LabelMethods
+---@field initializer LabelInitializer?
+---@field finalizer LabelFinalizer?
+
+---@alias LabelMetaclass fun(prototype: LabelPrototype): LabelClass
+
+---@type LabelMetaclass
+local Metaclass = require "Libraries.Prelude.metaclass"
+
+local Label = Metaclass {
+    id = "label",
+
+    attributes = {
+        label = nil,
+        sceneGroup = nil,
+        textBackup = nil,
+    },
+
+    methods = {
+        create = function(self, group)
+            self.sceneGroup = group
+
+            self.sceneGroup.insert(self.sceneGroup, self.label)
+        end,
+
+        destroy = function(self)
+            self.sceneGroup.remove(self.sceneGroup, self.label)
+        end,
+
+        hide = function(self)
+            self.label.isVisible = false
+        end,
+
+        show = function(self)
+            self.label.isVisible = true
+        end,
+
+        updateText = function(self, newText)
+            self.label.text = newText
+        end,
+    },
+
+    initializer = function(attributes, title, coordinate, event)
+        attributes.label = display.newText(title.text, coordinate.x, coordinate.y, title.font, title.size)
+
+        attributes.label.setFillColor(attributes.label, title.color.red, title.color.green, title.color.blue)
+
+        if event ~= nil then
+            attributes.label.addEventListener(attributes.label, event.type, event.action)
         end
-    end
 
-    ---@param group table
-    local function create(group)
-        sceneGroup = group
+        attributes.textBackup = title.text
+    end,
 
-        if label == nil and sceneGroup ~= nil then
-            label = display.newText(title.text, coordinate.x, coordinate.y, title.font, title.size)
-
-            label.setFillColor(label, title.color.red, title.color.green, title.color.blue)
-
-            if event ~= nil then
-                label.addEventListener(label, event.type, event.action)
-            end
-
-            sceneGroup.insert(sceneGroup, label)
-        end
-    end
-
-    local function show()
-        if label ~= nil then
-            label.isVisible = true
-        end
-    end
-
-    local function hide()
-        if label ~= nil then
-            label.isVisible = false
-        end
-    end
-
-    local function updateText(newText)
-        if label ~= nil then
-            label.text = newText
-        end
-    end
-
-    ---@class Label
-    ---@field create function
-    ---@field destroy function
-    ---@field hide function
-    ---@field show function
-    ---@field updateText function
-    return {
-        create = create,
-        destroy = destroy,
-        hide = hide,
-        show = show,
-        updateText = updateText,
-    }
-end
+    finalizer = function(attributes)
+        attributes.label = nil
+        attributes.sceneGroup = nil
+        attributes.textBackup = nil
+    end,
+}
 
 return Label
