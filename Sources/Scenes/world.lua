@@ -1,8 +1,8 @@
 local Background = require "Libraries.Engine.Nodes.background"
-local Blizzard = require "Sources.Widgets.blizzard"
-local Count = require "Sources.Widgets.count"
+local Blizzard = require "Sources.Nodes.blizzard"
+local Count = require "Sources.Nodes.count"
 local Counter = require "Sources.Middleware.counter"
-local Pause = require "Sources.Widgets.pause"
+local Pause = require "Sources.Nodes.pause"
 local Resources = require "resources"
 local Scene = require "Libraries.Engine.Core.scene"
 

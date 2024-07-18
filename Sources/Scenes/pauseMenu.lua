@@ -1,6 +1,6 @@
 local Background = require "Libraries.Engine.Nodes.background"
-local Heading = require "Sources.Widgets.heading"
-local Menu = require "Sources.Widgets.menu"
+local Heading = require "Sources.Nodes.heading"
+local Menu = require "Sources.Nodes.menu"
 local Resources = require "resources"
 local Scene = require "Libraries.Engine.Core.scene"
 local Snowfall = require "Sources.snowfall"
