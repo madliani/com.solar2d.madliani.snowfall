@@ -5,93 +5,124 @@ local Resources = require "resources"
 local Snowflake = require "Sources.Nodes.snowflake"
 local Task = require "Libraries.Engine.Core.task"
 
-local loopManager = LoopManager()
+---@class Blizzard
+---@field create fun(group: table)
+---@field destroy fun()
+---@field show fun()
+---@field hide fun()
 
----@param scoreCounter ScoreCounter
-local Blizzard = function(scoreCounter)
-    ---@type unknown[]
-    local snowflakes = {}
+---@alias BlizzardClass fun(scoreCounter: ScoreCounter): Blizzard
+---@alias BlizzardIdentificator string
 
-    ---@type table | nil
-    local sceneGroup = nil
+---@class BlizzardAttributes
+---@field sceneGroup table | nil
+---@field scoreCounter ScoreCounter | nil
+---@field snowflakes unknown[] | nil
 
-    local function destroy()
-        if #snowflakes > 0 and sceneGroup ~= nil then
-            for i = 1, #snowflakes, 1 do
-                local snowflake = snowflakes[i]
+---@class BlizzardSelf: BlizzardAttributes, BlizzardMethods
 
-                snowflake.destroy()
+---@class BlizzardMethods
+---@field create fun(self: BlizzardSelf, group: table)
+---@field destroy fun(self: BlizzardSelf)
+---@field show fun(self: BlizzardSelf)
+---@field hide fun(self: BlizzardSelf)
+
+---@alias BlizzardInitializer fun(attributes: BlizzardAttributes, scoreCounter: ScoreCounter)
+---@alias BlizzardFinalizer fun(attributes: BlizzardAttributes)
+
+---@class BlizzardPrototype
+---@field id BlizzardIdentificator
+---@field attributes BlizzardAttributes
+---@field methods BlizzardMethods
+---@field initializer BlizzardInitializer?
+---@field finalizer BlizzardFinalizer?
+
+---@alias BlizzardMetaclass fun(prototype: BlizzardPrototype): BlizzardClass
+
+---@type BlizzardMetaclass
+local Metaclass = require "Libraries.Prelude.metaclass"
+
+local Blizzard = Metaclass {
+    id = "blizzard",
+
+    attributes = {
+        sceneGroup = nil,
+        scoreCounter = nil,
+        snowflakes = nil,
+    },
+
+    methods = {
+        create = function(self, group)
+            self.sceneGroup = group
+
+            local function generate()
+                if self.sceneGroup ~= nil then
+                    local snowflake = Snowflake(Resources.Images.snowflake, self.scoreCounter)
+
+                    snowflake.create(self.sceneGroup)
+                    table.insert(self.snowflakes, snowflake)
+                end
             end
 
-            sceneGroup = nil
-        end
-    end
+            local function update()
+                if #self.snowflakes > 0 then
+                    for i = #self.snowflakes, 1, -1 do
+                        local snowflake = self.snowflakes[i]
 
-    ---@param group table
-    local function create(group)
-        sceneGroup = group
-
-        local function generate()
-            if sceneGroup ~= nil then
-                local snowflake = Snowflake(Resources.Images.snowflake, scoreCounter)
-
-                snowflake.create(sceneGroup)
-                table.insert(snowflakes, snowflake)
-            end
-        end
-
-        local function update()
-            if #snowflakes > 0 then
-                for i = #snowflakes, 1, -1 do
-                    local snowflake = snowflakes[i]
-
-                    if snowflake.isUnavable() then
-                        snowflake.destroy()
-                    else
-                        snowflake.update()
+                        if snowflake.isUnavable() then
+                            snowflake.destroy()
+                        else
+                            snowflake.update()
+                        end
                     end
                 end
             end
-        end
 
-        local task = Task(generate, 500)
-        local event = Event(update, "enterFrame")
-        local loop = Loop(task, event)
+            local task = Task(generate, 500)
+            local event = Event(update, "enterFrame")
+            local loop = Loop(task, event)
+            local loopManager = LoopManager()
 
-        loopManager.add(loop, "blizzard")
-    end
+            loopManager.add(loop, "blizzard")
+        end,
 
-    local function show()
-        if #snowflakes > 0 then
-            for i = 1, #snowflakes, 1 do
-                local snowflake = snowflakes[i]
+        destroy = function(self)
+            if #self.snowflakes > 0 and self.sceneGroup ~= nil then
+                for i = 1, #self.snowflakes, 1 do
+                    local snowflake = self.snowflakes[i]
 
-                snowflake.show()
+                    snowflake.destroy()
+                end
+
+                self.sceneGroup = nil
             end
-        end
-    end
+        end,
 
-    local function hide()
-        if #snowflakes > 0 then
-            for i = 1, #snowflakes, 1 do
-                local snowflake = snowflakes[i]
+        show = function(self)
+            if #self.snowflakes > 0 then
+                for i = 1, #self.snowflakes, 1 do
+                    local snowflake = self.snowflakes[i]
 
-                snowflake.hide()
+                    snowflake.show()
+                end
             end
-        end
-    end
+        end,
 
-    ---@class Blizzard
-    ---@field create function
-    ---@field destroy function
-    ---@field hide function
-    ---@field show function
-    return {
-        create = create,
-        destroy = destroy,
-        hide = hide,
-        show = show,
-    }
-end
+        hide = function(self)
+            if #self.snowflakes > 0 then
+                for i = 1, #self.snowflakes, 1 do
+                    local snowflake = self.snowflakes[i]
+
+                    snowflake.hide()
+                end
+            end
+        end,
+    },
+
+    initializer = function(attributes, scoreCounter)
+        attributes.scoreCounter = scoreCounter
+        attributes.snowflakes = {}
+    end,
+}
 
 return Blizzard
