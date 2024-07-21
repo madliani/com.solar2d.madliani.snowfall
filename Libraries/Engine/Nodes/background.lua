@@ -3,7 +3,7 @@ local Image = require "Libraries.Engine.Nodes.image"
 local Size = require "Libraries.Engine.Core.size"
 local display = require "display"
 
----@class Background
+---@class Background: Image
 ---@field create fun(group: Group)
 ---@field destroy fun()
 ---@field show fun()
