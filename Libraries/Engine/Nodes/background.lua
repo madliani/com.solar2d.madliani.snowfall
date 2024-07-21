@@ -4,10 +4,6 @@ local Size = require "Libraries.Engine.Core.size"
 local display = require "display"
 
 ---@class Background: Image
----@field create fun(group: Group)
----@field destroy fun()
----@field show fun()
----@field hide fun()
 
 ---@alias BackgroundClass fun(path: ImagePath): Background
 ---@alias BackgroundIdentificator string
