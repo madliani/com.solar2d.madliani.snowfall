@@ -8,7 +8,7 @@ local Size = require "Libraries.Engine.Core.size"
 local Title = require "Libraries.Engine.Core.title"
 local display = require "display"
 
----@class Menu
+---@class Menu: Pool
 ---@field create fun(group: table)
 ---@field destroy fun()
 ---@field show fun()
