@@ -6,12 +6,7 @@ local Resources = require "resources"
 local Title = require "Libraries.Engine.Core.title"
 local display = require "display"
 
----@class Heading
----@field create fun(group: table)
----@field destroy fun()
----@field show fun()
----@field hide fun()
----@field updateText fun(newText: string)
+---@class Heading: Label
 
 ---@alias HeadingClass fun(text: string): Heading
 ---@alias HeadingIdentificator string
