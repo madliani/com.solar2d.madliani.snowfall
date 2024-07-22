@@ -6,61 +6,96 @@ local Resources = require "resources"
 local Title = require "Libraries.Engine.Core.title"
 local display = require "display"
 
-local color = Color(0, 0, 0)
-local font = Font(Resources.Fonts.main)
+---@class Score: Label
 
----@param initialCount integer
-local Score = function(initialCount)
-    local count = initialCount
+---@alias ScoreClass fun(score: integer): Score
+---@alias ScoreIdentificator string
 
-    local title = Title(tostring(count), font, color, 48)
-    local coordinate = Coordinate(display.contentCenterX, 0)
-    local label = Label(title, coordinate)
+---@class ScoreAttributes
+---@field label Label | nil
+---@field score integer | nil
 
-    local function destroy()
-        label.destroy()
-    end
+---@class ScoreSelf: ScoreAttributes, ScoreMethods
 
-    ---@param group table
-    local function create(group)
-        label.create(group)
-    end
+---@class ScoreMethods
+---@field create fun(self: ScoreSelf, group: table)
+---@field dec fun(self: ScoreSelf)
+---@field destroy fun(self: ScoreSelf)
+---@field hide fun(self: ScoreSelf)
+---@field inc fun(self: ScoreSelf)
+---@field show fun(self: ScoreSelf)
+---@field updateText fun(self: ScoreSelf, newText: string)
 
-    local function show()
-        label.show()
-    end
+---@alias ScoreInitializer fun(attributes: ScoreAttributes, score: integer)
+---@alias ScoreFinalizer fun(attributes: ScoreAttributes)
 
-    local function hide()
-        label.hide()
-    end
+---@class ScorePrototype
+---@field id ScoreIdentificator
+---@field attributes ScoreAttributes
+---@field methods ScoreMethods
+---@field initializer ScoreInitializer?
+---@field finalizer ScoreFinalizer?
 
-    local function inc()
-        count = count + 1
+---@alias ScoreMetaclass fun(prototype: ScorePrototype): ScoreClass
 
-        label.updateText(tostring(count))
-    end
+---@type ScoreMetaclass
+local Metaclass = require "Libraries.Prelude.metaclass"
 
-    local function dec()
-        count = count - 1
+local Score = Metaclass {
+    id = "score",
 
-        label.updateText(tostring(count))
-    end
+    attributes = {
+        label = nil,
+        score = nil,
+    },
 
-    ---@class Score
-    ---@field create function
-    ---@field dec function
-    ---@field destroy function
-    ---@field hide function
-    ---@field inc function
-    ---@field show function
-    return {
-        create = create,
-        dec = dec,
-        destroy = destroy,
-        hide = hide,
-        inc = inc,
-        show = show,
-    }
-end
+    methods = {
+        create = function(self, group)
+            self.label.create(group)
+        end,
+
+        dec = function(self)
+            self.score = self.score - 1
+
+            self.label.updateText(tostring(self.score))
+        end,
+
+        destroy = function(self)
+            self.label.destroy()
+        end,
+
+        hide = function(self)
+            self.label.hide()
+        end,
+
+        inc = function(self)
+            self.score = self.score + 1
+
+            self.label.updateText(tostring(self.score))
+        end,
+
+        show = function(self)
+            self.label.show()
+        end,
+
+        updateText = function(self, newText)
+            self.label.updateText(newText)
+        end,
+    },
+
+    initializer = function(attributes, initialCount)
+        local color = Color(0, 0, 0)
+        local font = Font(Resources.Fonts.main)
+        local title = Title(tostring(initialCount), font, color, 48)
+        local coordinate = Coordinate(display.contentCenterX, 0)
+
+        attributes.label = Label(title, coordinate)
+        attributes.score = initialCount
+    end,
+
+    finalizer = function(attributes)
+        attributes.label = nil
+    end,
+}
 
 return Score
