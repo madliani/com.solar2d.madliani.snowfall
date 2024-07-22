@@ -7,6 +7,8 @@ local Title = require "Libraries.Engine.Core.title"
 local display = require "display"
 
 ---@class Score: Label
+---@field dec fun()
+---@field inc fun()
 
 ---@alias ScoreClass fun(score: integer): Score
 ---@alias ScoreIdentificator string
