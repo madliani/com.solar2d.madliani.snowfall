@@ -16,3 +16,5 @@
 ---@field remove fun(self: Group, index: GroupItemIndex)
 
 ---@alias ImagePath string
+---@alias Rotation integer
+---@alias Transparency integer

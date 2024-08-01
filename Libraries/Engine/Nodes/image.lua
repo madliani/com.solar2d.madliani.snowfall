@@ -1,10 +1,26 @@
+local Anchor = require "Libraries.Engine.Core.anchor"
+local Coordinate = require "Libraries.Engine.Core.coordinate"
+local Scale = require "Libraries.Engine.Core.scale"
+local Size = require "Libraries.Engine.Core.size"
 local display = require "display"
 
 ---@class Image
 ---@field create fun(group: Group)
 ---@field destroy fun()
----@field show fun()
+---@field getAnchor fun(): Anchor
+---@field getCoordinate fun(): Coordinate
+---@field getRotation fun(): Rotation
+---@field getScale fun(): Scale
+---@field getSize fun(): Size
+---@field getTransparency fun(): Transparency
 ---@field hide fun()
+---@field setAnchor fun(anchor: Anchor)
+---@field setCoordinate fun(coordinate: Coordinate)
+---@field setRotation fun(rotation: Rotation)
+---@field setScale fun(scale: Scale)
+---@field setSize fun(size: Size)
+---@field setTransparency fun(transparency: Transparency)
+---@field show fun()
 
 ---@alias ImageClass fun(path: ImagePath, size: Size, coordinate: Coordinate, event: Event?): Image
 ---@alias ImageIdentificator string
@@ -18,8 +34,20 @@ local display = require "display"
 ---@class ImageMethods
 ---@field create fun(self: ImageSelf, group: Group, event: Event?)
 ---@field destroy fun(self: ImageSelf)
----@field show fun(self: ImageSelf)
+---@field getAnchor fun(self: ImageSelf): Anchor
+---@field getCoordinate fun(self: ImageSelf): Coordinate
+---@field getRotation fun(self: ImageSelf): Rotation
+---@field getScale fun(self: ImageSelf): Scale
+---@field getSize fun(self: ImageSelf): Size
+---@field getTransparency fun(self: ImageSelf): Transparency
 ---@field hide fun(self: ImageSelf)
+---@field setAnchor fun(self: ImageSelf, anchor: Anchor)
+---@field setCoordinate fun(self: ImageSelf, coordinate: Coordinate)
+---@field setRotation fun(self: ImageSelf, rotation: Rotation)
+---@field setScale fun(self: ImageSelf, scale: Scale)
+---@field setSize fun(self: ImageSelf, size: Size)
+---@field setTransparency fun(self: ImageSelf, transparency: Transparency)
+---@field show fun(self: ImageSelf)
 
 ---@alias ImageInitializer fun(attributes: ImageAttributes, path: ImagePath, size: Size, coordinate: Coordinate, event: Event?)
 ---@alias ImageFinalizer fun(attributes: ImageAttributes)
@@ -52,18 +80,67 @@ local Image = Metaclass {
         end,
 
         destroy = function(self)
-            if self.image ~= nil and self.sceneGroup ~= nil then
-                self.sceneGroup.remove(self.sceneGroup, self.image)
-                self.image.removeSelf(self.image)
-            end
+            self.sceneGroup.remove(self.sceneGroup, self.image)
+            self.image.removeSelf(self.image)
         end,
 
-        show = function(self)
-            self.image.isVisible = true
+        getAnchor = function(self)
+            return Anchor(self.image.anchorX, self.image.anchorY)
+        end,
+
+        getCoordinate = function(self)
+            return Coordinate(self.image.x, self.image.y)
+        end,
+
+        getRotation = function(self)
+            return self.image.rotation
+        end,
+
+        getScale = function(self)
+            return Scale(self.image.xScale, self.image.yScale)
+        end,
+
+        getSize = function(self)
+            return Size(self.image.width, self.image.height)
+        end,
+
+        getTransparency = function(self)
+            return self.image.alpha
         end,
 
         hide = function(self)
             self.image.isVisible = false
+        end,
+
+        setAnchor = function(self, anchor)
+            self.image.anchorX = anchor.x
+            self.image.anchorY = anchor.y
+        end,
+
+        setCoordinate = function(self, coordinate)
+            self.image.translate(self.image, coordinate.x, coordinate.y)
+        end,
+
+        setRotation = function(self, rotation)
+            self.image.rotate(self.image, rotation)
+        end,
+
+        setScale = function(self, scale)
+            self.image.xScale = scale.x
+            self.image.yScale = scale.y
+        end,
+
+        setSize = function(self, size)
+            self.image.width = size.width
+            self.image.height = size.height
+        end,
+
+        setTransparency = function(self, transparency)
+            self.image.alpha = transparency
+        end,
+
+        show = function(self)
+            self.image.isVisible = true
         end,
     },
 
