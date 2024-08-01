@@ -72,7 +72,7 @@ local Snowflake = Metaclass {
         end,
 
         hide = function(self)
-            if self.image ~= nil then
+            if self.image ~= nil and self.image.hide ~= nil then
                 self.image.hide(self.image)
             end
         end,
@@ -86,7 +86,7 @@ local Snowflake = Metaclass {
         end,
 
         show = function(self)
-            if self.image ~= nil then
+            if self.image ~= nil and self.image.show ~= nil then
                 self.image.show(self.image)
             end
         end,
