@@ -17,7 +17,7 @@ local Task = require "Libraries.Engine.Core.task"
 ---@class BlizzardAttributes
 ---@field sceneGroup table | nil
 ---@field scoreCounter ScoreCounter | nil
----@field snowflakes unknown[] | nil
+---@field snowflakes Snowflake[] | nil
 
 ---@class BlizzardSelf: BlizzardAttributes, BlizzardMethods
 
@@ -69,8 +69,9 @@ local Blizzard = Metaclass {
                     for i = #self.snowflakes, 1, -1 do
                         local snowflake = self.snowflakes[i]
 
-                        if snowflake.isUnavable() then
+                        if snowflake.isUnavailable() then
                             snowflake.destroy()
+                            table.remove(snowflake, i)
                         else
                             snowflake.update()
                         end

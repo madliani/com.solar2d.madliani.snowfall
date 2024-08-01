@@ -1,93 +1,121 @@
 local display = require "display"
 
----@param path string
----@param scoreCounter ScoreCounter
-local Snowflake = function(path, scoreCounter)
-    ---@type table | nil
-    local imageRect = nil
+---@class Snowflake: Image
+---@field isUnavailable fun(): boolean
+---@field update fun()
 
-    ---@type table | nil
-    local sceneGroup = nil
+---@alias SnowflakeClass fun(path: string, scoreCounter: ScoreCounter): Snowflake
+---@alias SnowflakeIdentificator string
 
-    local function destroy()
-        if imageRect ~= nil and sceneGroup ~= nil then
-            sceneGroup.remove(sceneGroup, imageRect)
-            imageRect.removeSelf(imageRect)
+---@class SnowflakeAttributes
+---@field image table<any, any> | nil
+---@field sceneGroup table<any, any> | nil
+---@field scoreCounter ScoreCounter | nil
 
-            imageRect = nil
-            sceneGroup = nil
-        end
-    end
+---@class SnowflakeSelf: SnowflakeAttributes, SnowflakeMethods
 
-    ---@param group table
-    local function create(group)
-        sceneGroup = group
+---@class SnowflakeMethods
+---@field create fun(self: SnowflakeSelf, group: table)
+---@field destroy fun(self: SnowflakeSelf)
+---@field hide fun(self: SnowflakeSelf)
+---@field isUnavailable fun(self: SnowflakeSelf): boolean
+---@field show fun(self: SnowflakeSelf)
+---@field update fun(self: SnowflakeSelf)
 
-        if imageRect == nil and sceneGroup ~= nil and display ~= nil then
-            local scale = math.random(5, 15)
-            local width = display.pixelWidth / display.contentWidth * scale
-            local height = display.pixelWidth / display.contentWidth * scale
+---@alias SnowflakeInitializer fun(attributes: SnowflakeAttributes, path: string, scoreCounter: ScoreCounter)
+---@alias SnowflakeFinalizer fun(attributes: SnowflakeAttributes)
 
-            local function onTap()
-                destroy()
-                scoreCounter.inc()
+---@class SnowflakePrototype
+---@field id SnowflakeIdentificator
+---@field attributes SnowflakeAttributes
+---@field methods SnowflakeMethods
+---@field initializer SnowflakeInitializer?
+---@field finalizer SnowflakeFinalizer?
+
+---@alias SnowflakeMetaclass fun(prototype: SnowflakePrototype): SnowflakeClass
+
+---@type SnowflakeMetaclass
+local Metaclass = require "Libraries.Prelude.metaclass"
+
+local Snowflake = Metaclass {
+    id = "snowflake",
+
+    attributes = {
+        image = nil,
+        sceneGroup = nil,
+        scoreCounter = nil,
+    },
+
+    methods = {
+        create = function(self, group)
+            if self.image ~= nil and self.sceneGroup == nil then
+                self.sceneGroup = group
+
+                local onTap = function()
+                    self.destroy(self)
+                    self.scoreCounter.inc()
+                end
+
+                self.image.x = math.random(display.contentWidth)
+                self.image.y = -self.image.contentHeight
+
+                self.image.addEventListener(self.image, "tap", onTap)
+                self.sceneGroup.insert(self.sceneGroup, self.image)
             end
+        end,
 
-            imageRect = display.newImageRect(path, width, height)
-
-            imageRect.x = math.random(display.contentWidth)
-            imageRect.y = -imageRect.contentHeight
-
-            sceneGroup.insert(sceneGroup, imageRect)
-            imageRect.addEventListener(imageRect, "tap", onTap)
-        end
-    end
-
-    local function show()
-        if imageRect ~= nil then
-            imageRect.isVisible = true
-        end
-    end
-
-    local function hide()
-        if imageRect ~= nil then
-            imageRect.isVisible = false
-        end
-    end
-
-    local function update()
-        local function incCoordinateY()
-            if imageRect ~= nil then
-                imageRect.y = imageRect.y + 1
+        destroy = function(self)
+            if self.image ~= nil and self.sceneGroup ~= nil then
+                self.sceneGroup.remove(self.sceneGroup, self.image)
+                self.image.removeSelf(self.image)
             end
-        end
+        end,
 
-        incCoordinateY()
-    end
+        hide = function(self)
+            if self.image ~= nil then
+                self.image.hide(self.image)
+            end
+        end,
 
-    local function isUnavable()
-        if imageRect ~= nil and display ~= nil then
-            return imageRect.y >= display.contentHeight
-        end
+        isUnavailable = function(self)
+            if self.image ~= nil and self.image.y ~= nil then
+                return self.image.y >= display.contentHeight
+            else
+                return false
+            end
+        end,
 
-        return false
-    end
+        show = function(self)
+            if self.image ~= nil then
+                self.image.show(self.image)
+            end
+        end,
 
-    ---@class Snowflake
-    ---@field create function
-    ---@field destroy function
-    ---@field hide function
-    ---@field isUnavable function
-    ---@field show function
-    ---@field update function
-    return {
-        create = create,
-        destroy = destroy,
-        hide = hide,
-        isUnavable = isUnavable,
-        show = show,
-        update = update,
-    }
-end
+        update = function(self)
+            if self.image ~= nil and self.image.y ~= nil then
+                local incYCoordinate = function()
+                    self.image.y = self.image.y + 1
+                end
+
+                incYCoordinate()
+            end
+        end,
+    },
+
+    initializer = function(attributes, path, scoreCounter)
+        local scale = math.random(5, 15)
+        local width = display.pixelWidth / display.contentWidth * scale
+        local height = display.pixelWidth / display.contentWidth * scale
+
+        attributes.image = display.newImageRect(path, width, height)
+        attributes.scoreCounter = scoreCounter
+    end,
+
+    finalizer = function(attributes)
+        attributes.image = nil
+        attributes.sceneGroup = nil
+        attributes.scoreCounter = nil
+    end,
+}
 
 return Snowflake
