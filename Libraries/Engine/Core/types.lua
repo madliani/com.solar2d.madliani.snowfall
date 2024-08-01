@@ -2,7 +2,7 @@
 
 ---@alias GroupItem any
 ---@alias GroupItemIdentificator string
----@alias GroupItemIndex number
+---@alias GroupItemIndex integer
 ---@alias GroupItemIndexes table<GroupItemIdentificator, GroupItemIndex>
 
 ---@class Playable

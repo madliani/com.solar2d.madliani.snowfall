@@ -1,9 +1,9 @@
 ---@param action function
----@param time number
+---@param time integer
 local Task = function(action, time)
     ---@class Task
     ---@field action function
-    ---@field time number
+    ---@field time integer
     return {
         action = action,
         time = time,
