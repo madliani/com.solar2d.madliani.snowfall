@@ -34,7 +34,7 @@ local SceneManager = Singleton {
 
     methods = {
         gotoScene = function(_, scene)
-            composer.gotoScene(scene, { effect = "fade", time = 150 })
+            composer.gotoScene(scene, { effect = "slideRight", time = 150 })
         end,
 
         removeScene = function(_, scene)
