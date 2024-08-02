@@ -5,7 +5,7 @@ local Resources = require "resources"
 local Size = require "Libraries.Engine.Core.size"
 local Snowfall = require "Sources.snowfall"
 local display = require "display"
-local paths = require "paths"
+local paths = require "Sources.paths"
 
 ---@class Pause: Image
 

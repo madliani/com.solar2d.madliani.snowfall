@@ -4,7 +4,7 @@ local Menu = require "Sources.Nodes.menu"
 local Resources = require "resources"
 local Scene = require "Libraries.Engine.Core.scene"
 local Snowfall = require "Sources.snowfall"
-local paths = require "paths"
+local paths = require "Sources.paths"
 
 local background = Background(Resources.Images.background)
 local heading = Heading "Snowfall"
