@@ -15,10 +15,12 @@
 ---@alias PrototypeSelf table<PrototypeFieldId, any>
 ---@alias PrototypeInitializer fun(attributes: PrototypeAttributes, ...: Arguments?)
 ---@alias PrototypeFinalizer fun(attributes: PrototypeAttributes, methods: PrototypeMethods?)
+---@alias PrototypeWrapper fun(...: Arguments?): Object
 
 ---@class Prototype
 ---@field id PrototypeId
----@field attributes PrototypeAttributes
----@field methods PrototypeMethods
+---@field attributes PrototypeAttributes?
+---@field methods PrototypeMethods?
 ---@field initializer PrototypeInitializer?
 ---@field finalizer PrototypeFinalizer?
+---@field wrapper PrototypeWrapper?

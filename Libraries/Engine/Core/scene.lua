@@ -1,38 +1,52 @@
 local Pool = require "Libraries.Engine.Core.pool"
 local composer = require "composer"
 
----@param objects unknown[]
-local Scene = function(objects)
-    local pool = Pool(objects)
+---@class Scene
 
-    ---@type table
-    local scene = composer.newScene()
+---@alias SceneObjects any[]
+---@alias SceneClass fun(): SceneManager
+---@alias SceneIdentificator string
 
-    function scene.destroy()
-        pool.destroy()
-    end
+---@class ScenePrototype
+---@field id SceneIdentificator
+---@field wrapper fun(objects: SceneObjects): Scene
 
-    function scene.create(self)
-        local sceneGroup = self.view
+---@alias SceneAdapter fun(prototype: ScenePrototype): SceneClass
 
-        pool.create(sceneGroup)
-    end
+local Adapter = require "Libraries.Prelude.adapter"
 
-    function scene.show()
-        pool.show()
-    end
+local Scene = Adapter {
+    id = "scene",
 
-    function scene.hide()
-        pool.hide()
-    end
+    wrapper = function(objects)
+        local pool = Pool(objects)
+        local scene = composer.newScene()
 
-    scene.addEventListener(scene, "destroy")
-    scene.addEventListener(scene, "create")
-    scene.addEventListener(scene, "show")
-    scene.addEventListener(scene, "hide")
+        function scene.destroy()
+            pool.destroy()
+        end
 
-    ---@class Scene
-    return scene
-end
+        function scene.create(self)
+            local sceneGroup = self.view
+
+            pool.create(sceneGroup)
+        end
+
+        function scene.show()
+            pool.show()
+        end
+
+        function scene.hide()
+            pool.hide()
+        end
+
+        scene.addEventListener(scene, "destroy")
+        scene.addEventListener(scene, "create")
+        scene.addEventListener(scene, "show")
+        scene.addEventListener(scene, "hide")
+
+        return scene
+    end,
+}
 
 return Scene
