@@ -4,12 +4,12 @@ local composer = require "composer"
 ---@class Scene
 
 ---@alias SceneObjects any[]
----@alias SceneClass fun(): Scene
+---@alias SceneClass fun(objects: SceneObjects): Scene
 ---@alias SceneIdentificator string
 
 ---@class ScenePrototype
 ---@field id SceneIdentificator
----@field wrapper fun(objects: SceneObjects): Scene
+---@field wrapper fun(objects: SceneObjects): SceneClass
 
 ---@alias SceneAdapter fun(prototype: ScenePrototype): SceneClass
 
