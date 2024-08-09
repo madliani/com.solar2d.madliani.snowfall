@@ -1,6 +1,6 @@
 local Object = require "Libraries.Prelude.object"
 
----@param prototype Prototype
+---@param prototype SingletonPrototype
 local Singleton = function(prototype)
     ---@type Object | nil
     local object = nil

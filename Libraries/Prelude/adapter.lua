@@ -1,4 +1,4 @@
----@param prototype Prototype
+---@param prototype AdapterPrototype
 local Adapter = function(prototype)
     return function(...)
         return prototype.wrapper(...)

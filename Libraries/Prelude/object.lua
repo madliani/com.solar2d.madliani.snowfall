@@ -3,7 +3,7 @@ local _ = require "Libraries.Prelude.enumerable"
 ---@alias ObjectFieldId FieldId
 ---@alias Object table<ObjectFieldId, Function>
 
----@param prototype Prototype
+---@param prototype MetaclassPrototype | SingletonPrototype
 local Object = function(prototype)
     local self = _.merge(prototype.attributes, prototype.methods)
 

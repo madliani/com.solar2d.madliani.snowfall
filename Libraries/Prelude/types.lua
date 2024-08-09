@@ -17,10 +17,20 @@
 ---@alias PrototypeFinalizer fun(attributes: PrototypeAttributes, methods: PrototypeMethods?)
 ---@alias PrototypeWrapper fun(...: Arguments?): Object
 
----@class Prototype
+---@class MetaclassPrototype
 ---@field id PrototypeId
----@field attributes PrototypeAttributes?
----@field methods PrototypeMethods?
----@field initializer PrototypeInitializer?
+---@field attributes PrototypeAttributes
+---@field methods PrototypeMethods
+---@field initializer PrototypeInitializer
 ---@field finalizer PrototypeFinalizer?
----@field wrapper PrototypeWrapper?
+
+---@class SingletonPrototype
+---@field id PrototypeId
+---@field attributes PrototypeAttributes
+---@field methods PrototypeMethods
+---@field initializer PrototypeInitializer
+---@field finalizer PrototypeFinalizer
+
+---@class AdapterPrototype
+---@field id PrototypeId
+---@field wrapper PrototypeWrapper
