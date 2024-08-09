@@ -4,7 +4,7 @@ local composer = require "composer"
 ---@class Scene
 
 ---@alias SceneObjects any[]
----@alias SceneClass fun(): SceneManager
+---@alias SceneClass fun(): Scene
 ---@alias SceneIdentificator string
 
 ---@class ScenePrototype
@@ -13,6 +13,7 @@ local composer = require "composer"
 
 ---@alias SceneAdapter fun(prototype: ScenePrototype): SceneClass
 
+---@type SceneAdapter
 local Adapter = require "Libraries.Prelude.adapter"
 
 local Scene = Adapter {
