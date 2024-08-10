@@ -4,7 +4,6 @@
 ---@alias FieldId Identificator
 ---@alias ObjectFieldId FieldId
 ---@alias Arguments any[]
----@alias Function fun(...: Arguments?): any
 ---@alias Object table<ObjectFieldId, any>
 ---@alias Class fun(...: Arguments?): Object
 
