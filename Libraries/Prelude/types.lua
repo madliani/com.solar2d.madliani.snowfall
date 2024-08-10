@@ -18,6 +18,7 @@
 ---@alias PrototypeInitializer fun(attributes: PrototypeAttributes, ...: Arguments?)
 ---@alias PrototypeFinalizer fun(attributes: PrototypeAttributes, methods: PrototypeMethods?)
 ---@alias PrototypeWrapper fun(...: Arguments?): Object
+---@alias PrototypeMaker fun(object: Object): Object
 
 ---@class MetaclassPrototype
 ---@field id PrototypeId
@@ -36,3 +37,7 @@
 ---@class AdapterPrototype
 ---@field id PrototypeId
 ---@field wrapper PrototypeWrapper
+
+---@class ContainerPrototype
+---@field id PrototypeId
+---@field maker PrototypeMaker

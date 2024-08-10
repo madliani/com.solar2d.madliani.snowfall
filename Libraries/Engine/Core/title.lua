@@ -1,13 +1,10 @@
----@param text string
----@param font Font
----@param color Color
----@param size integer
+---@class Title
+---@field text string
+---@field font Font
+---@field color Color
+---@field size integer
+
 local Title = function(text, font, color, size)
-    ---@class Title
-    ---@field text string
-    ---@field font Font
-    ---@field color Color
-    ---@field size integer
     return {
         text = text,
         font = font,
