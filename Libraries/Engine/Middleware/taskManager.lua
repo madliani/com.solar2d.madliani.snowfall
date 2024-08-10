@@ -1,8 +1,6 @@
 local _ = require "Libraries.Prelude.enumerable"
 local timer = require "timer"
 
----@alias TaskIdentificator string
-
 ---@class TaskManager
 ---@field add fun(task: Task, id: TaskIdentificator)
 ---@field addInfinite fun(task: Task, id: TaskIdentificator)
