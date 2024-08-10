@@ -29,7 +29,7 @@
 ---@field attributes PrototypeAttributes
 ---@field methods PrototypeMethods
 ---@field initializer PrototypeInitializer
----@field finalizer PrototypeFinalizer
+---@field finalizer PrototypeFinalizer?
 
 ---@class AdapterPrototype
 ---@field id PrototypeId
