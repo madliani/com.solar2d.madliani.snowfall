@@ -2,8 +2,6 @@ local EventManager = require "Libraries.Engine.Middleware.eventManager"
 local TaskManager = require "Libraries.Engine.Middleware.taskManager"
 local _ = require "Libraries.Prelude.enumerable"
 
----@alias LoopIdentificator string
-
 ---@class LoopManager
 ---@field add fun(loop: Loop, id: LoopIdentificator)
 ---@field pause fun(id: LoopIdentificator)
