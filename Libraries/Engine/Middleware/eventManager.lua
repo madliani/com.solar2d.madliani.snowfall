@@ -1,7 +1,5 @@
 local _ = require "Libraries.Prelude.enumerable"
 
----@alias EventIdentificator string
-
 ---@class EventManager
 ---@field add fun(event: Event, id: EventIdentificator)
 ---@field pause fun(id: EventIdentificator)
