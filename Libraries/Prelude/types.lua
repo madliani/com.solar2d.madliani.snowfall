@@ -1,10 +1,12 @@
 ---@meta
 
----@alias Arguments any[]
----@alias Function fun(...: Arguments?): any
----@alias Class fun(...: Arguments?): Object
 ---@alias Identificator string
 ---@alias FieldId Identificator
+---@alias ObjectFieldId FieldId
+---@alias Arguments any[]
+---@alias Function fun(...: Arguments?): any
+---@alias Object table<ObjectFieldId, any>
+---@alias Class fun(...: Arguments?): Object
 
 ---@alias PrototypeId Identificator
 ---@alias PrototypeFieldId FieldId
