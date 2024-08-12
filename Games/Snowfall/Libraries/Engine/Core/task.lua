@@ -2,12 +2,12 @@
 ---@field action fun()
 ---@field time integer
 
----@alias TaskClass fun(action: fun(), time: integer): Task
+---@alias TaskClass fun(task: Task): Task
 ---@alias TaskIdentificator string
 
 ---@class TaskPrototype
 ---@field id TaskIdentificator
----@field maker fun(action: fun(), time: integer): Task
+---@field maker fun(task: Task): Task
 
 ---@alias TaskContainer fun(prototype: TaskPrototype): TaskClass
 
@@ -17,11 +17,8 @@ local Container = require "Libraries.Prelude.container"
 local Task = Container {
     id = "task",
 
-    maker = function(action, time)
-        return {
-            action = action,
-            time = time,
-        }
+    maker = function(task)
+        return task
     end,
 }
 

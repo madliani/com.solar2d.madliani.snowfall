@@ -79,7 +79,10 @@ local Blizzard = Metaclass {
                 end
             end
 
-            local task = Task(generate, 500)
+            local task = Task {
+                action = generate,
+                time = 500
+            }
 
             local event = Event {
                 action = update,
