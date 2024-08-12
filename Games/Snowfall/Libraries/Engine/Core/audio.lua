@@ -53,7 +53,7 @@ local audio = require "audio"
 local Singleton = require "Libraries.Prelude.singleton"
 
 local Audio = Singleton {
-    id = "music",
+    id = "audio",
 
     attributes = {
         audio = nil,
