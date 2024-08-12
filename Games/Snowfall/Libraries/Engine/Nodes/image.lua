@@ -103,7 +103,10 @@ local Image = Metaclass {
         end,
 
         getScale = function(self)
-            return Scale(self.image.xScale, self.image.yScale)
+            return Scale {
+                x = self.image.xScale,
+                y = self.image.yScale
+            }
         end,
 
         getSize = function(self)

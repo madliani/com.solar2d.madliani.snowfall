@@ -2,12 +2,12 @@
 ---@field x integer
 ---@field y integer
 
----@alias ScaleClass fun(x: integer, y: integer): Scale
+---@alias ScaleClass fun(scale: Scale): Scale
 ---@alias ScaleIdentificator string
 
 ---@class ScalePrototype
 ---@field id ScaleIdentificator
----@field maker fun(x: integer, y: integer): Scale
+---@field maker fun(scale: Scale): Scale
 
 ---@alias ScaleContainer fun(prototype: ScalePrototype): ScaleClass
 
@@ -17,11 +17,8 @@ local Container = require "Libraries.Prelude.container"
 local Scale = Container {
     id = "scale",
 
-    maker = function(x, y)
-        return {
-            x = x,
-            y = y,
-        }
+    maker = function(scale)
+        return scale
     end,
 }
 
