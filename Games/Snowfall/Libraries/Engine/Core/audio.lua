@@ -1,6 +1,6 @@
 local audio = require "audio"
 
----@alias AudioPath string
+---@alias MusicPath string
 
 ---@class Audio
 ---@field mute fun()
@@ -10,7 +10,7 @@ local audio = require "audio"
 ---@field stop fun()
 ---@field unmute fun()
 
----@alias AudioClass fun(path: AudioPath): Audio
+---@alias AudioClass fun(path: MusicPath): Audio
 ---@alias AudioIdentificator string
 
 ---@class AudioAttributes
@@ -37,7 +37,7 @@ local audio = require "audio"
 ---@field stop fun(self: AudioSelf)
 ---@field unmute fun(self: AudioSelf)
 
----@alias AudioInitializer fun(initial: AudioPath, attributes: AudioAttributes)
+---@alias AudioInitializer fun(path: MusicPath, attributes: AudioAttributes)
 ---@alias AudioFinalizer fun(attributes: AudioAttributes)
 
 ---@class AudioPrototype
