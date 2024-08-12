@@ -1,8 +1,8 @@
 local audio = require "audio"
 
----@alias MusicPath string
+---@alias AudioPath string
 
----@class Music
+---@class Audio
 ---@field mute fun()
 ---@field pause fun()
 ---@field play fun()
@@ -10,46 +10,46 @@ local audio = require "audio"
 ---@field stop fun()
 ---@field unmute fun()
 
----@alias MusicClass fun(path: MusicPath): Music
----@alias MusicIdentificator string
+---@alias AudioClass fun(path: AudioPath): Audio
+---@alias AudioIdentificator string
 
----@class MusicAttributes
+---@class AudioAttributes
 ---@field audio table | nil
 ---@field music table | nil
 ---@field volume integer | nil
 
----@class MusicSelf
+---@class AudioSelf
 ---@field audio table
 ---@field music table
 ---@field volume integer
----@field mute fun(self: MusicSelf)
----@field pause fun(self: MusicSelf)
----@field play fun(self: MusicSelf)
----@field resume fun(self: MusicSelf)
----@field stop fun(self: MusicSelf)
----@field unmute fun(self: MusicSelf)
+---@field mute fun(self: AudioSelf)
+---@field pause fun(self: AudioSelf)
+---@field play fun(self: AudioSelf)
+---@field resume fun(self: AudioSelf)
+---@field stop fun(self: AudioSelf)
+---@field unmute fun(self: AudioSelf)
 
----@class MusicMethods
----@field mute fun(self: MusicSelf)
----@field pause fun(self: MusicSelf)
----@field play fun(self: MusicSelf)
----@field resume fun(self: MusicSelf)
----@field stop fun(self: MusicSelf)
----@field unmute fun(self: MusicSelf)
+---@class AudioMethods
+---@field mute fun(self: AudioSelf)
+---@field pause fun(self: AudioSelf)
+---@field play fun(self: AudioSelf)
+---@field resume fun(self: AudioSelf)
+---@field stop fun(self: AudioSelf)
+---@field unmute fun(self: AudioSelf)
 
----@alias MusicInitializer fun(initial: MusicPath, attributes: MusicAttributes)
----@alias MusicFinalizer fun(attributes: MusicAttributes)
+---@alias AudioInitializer fun(initial: AudioPath, attributes: AudioAttributes)
+---@alias AudioFinalizer fun(attributes: AudioAttributes)
 
----@class MusicPrototype
----@field id MusicIdentificator
----@field attributes MusicAttributes
----@field initializer MusicInitializer
----@field finalizer MusicFinalizer
----@field methods MusicMethods
+---@class AudioPrototype
+---@field id AudioIdentificator
+---@field attributes AudioAttributes
+---@field initializer AudioInitializer
+---@field finalizer AudioFinalizer
+---@field methods AudioMethods
 
----@alias MusicSingleton fun(prototype: MusicPrototype): MusicClass
+---@alias AudioSingleton fun(prototype: AudioPrototype): AudioClass
 
----@type MusicSingleton
+---@type AudioSingleton
 local Singleton = require "Libraries.Prelude.singleton"
 
 local Audio = Singleton {
