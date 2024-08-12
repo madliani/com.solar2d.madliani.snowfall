@@ -2,13 +2,13 @@ local native = require "native"
 
 ---@class Font
 
----@alias FontName string
----@alias FontClass fun(fontName: FontName): Font
+---@alias FontPath string
+---@alias FontClass fun(path: FontPath): Font
 ---@alias FontIdentificator string
 
 ---@class FontPrototype
 ---@field id FontIdentificator
----@field wrapper fun(fontName: FontName): FontClass
+---@field wrapper fun(path: FontPath): FontClass
 
 ---@alias FontAdapter fun(prototype: FontPrototype): FontClass
 
@@ -18,11 +18,11 @@ local Adapter = require "Libraries.Prelude.adapter"
 local Font = Adapter {
     id = "font",
 
-    wrapper = function(fontName)
-        if fontName == "system" then
+    wrapper = function(path)
+        if path == "system" then
             return native.systemFont
         else
-            return native.newFont(fontName)
+            return native.newFont(path)
         end
     end,
 }
