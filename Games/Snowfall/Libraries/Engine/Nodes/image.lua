@@ -85,7 +85,10 @@ local Image = Metaclass {
         end,
 
         getAnchor = function(self)
-            return Anchor(self.image.anchorX, self.image.anchorY)
+            return Anchor {
+                x = self.image.anchorX,
+                y = self.image.anchorY
+            }
         end,
 
         getCoordinate = function(self)

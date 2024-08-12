@@ -2,12 +2,12 @@
 ---@field x integer
 ---@field y integer
 
----@alias AnchorClass fun(x: integer, y: integer): Anchor
+---@alias AnchorClass fun(anchor: Anchor): Anchor
 ---@alias AnchorIdentificator string
 
 ---@class AnchorPrototype
 ---@field id AnchorIdentificator
----@field maker fun(x: integer, y: integer): Anchor
+---@field maker fun(anchor: Anchor): Anchor
 
 ---@alias AnchorContainer fun(prototype: AnchorPrototype): AnchorClass
 
@@ -17,11 +17,8 @@ local Contianer = require "Libraries.Prelude.container"
 local Anchor = Contianer {
     id = "anchor",
 
-    maker = function(x, y)
-        return {
-            x = x,
-            y = y,
-        }
+    maker = function(anchor)
+        return anchor
     end,
 }
 
