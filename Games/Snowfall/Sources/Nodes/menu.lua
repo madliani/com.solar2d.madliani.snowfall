@@ -80,7 +80,12 @@ local Menu = Metaclass {
 
             local size = Size(190, 45)
             local title = Title(items[i].text, font, color, 24)
-            local coordinate = Coordinate(display.contentCenterX, 150 + gap * step)
+
+            local coordinate = Coordinate {
+                x = display.contentCenterX,
+                y = 150 + gap * step
+            }
+
             local button = Button(Resources.Images.yellowButton, title, size, coordinate, items[i].event)
 
             table.insert(buttonGroup, button)

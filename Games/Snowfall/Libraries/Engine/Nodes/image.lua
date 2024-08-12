@@ -92,7 +92,10 @@ local Image = Metaclass {
         end,
 
         getCoordinate = function(self)
-            return Coordinate(self.image.x, self.image.y)
+            return Coordinate {
+                x = self.image.x,
+                y = self.image.y
+            }
         end,
 
         getRotation = function(self)

@@ -94,7 +94,11 @@ local Score = Metaclass {
 
         local font = Font(Resources.Fonts.main)
         local title = Title(tostring(initialCount), font, color, 48)
-        local coordinate = Coordinate(display.contentCenterX, 0)
+
+        local coordinate = Coordinate {
+            x = display.contentCenterX,
+            y = 0
+        }
 
         attributes.label = Label(title, coordinate)
         attributes.score = initialCount

@@ -73,7 +73,10 @@ local Background = Metaclass {
         attributes.image = Image(
             path,
             Size(display.pixelWidth, display.pixelHeight),
-            Coordinate(display.contentCenterX, display.contentCenterY)
+            Coordinate {
+                x = display.contentCenterX,
+                y = display.contentCenterY
+            }
         )
     end,
 }

@@ -64,7 +64,10 @@ local Pause = Metaclass {
     },
 
     initializer = function(attributes)
-        local coordinate = Coordinate(50, display.contentHeight + 25)
+        local coordinate = Coordinate {
+            x = 50, y = display.contentHeight + 25
+        }
+
         local size = Size(25, 25)
         local path = Resources.Images.transparrentPause
 

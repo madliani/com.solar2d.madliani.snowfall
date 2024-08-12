@@ -76,7 +76,11 @@ local Heading = Metaclass {
             blue = 1
         }
 
-        local coordinate = Coordinate(display.contentCenterX, display.contentCenterY - 200)
+        local coordinate = Coordinate {
+            x = display.contentCenterX,
+            y = display.contentCenterY - 200
+        }
+
         local size = 48
         local title = Title(text, architectsDaughterFont, blackColor, size)
 
