@@ -52,7 +52,7 @@ local audio = require "audio"
 ---@type MusicSingleton
 local Singleton = require "Libraries.Prelude.singleton"
 
-local Music = Singleton {
+local Audio = Singleton {
     id = "music",
 
     attributes = {
@@ -102,4 +102,4 @@ local Music = Singleton {
     end,
 }
 
-return Music
+return Audio

@@ -1,5 +1,5 @@
 local LoopManager = require "Libraries.Engine.Middleware.loopManager"
-local Music = require "Libraries.Engine.Core.music"
+local Audio = require "Games.Snowfall.Libraries.Engine.Core.audio"
 local SceneManager = require "Libraries.Engine.Middleware.sceneManager"
 local _ = require "Libraries.Prelude.enumerable"
 local os = require "os"
@@ -107,7 +107,7 @@ local Game = Singleton {
         if attributes.loopManager == nil and attributes.sceneManager == nil and attributes.music == nil then
             attributes.loopManager = LoopManager()
             attributes.sceneManager = SceneManager()
-            attributes.music = Music(initial.musicPath)
+            attributes.music = Audio(initial.musicPath)
         end
     end,
 
