@@ -20,7 +20,7 @@ local os = require "os"
 
 ---@class GameAttributes
 ---@field loopManager LoopManager | nil
----@field music Music | nil
+---@field audio Audio | nil
 ---@field sceneManager SceneManager | nil
 
 ---@class GameSelf: GameAttributes, GameMethods
@@ -54,7 +54,7 @@ local Game = Singleton {
     attributes = {
         loopManager = nil,
         sceneManager = nil,
-        music = nil,
+        audio = nil,
     },
 
     methods = {
@@ -64,58 +64,58 @@ local Game = Singleton {
 
         pause = function(self, destination)
             self.loopManager.pauseAll()
-            self.music.pause()
+            self.audio.pause()
 
             self.sceneManager.gotoScene(destination)
         end,
 
         restart = function(self, source, destionation)
             self.loopManager.removeAll()
-            self.music.stop()
+            self.audio.stop()
 
             self.sceneManager.removeScene(destionation)
             self.sceneManager.removeScene(source)
             self.sceneManager.gotoScene(destionation)
 
-            self.music.play()
+            self.audio.play()
         end,
 
         resume = function(self, source, destionation)
             self.sceneManager.removeScene(source)
             self.sceneManager.gotoScene(destionation)
 
-            self.music.resume()
+            self.audio.resume()
             self.loopManager.resumeAll()
         end,
 
         run = function(self, destionation)
             self.sceneManager.gotoScene(destionation)
-            self.music.play()
+            self.audio.play()
         end,
 
         start = function(self, source, destionation)
-            self.music.stop()
+            self.audio.stop()
 
             self.sceneManager.removeScene(source)
             self.sceneManager.gotoScene(destionation)
 
-            self.music.play()
+            self.audio.play()
         end,
     },
 
     initializer = function(initial, attributes)
-        if attributes.loopManager == nil and attributes.sceneManager == nil and attributes.music == nil then
+        if attributes.loopManager == nil and attributes.sceneManager == nil and attributes.audio == nil then
             attributes.loopManager = LoopManager()
             attributes.sceneManager = SceneManager()
-            attributes.music = Audio(initial.musicPath)
+            attributes.audio = Audio(initial.musicPath)
         end
     end,
 
     finalizer = function(attributes)
-        if attributes.loopManager ~= nil and attributes.sceneManager ~= nil and attributes.music ~= nil then
+        if attributes.loopManager ~= nil and attributes.sceneManager ~= nil and attributes.audio ~= nil then
             attributes.loopManager = nil
             attributes.sceneManager = nil
-            attributes.music = nil
+            attributes.audio = nil
         end
     end,
 }
