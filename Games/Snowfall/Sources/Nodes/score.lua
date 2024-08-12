@@ -86,7 +86,12 @@ local Score = Metaclass {
     },
 
     initializer = function(attributes, initialCount)
-        local color = Color(0, 0, 0)
+        local color = Color {
+            red = 0,
+            green = 0,
+            blue = 0
+        }
+
         local font = Font(Resources.Fonts.main)
         local title = Title(tostring(initialCount), font, color, 48)
         local coordinate = Coordinate(display.contentCenterX, 0)

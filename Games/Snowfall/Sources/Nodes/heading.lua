@@ -69,7 +69,13 @@ local Heading = Metaclass {
 
     initializer = function(attributes, text)
         local architectsDaughterFont = Font(Resources.Fonts.main)
-        local blackColor = Color(1, 1, 1)
+
+        local blackColor = Color {
+            red = 1,
+            green = 1,
+            blue = 1
+        }
+
         local coordinate = Coordinate(display.contentCenterX, display.contentCenterY - 200)
         local size = 48
         local title = Title(text, architectsDaughterFont, blackColor, size)

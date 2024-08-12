@@ -71,7 +71,13 @@ local Menu = Metaclass {
             local step = i - 1
             local gap = 100
             local font = Font(Resources.Fonts.main)
-            local color = Color(0, 0, 0)
+
+            local color = Color {
+                red = 0,
+                green = 0,
+                blue = 0
+            }
+
             local size = Size(190, 45)
             local title = Title(items[i].text, font, color, 24)
             local coordinate = Coordinate(display.contentCenterX, 150 + gap * step)
