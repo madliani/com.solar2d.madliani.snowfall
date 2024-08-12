@@ -11,7 +11,7 @@ return {
         transparrentPause = "Assets/Images/transparent_pause.png",
         yellowButton = "Assets/Images/yellow_button.png",
     },
-    Sounds = {
-        background = "Assets/Sounds/the_field_of_dreams.mp3",
+    Musics = {
+        background = "Assets/Musics/the_field_of_dreams.mp3",
     },
 }
