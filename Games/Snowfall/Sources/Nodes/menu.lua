@@ -78,7 +78,11 @@ local Menu = Metaclass {
                 blue = 0
             }
 
-            local size = Size(190, 45)
+            local size = Size {
+                width = 190,
+                height = 45
+            }
+
             local title = Title(items[i].text, font, color, 24)
 
             local coordinate = Coordinate {

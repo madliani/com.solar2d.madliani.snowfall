@@ -72,7 +72,10 @@ local Background = Metaclass {
     initializer = function(attributes, path)
         attributes.image = Image(
             path,
-            Size(display.pixelWidth, display.pixelHeight),
+            Size {
+                width = display.pixelWidth,
+                height = display.pixelHeight
+            },
             Coordinate {
                 x = display.contentCenterX,
                 y = display.contentCenterY

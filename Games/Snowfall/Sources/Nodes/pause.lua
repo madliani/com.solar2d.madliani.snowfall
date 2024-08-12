@@ -68,7 +68,11 @@ local Pause = Metaclass {
             x = 50, y = display.contentHeight + 25
         }
 
-        local size = Size(25, 25)
+        local size = Size {
+            width = 25,
+            height = 25
+        }
+
         local path = Resources.Images.transparrentPause
 
         local event = Event {

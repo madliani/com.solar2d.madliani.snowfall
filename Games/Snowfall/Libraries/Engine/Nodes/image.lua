@@ -110,7 +110,10 @@ local Image = Metaclass {
         end,
 
         getSize = function(self)
-            return Size(self.image.width, self.image.height)
+            return Size {
+                width = self.image.width,
+                height = self.image.height
+            }
         end,
 
         getTransparency = function(self)
