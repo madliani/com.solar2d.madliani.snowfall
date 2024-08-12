@@ -2,12 +2,12 @@
 ---@field action function
 ---@field type string
 
----@alias EventClass fun(action: function, type: string): Event
+---@alias EventClass fun(event: Event): Event
 ---@alias EventIdentificator string
 
 ---@class EventPrototype
 ---@field id EventIdentificator
----@field maker fun(action: function, type: string): Event
+---@field maker fun(event: Event): Event
 
 ---@alias EventContainer fun(prototype: EventPrototype): EventClass
 
@@ -17,11 +17,8 @@ local Container = require "Libraries.Prelude.container"
 local Event = Container {
     id = "event",
 
-    maker = function(action, type)
-        return {
-            action = action,
-            type = type,
-        }
+    maker = function(event)
+        return event
     end,
 }
 

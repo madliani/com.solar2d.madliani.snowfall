@@ -71,9 +71,12 @@ local Pause = Metaclass {
         local size = Size(25, 25)
         local path = Resources.Images.transparrentPause
 
-        local event = Event(function()
-            Snowfall.pause(paths.Scenes.pauseMenu)
-        end, "tap")
+        local event = Event {
+            action = function()
+                Snowfall.pause(paths.Scenes.pauseMenu)
+            end,
+            type = "tap"
+        }
 
         attributes.image = Image(path, size, coordinate, event)
     end,
