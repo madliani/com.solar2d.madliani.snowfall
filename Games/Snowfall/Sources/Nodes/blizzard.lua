@@ -86,7 +86,11 @@ local Blizzard = Metaclass {
                 type = "enterFrame"
             }
 
-            local loop = Loop(task, event)
+            local loop = Loop {
+                task = task,
+                event = event
+            }
+
             local loopManager = LoopManager()
 
             loopManager.add(loop, "blizzard")
