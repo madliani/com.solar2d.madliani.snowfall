@@ -90,7 +90,13 @@ local Menu = Metaclass {
                 y = 150 + gap * step
             }
 
-            local button = Button(Resources.Images.yellowButton, title, size, coordinate, items[i].event)
+            local button = Button {
+                path = Resources.Images.yellowButton,
+                title = title,
+                size = size,
+                coordinate = coordinate,
+                event = items[i].event
+            }
 
             table.insert(buttonGroup, button)
         end

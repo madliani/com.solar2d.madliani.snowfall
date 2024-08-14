@@ -1,13 +1,20 @@
 local Image = require "Libraries.Engine.Nodes.image"
 local Label = require "Libraries.Engine.Nodes.label"
 
+---@class ButtonConfig
+---@field path ImagePath
+---@field title Title
+---@field size Size
+---@field coordinate Coordinate
+---@field event Event
+
 ---@class Button
 ---@field create fun(group: Group)
 ---@field destroy fun()
 ---@field show fun()
 ---@field hide fun()
 
----@alias ButtonClass fun(path: ImagePath, title: Title, size: Size, coordinate: Coordinate, event: Event): Button
+---@alias ButtonClass fun(config: ButtonConfig): Button
 ---@alias ButtonIdentificator string
 
 ---@class ButtonAttributes
@@ -23,7 +30,7 @@ local Label = require "Libraries.Engine.Nodes.label"
 ---@field show fun(self: ButtonSelf)
 ---@field hide fun(self: ButtonSelf)
 
----@alias ButtonInitializer fun(attributes: ButtonAttributes, path: ImagePath, title: Title, size: Size, coordinate: Coordinate, event: Event)
+---@alias ButtonInitializer fun(attributes: ButtonAttributes, config: ButtonConfig)
 ---@alias ButtonFinalizer fun(attributes: ButtonAttributes)
 
 ---@class ButtonPrototype
@@ -83,7 +90,13 @@ local Button = Metaclass {
         end,
     },
 
-    initializer = function(attributes, path, title, size, coordinate, event)
+    initializer = function(attributes, config)
+        local path = config.path
+        local size = config.size
+        local coordinate = config.coordinate
+        local event = config.event
+        local title = config.title
+
         attributes.image = Image(path, size, coordinate, event)
         attributes.label = Label(title, coordinate)
     end,
