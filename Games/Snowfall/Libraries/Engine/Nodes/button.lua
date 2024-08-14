@@ -101,10 +101,13 @@ local Button = Metaclass {
             path = path,
             size = size,
             coordinate = coordinate,
-            event = event
+            event = event,
         }
 
-        attributes.label = Label(title, coordinate)
+        attributes.label = Label {
+            title = title,
+            coordinate = coordinate,
+        }
     end,
 }
 

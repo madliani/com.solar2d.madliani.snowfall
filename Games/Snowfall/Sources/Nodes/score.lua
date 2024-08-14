@@ -100,7 +100,11 @@ local Score = Metaclass {
             y = 0
         }
 
-        attributes.label = Label(title, coordinate)
+        attributes.label = Label {
+            title = title,
+            coordinate = coordinate
+        }
+
         attributes.score = initialCount
     end,
 

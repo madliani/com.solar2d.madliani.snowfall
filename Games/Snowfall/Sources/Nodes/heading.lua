@@ -84,7 +84,10 @@ local Heading = Metaclass {
         local size = 48
         local title = Title(text, architectsDaughterFont, blackColor, size)
 
-        attributes.label = Label(title, coordinate)
+        attributes.label = Label {
+            title = title,
+            coordinate = coordinate
+        }
     end,
 
     finalizer = function(attributes)

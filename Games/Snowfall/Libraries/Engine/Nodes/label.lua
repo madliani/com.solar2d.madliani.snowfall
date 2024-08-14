@@ -1,5 +1,10 @@
 local display = require "display"
 
+---@class LabelConfig
+---@field title Title
+---@field coordinate Coordinate
+---@field event Event?
+
 ---@class Label
 ---@field create fun(group: Group)
 ---@field destroy fun()
@@ -7,7 +12,7 @@ local display = require "display"
 ---@field show fun()
 ---@field updateText fun(newText: string)
 
----@alias LabelClass fun(title: Title, coordinate: Coordinate, event: Event?): Label
+---@alias LabelClass fun(config: LabelConfig): Label
 ---@alias LabelIdentificator string
 
 ---@class LabelAttributes
@@ -24,7 +29,7 @@ local display = require "display"
 ---@field show fun(self: LabelSelf)
 ---@field updateText fun(self: LabelSelf, newText: string)
 
----@alias LabelInitializer fun(attributes: LabelAttributes, title: Title, coordinate: Coordinate, event: Event?)
+---@alias LabelInitializer fun(attributes: LabelAttributes, config: LabelConfig)
 ---@alias LabelFinalizer fun(attributes: LabelAttributes)
 
 ---@class LabelPrototype
@@ -72,7 +77,11 @@ local Label = Metaclass {
         end,
     },
 
-    initializer = function(attributes, title, coordinate, event)
+    initializer = function(attributes, config)
+        local title = config.title
+        local coordinate = config.coordinate
+        local event = config.event
+
         attributes.label = display.newText(title.text, coordinate.x, coordinate.y, title.font, title.size)
 
         attributes.label.setFillColor(attributes.label, title.color.red, title.color.green, title.color.blue)
