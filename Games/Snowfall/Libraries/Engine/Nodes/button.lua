@@ -97,7 +97,13 @@ local Button = Metaclass {
         local event = config.event
         local title = config.title
 
-        attributes.image = Image(path, size, coordinate, event)
+        attributes.image = Image {
+            path = path,
+            size = size,
+            coordinate = coordinate,
+            event = event
+        }
+
         attributes.label = Label(title, coordinate)
     end,
 }

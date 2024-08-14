@@ -4,6 +4,14 @@ local Scale = require "Libraries.Engine.Core.scale"
 local Size = require "Libraries.Engine.Core.size"
 local display = require "display"
 
+---@alias ImagePath Path
+
+---@class ImageConfig
+---@field path ImagePath
+---@field size Size
+---@field coordinate Coordinate
+---@field event Event?
+
 ---@class Image
 ---@field create fun(group: Group)
 ---@field destroy fun()
@@ -22,7 +30,7 @@ local display = require "display"
 ---@field setTransparency fun(transparency: Transparency)
 ---@field show fun()
 
----@alias ImageClass fun(path: ImagePath, size: Size, coordinate: Coordinate, event: Event?): Image
+---@alias ImageClass fun(config: ImageConfig): Image
 ---@alias ImageIdentificator string
 
 ---@class ImageAttributes
@@ -49,7 +57,7 @@ local display = require "display"
 ---@field setTransparency fun(self: ImageSelf, transparency: Transparency)
 ---@field show fun(self: ImageSelf)
 
----@alias ImageInitializer fun(attributes: ImageAttributes, path: ImagePath, size: Size, coordinate: Coordinate, event: Event?)
+---@alias ImageInitializer fun(attributes: ImageAttributes, config: ImageConfig)
 ---@alias ImageFinalizer fun(attributes: ImageAttributes)
 
 ---@class ImagePrototype
@@ -156,7 +164,12 @@ local Image = Metaclass {
         end,
     },
 
-    initializer = function(attributes, path, size, coordinate, event)
+    initializer = function(attributes, config)
+        local path = config.path
+        local size = config.size
+        local coordinate = config.coordinate
+        local event = config.event
+
         attributes.image = display.newImageRect(path, size.width, size.height)
 
         attributes.image.translate(attributes.image, coordinate.x, coordinate.y)

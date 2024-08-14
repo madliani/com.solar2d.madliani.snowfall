@@ -82,7 +82,12 @@ local Pause = Metaclass {
             type = "tap"
         }
 
-        attributes.image = Image(path, size, coordinate, event)
+        attributes.image = Image {
+            path = path,
+            coordinate = coordinate,
+            size = size,
+            event = event
+        }
     end,
 
     finalizer = function(attributes)

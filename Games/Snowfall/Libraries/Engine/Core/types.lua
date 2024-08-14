@@ -15,6 +15,6 @@
 ---@field insert fun(self: Group, index: GroupItemIndex, item: GroupItem)
 ---@field remove fun(self: Group, index: GroupItemIndex)
 
----@alias ImagePath string
+---@alias Path string
 ---@alias Rotation integer
 ---@alias Transparency integer
