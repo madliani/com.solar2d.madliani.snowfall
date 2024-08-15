@@ -5,7 +5,7 @@ local _ = require "Libraries.Prelude.enumerable"
 local os = require "os"
 
 ---@class GameInitial
----@field musicPath MusicPath
+---@field music MusicPath
 
 ---@class Game
 ---@field exit fun()
@@ -107,7 +107,7 @@ local Game = Singleton {
         if attributes.loopManager == nil and attributes.sceneManager == nil and attributes.audio == nil then
             attributes.loopManager = LoopManager()
             attributes.sceneManager = SceneManager()
-            attributes.audio = Audio(initial.musicPath)
+            attributes.audio = Audio(initial.music)
         end
     end,
 
