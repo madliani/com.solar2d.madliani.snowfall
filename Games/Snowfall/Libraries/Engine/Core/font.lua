@@ -8,7 +8,7 @@ local native = require "native"
 
 ---@class FontPrototype
 ---@field id FontIdentificator
----@field wrapper fun(path: FontPath): FontClass
+---@field wrapper fun(path: FontPath): Font
 
 ---@alias FontAdapter fun(prototype: FontPrototype): FontClass
 

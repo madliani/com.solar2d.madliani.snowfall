@@ -9,7 +9,7 @@ local composer = require "composer"
 
 ---@class ScenePrototype
 ---@field id SceneIdentificator
----@field wrapper fun(objects: SceneObjects): SceneClass
+---@field wrapper fun(objects: SceneObjects): Scene
 
 ---@alias SceneAdapter fun(prototype: ScenePrototype): SceneClass
 
