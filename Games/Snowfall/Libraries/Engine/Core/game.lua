@@ -66,7 +66,7 @@ local Game = Singleton {
             self.loopManager.pauseAll()
             self.audio.pause()
 
-            self.sceneManager.gotoScene(destination)
+            self.sceneManager.gotoScene(destination, "slideRight", 150)
         end,
 
         restart = function(self, source, destionation)
@@ -75,21 +75,21 @@ local Game = Singleton {
 
             self.sceneManager.removeScene(destionation)
             self.sceneManager.removeScene(source)
-            self.sceneManager.gotoScene(destionation)
+            self.sceneManager.gotoScene(destionation, "slideRight", 150)
 
             self.audio.play()
         end,
 
         resume = function(self, source, destionation)
             self.sceneManager.removeScene(source)
-            self.sceneManager.gotoScene(destionation)
+            self.sceneManager.gotoScene(destionation, "slideRight", 150)
 
             self.audio.resume()
             self.loopManager.resumeAll()
         end,
 
         run = function(self, destionation)
-            self.sceneManager.gotoScene(destionation)
+            self.sceneManager.gotoScene(destionation, "slideRight", 150)
             self.audio.play()
         end,
 
@@ -97,7 +97,7 @@ local Game = Singleton {
             self.audio.stop()
 
             self.sceneManager.removeScene(source)
-            self.sceneManager.gotoScene(destionation)
+            self.sceneManager.gotoScene(destionation, "slideRight", 150)
 
             self.audio.play()
         end,

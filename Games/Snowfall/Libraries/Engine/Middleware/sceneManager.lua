@@ -1,7 +1,9 @@
 local composer = require "composer"
 
+---@alias Effect string
+
 ---@class SceneManager
----@field gotoScene fun(scene: ScenePath)
+---@field gotoScene fun(scene: ScenePath, effect: Effect, time: Time)
 ---@field removeScene fun(scene: ScenePath)
 
 ---@alias ScenePath string
@@ -14,7 +16,7 @@ local composer = require "composer"
 ---@class SceneManagerSelf: SceneManagerAttributes, SceneManagerMethods
 
 ---@class SceneManagerMethods
----@field gotoScene fun(self: SceneManagerSelf, scene: ScenePath)
+---@field gotoScene fun(self: SceneManagerSelf, scene: ScenePath, effect: Effect, time: Time)
 ---@field removeScene fun(self: SceneManagerSelf, scene: ScenePath)
 
 ---@class SceneManagerPrototype
@@ -33,8 +35,10 @@ local SceneManager = Singleton {
     attributes = {},
 
     methods = {
-        gotoScene = function(_, scene)
-            composer.gotoScene(scene, { effect = "slideRight", time = 150 })
+        gotoScene = function(_, scene, effect, time)
+            local options = { effect = effect, time = time }
+
+            composer.gotoScene(scene, options)
         end,
 
         removeScene = function(_, scene)
