@@ -1,4 +1,6 @@
----@class ScoreCounter: Score
+---@class ScoreCounter
+---@field inc fun()
+---@field dec fun()
 
 ---@alias ScoreCounterClass fun(score: Score): ScoreCounter
 ---@alias ScoreCounterIdentificator string
