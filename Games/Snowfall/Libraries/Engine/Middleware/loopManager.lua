@@ -52,13 +52,23 @@ local LoopManager = Singleton {
         add = function(self, loop, id)
             self.loops[id] = loop
 
-            taskManager.addInfinite(loop.task, id)
-            eventManager.add(loop.event, id)
+            if loop.task ~= nil then
+                taskManager.addInfinite(loop.task, id)
+            end
+
+            if loop.event ~= nil then
+                eventManager.add(loop.event, id)
+            end
         end,
 
-        pause = function(_, id)
-            taskManager.pause(id)
-            eventManager.pause(id)
+        pause = function(self, id)
+            if self.loops[id] ~= nil and self.loops[id].task ~= nil then
+                taskManager.pause(id)
+            end
+
+            if self.loops[id] ~= nil and self.loops[id].event ~= nil then
+                eventManager.pause(id)
+            end
         end,
 
         pauseAll = function()
@@ -67,8 +77,13 @@ local LoopManager = Singleton {
         end,
 
         remove = function(self, id)
-            taskManager.remove(id)
-            eventManager.remove(id)
+            if self.loops[id] ~= nil and self.loops[id].task ~= nil then
+                taskManager.remove(id)
+            end
+
+            if self.loops[id] ~= nil and self.loops[id].event ~= nil then
+                eventManager.remove(id)
+            end
 
             self.loops[id] = nil
         end,
@@ -82,9 +97,14 @@ local LoopManager = Singleton {
             end)
         end,
 
-        resume = function(_, id)
-            taskManager.resume(id)
-            eventManager.resume(id)
+        resume = function(self, id)
+            if self.loops[id] ~= nil and self.loops[id].task ~= nil then
+                taskManager.resume(id)
+            end
+
+            if self.loops[id] ~= nil and self.loops[id].event ~= nil then
+                eventManager.resume(id)
+            end
         end,
 
         resumeAll = function()

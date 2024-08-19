@@ -89,20 +89,20 @@ local Score = Metaclass {
         local color = Color {
             red = 0,
             green = 0,
-            blue = 0
+            blue = 0,
         }
 
         local font = Font(Resources.Fonts.main)
         local title = Title(tostring(initialCount), font, color, 48)
 
         local coordinate = Coordinate {
-            x = display.contentCenterX,
-            y = 0
+            x = display.contentCenterX - display.pixelWidth / 5,
+            y = 0,
         }
 
         attributes.label = Label {
             title = title,
-            coordinate = coordinate
+            coordinate = coordinate,
         }
 
         attributes.score = initialCount

@@ -65,7 +65,7 @@ local Pause = Metaclass {
 
     initializer = function(attributes)
         local coordinate = Coordinate {
-            x = 50, y = display.contentHeight + 25
+            x = display.contentCenterX, y = display.contentHeight + 25
         }
 
         local size = Size {

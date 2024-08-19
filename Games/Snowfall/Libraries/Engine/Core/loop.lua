@@ -1,6 +1,6 @@
 ---@class Loop
 ---@field task Task
----@field event Event
+---@field event Event?
 
 ---@alias LoopClass fun(loop: Loop): Loop
 ---@alias LoopIdentificator string
