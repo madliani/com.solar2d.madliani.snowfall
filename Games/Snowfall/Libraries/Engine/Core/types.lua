@@ -15,7 +15,7 @@
 ---@field insert fun(self: Group, index: GroupItemIndex, item: GroupItem)
 ---@field remove fun(self: Group, index: GroupItemIndex)
 
----@alias Time integer
+---@alias Miliseconds integer
 ---@alias Path string
 ---@alias Rotation integer
 ---@alias Transparency integer

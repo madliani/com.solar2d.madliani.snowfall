@@ -3,7 +3,7 @@ local composer = require "composer"
 ---@alias Effect string
 
 ---@class SceneManager
----@field gotoScene fun(scene: ScenePath, effect: Effect, time: Time)
+---@field gotoScene fun(scene: ScenePath, effect: Effect, time: Miliseconds)
 ---@field removeScene fun(scene: ScenePath)
 
 ---@alias ScenePath string
@@ -16,7 +16,7 @@ local composer = require "composer"
 ---@class SceneManagerSelf: SceneManagerAttributes, SceneManagerMethods
 
 ---@class SceneManagerMethods
----@field gotoScene fun(self: SceneManagerSelf, scene: ScenePath, effect: Effect, time: Time)
+---@field gotoScene fun(self: SceneManagerSelf, scene: ScenePath, effect: Effect, time: Miliseconds)
 ---@field removeScene fun(self: SceneManagerSelf, scene: ScenePath)
 
 ---@class SceneManagerPrototype
