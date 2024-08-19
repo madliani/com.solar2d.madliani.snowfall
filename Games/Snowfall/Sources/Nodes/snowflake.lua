@@ -65,7 +65,12 @@ local Snowflake = Metaclass {
         end,
 
         destroy = function(self)
-            if self.image ~= nil and self.sceneGroup ~= nil and self.sceneGroup.remove ~= nil and self.image.removeSelf ~= nil then
+            if
+                self.image ~= nil
+                and self.sceneGroup ~= nil
+                and self.sceneGroup.remove ~= nil
+                and self.image.removeSelf ~= nil
+            then
                 self.sceneGroup.remove(self.sceneGroup, self.image)
                 self.image.removeSelf(self.image)
             end

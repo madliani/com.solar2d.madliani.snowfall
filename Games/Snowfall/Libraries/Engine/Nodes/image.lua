@@ -95,14 +95,14 @@ local Image = Metaclass {
         getAnchor = function(self)
             return Anchor {
                 x = self.image.anchorX,
-                y = self.image.anchorY
+                y = self.image.anchorY,
             }
         end,
 
         getCoordinate = function(self)
             return Coordinate {
                 x = self.image.x,
-                y = self.image.y
+                y = self.image.y,
             }
         end,
 
@@ -113,14 +113,14 @@ local Image = Metaclass {
         getScale = function(self)
             return Scale {
                 x = self.image.xScale,
-                y = self.image.yScale
+                y = self.image.yScale,
             }
         end,
 
         getSize = function(self)
             return Size {
                 width = self.image.width,
-                height = self.image.height
+                height = self.image.height,
             }
         end,
 

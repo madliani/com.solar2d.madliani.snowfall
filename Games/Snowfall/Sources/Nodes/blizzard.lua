@@ -81,17 +81,17 @@ local Blizzard = Metaclass {
 
             local task = Task {
                 action = generate,
-                time = 500
+                time = 500,
             }
 
             local event = Event {
                 action = update,
-                type = "enterFrame"
+                type = "enterFrame",
             }
 
             local loop = Loop {
                 task = task,
-                event = event
+                event = event,
             }
 
             local loopManager = LoopManager()

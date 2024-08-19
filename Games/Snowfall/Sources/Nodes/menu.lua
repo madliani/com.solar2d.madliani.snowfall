@@ -75,19 +75,19 @@ local Menu = Metaclass {
             local color = Color {
                 red = 0,
                 green = 0,
-                blue = 0
+                blue = 0,
             }
 
             local size = Size {
                 width = 190,
-                height = 45
+                height = 45,
             }
 
             local title = Title(items[i].text, font, color, 24)
 
             local coordinate = Coordinate {
                 x = display.contentCenterX,
-                y = 150 + gap * step
+                y = 150 + gap * step,
             }
 
             local button = Button {
@@ -95,7 +95,7 @@ local Menu = Metaclass {
                 title = title,
                 size = size,
                 coordinate = coordinate,
-                event = items[i].event
+                event = items[i].event,
             }
 
             table.insert(buttonGroup, button)

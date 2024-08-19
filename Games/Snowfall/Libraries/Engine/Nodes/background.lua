@@ -74,12 +74,12 @@ local Background = Metaclass {
             path = path,
             size = Size {
                 width = display.pixelWidth,
-                height = display.pixelHeight
+                height = display.pixelHeight,
             },
             coordinate = Coordinate {
                 x = display.contentCenterX,
-                y = display.contentCenterY
-            }
+                y = display.contentCenterY,
+            },
         }
     end,
 }

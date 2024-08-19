@@ -73,12 +73,12 @@ local Heading = Metaclass {
         local blackColor = Color {
             red = 1,
             green = 1,
-            blue = 1
+            blue = 1,
         }
 
         local coordinate = Coordinate {
             x = display.contentCenterX,
-            y = display.contentCenterY - 200
+            y = display.contentCenterY - 200,
         }
 
         local size = 48
@@ -86,7 +86,7 @@ local Heading = Metaclass {
 
         attributes.label = Label {
             title = title,
-            coordinate = coordinate
+            coordinate = coordinate,
         }
     end,
 

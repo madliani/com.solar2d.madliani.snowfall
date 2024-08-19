@@ -65,12 +65,13 @@ local Pause = Metaclass {
 
     initializer = function(attributes)
         local coordinate = Coordinate {
-            x = display.contentCenterX, y = display.contentHeight + 25
+            x = display.contentCenterX,
+            y = display.contentHeight + 25,
         }
 
         local size = Size {
             width = 25,
-            height = 25
+            height = 25,
         }
 
         local path = Resources.Images.transparrentPause
@@ -79,14 +80,14 @@ local Pause = Metaclass {
             action = function()
                 Snowfall.pause(paths.Scenes.pauseMenu)
             end,
-            type = "tap"
+            type = "tap",
         }
 
         attributes.image = Image {
             path = path,
             coordinate = coordinate,
             size = size,
-            event = event
+            event = event,
         }
     end,
 
