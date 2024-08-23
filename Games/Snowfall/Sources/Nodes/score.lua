@@ -86,7 +86,7 @@ local Score = Metaclass {
     },
 
     initializer = function(attributes, initialCount)
-        local color = Color {
+        local whiteColor = Color {
             red = 0,
             green = 0,
             blue = 0,
@@ -97,7 +97,7 @@ local Score = Metaclass {
         local title = Title {
             text = tostring(initialCount),
             font = architectsDaughterFont,
-            color = color,
+            color = whiteColor,
             size = 48,
         }
 

@@ -75,7 +75,7 @@ local Time = Metaclass {
         local seconds = initialTime / 100 % 60
         local time = string.format("%i:%i", minutes, seconds)
 
-        local color = Color {
+        local whiteColor = Color {
             red = 0,
             green = 0,
             blue = 0,
@@ -86,7 +86,7 @@ local Time = Metaclass {
         local title = Title {
             text = tostring(time),
             font = architectsDaughterFont,
-            color = color,
+            color = whiteColor,
             size = 48,
         }
 

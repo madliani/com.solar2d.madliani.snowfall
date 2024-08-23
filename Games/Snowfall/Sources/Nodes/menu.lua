@@ -72,7 +72,7 @@ local Menu = Metaclass {
             local gap = 100
             local architectsDaughterFont = Font(Resources.Fonts.architectsDaughter)
 
-            local color = Color {
+            local whiteColor = Color {
                 red = 0,
                 green = 0,
                 blue = 0,
@@ -86,7 +86,7 @@ local Menu = Metaclass {
             local title = Title {
                 text = items[i].text,
                 font = architectsDaughterFont,
-                color = color,
+                color = whiteColor,
                 size = 24,
             }
 
