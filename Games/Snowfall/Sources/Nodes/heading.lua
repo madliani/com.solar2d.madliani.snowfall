@@ -82,7 +82,12 @@ local Heading = Metaclass {
         }
 
         local size = 48
-        local title = Title(text, architectsDaughterFont, blackColor, size)
+        local title = Title {
+            text = text,
+            font = architectsDaughterFont,
+            color = blackColor,
+            size = size,
+        }
 
         attributes.label = Label {
             title = title,

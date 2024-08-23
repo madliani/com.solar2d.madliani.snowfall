@@ -93,7 +93,12 @@ local Score = Metaclass {
         }
 
         local font = Font(Resources.Fonts.main)
-        local title = Title(tostring(initialCount), font, color, 48)
+        local title = Title {
+            text = tostring(initialCount),
+            font = font,
+            color = color,
+            size = 48,
+        }
 
         local coordinate = Coordinate {
             x = display.contentCenterX - display.pixelWidth / 5,

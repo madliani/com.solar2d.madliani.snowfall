@@ -4,13 +4,24 @@
 ---@field color Color
 ---@field size integer
 
-local Title = function(text, font, color, size)
-    return {
-        text = text,
-        font = font,
-        color = color,
-        size = size,
-    }
-end
+---@alias TitleClass fun(title: Title): Title
+---@alias TitleIdentificator string
+
+---@class TitlePrototype
+---@field id TitleIdentificator
+---@field maker fun(title: Title): Title
+
+---@alias TitleContainer fun(prototype: TitlePrototype): TitleClass
+
+---@type TitleContainer
+local Container = require "Libraries.Prelude.container"
+
+local Title = Container {
+    id = "title",
+
+    maker = function(title)
+        return title
+    end,
+}
 
 return Title

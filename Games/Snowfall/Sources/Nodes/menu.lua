@@ -83,7 +83,12 @@ local Menu = Metaclass {
                 height = 45,
             }
 
-            local title = Title(items[i].text, font, color, 24)
+            local title = Title {
+                text = items[i].text,
+                font = font,
+                color = color,
+                size = 24,
+            }
 
             local coordinate = Coordinate {
                 x = display.contentCenterX,

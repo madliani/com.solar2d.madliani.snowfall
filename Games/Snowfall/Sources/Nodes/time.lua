@@ -82,7 +82,12 @@ local Time = Metaclass {
         }
 
         local font = Font(Resources.Fonts.main)
-        local title = Title(tostring(time), font, color, 48)
+        local title = Title {
+            text = tostring(time),
+            font = font,
+            color = color,
+            size = 48,
+        }
 
         local coordinate = Coordinate {
             x = display.contentCenterX + display.pixelWidth / 5,
