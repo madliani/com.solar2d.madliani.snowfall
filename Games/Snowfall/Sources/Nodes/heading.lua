@@ -69,6 +69,7 @@ local Heading = Metaclass {
 
     initializer = function(attributes, text)
         local architectsDaughterFont = Font(Resources.Fonts.architectsDaughter)
+        local size = 48
 
         local blackColor = Color {
             blue = 1,
@@ -76,18 +77,16 @@ local Heading = Metaclass {
             red = 1,
         }
 
-        local coordinate = Coordinate {
-            x = display.contentCenterX,
-            y = display.contentCenterY - 200,
-        }
-
-        local size = 48
-
         local title = Title {
             color = blackColor,
             font = architectsDaughterFont,
             size = size,
             text = text,
+        }
+
+        local coordinate = Coordinate {
+            x = display.contentCenterX,
+            y = display.contentCenterY - 200,
         }
 
         attributes.label = Label {

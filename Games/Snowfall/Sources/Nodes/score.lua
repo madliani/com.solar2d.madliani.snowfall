@@ -86,13 +86,13 @@ local Score = Metaclass {
     },
 
     initializer = function(attributes, initialCount)
+        local architectsDaughterFont = Font(Resources.Fonts.architectsDaughter)
+
         local whiteColor = Color {
             blue = 0,
             green = 0,
             red = 0,
         }
-
-        local architectsDaughterFont = Font(Resources.Fonts.architectsDaughter)
 
         local title = Title {
             color = whiteColor,

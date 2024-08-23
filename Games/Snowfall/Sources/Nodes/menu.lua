@@ -70,17 +70,13 @@ local Menu = Metaclass {
         for i = 1, #items, 1 do
             local step = i - 1
             local gap = 100
+
             local architectsDaughterFont = Font(Resources.Fonts.architectsDaughter)
 
             local whiteColor = Color {
                 blue = 0,
                 green = 0,
                 red = 0,
-            }
-
-            local size = Size {
-                height = 45,
-                width = 190,
             }
 
             local title = Title {
@@ -93,6 +89,11 @@ local Menu = Metaclass {
             local coordinate = Coordinate {
                 x = display.contentCenterX,
                 y = 150 + gap * step,
+            }
+
+            local size = Size {
+                height = 45,
+                width = 190,
             }
 
             local button = Button {
