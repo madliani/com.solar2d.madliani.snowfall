@@ -1,6 +1,6 @@
 return {
     Fonts = {
-        main = "Assets/Fonts/architects_daughter_regular.ttf",
+        architectsDaughter = "Assets/Fonts/architects_daughter_regular.ttf",
     },
     Images = {
         background = "Assets/Images/background.png",

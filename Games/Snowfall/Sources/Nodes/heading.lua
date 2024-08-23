@@ -68,7 +68,7 @@ local Heading = Metaclass {
     },
 
     initializer = function(attributes, text)
-        local architectsDaughterFont = Font(Resources.Fonts.main)
+        local architectsDaughterFont = Font(Resources.Fonts.architectsDaughter)
 
         local blackColor = Color {
             red = 1,

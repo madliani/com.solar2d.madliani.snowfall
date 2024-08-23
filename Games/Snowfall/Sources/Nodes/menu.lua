@@ -70,7 +70,7 @@ local Menu = Metaclass {
         for i = 1, #items, 1 do
             local step = i - 1
             local gap = 100
-            local font = Font(Resources.Fonts.main)
+            local font = Font(Resources.Fonts.architectsDaughter)
 
             local color = Color {
                 red = 0,
