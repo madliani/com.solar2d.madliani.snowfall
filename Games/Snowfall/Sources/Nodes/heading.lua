@@ -71,9 +71,9 @@ local Heading = Metaclass {
         local architectsDaughterFont = Font(Resources.Fonts.architectsDaughter)
 
         local blackColor = Color {
-            red = 1,
-            green = 1,
             blue = 1,
+            green = 1,
+            red = 1,
         }
 
         local coordinate = Coordinate {
@@ -84,15 +84,15 @@ local Heading = Metaclass {
         local size = 48
 
         local title = Title {
-            text = text,
-            font = architectsDaughterFont,
             color = blackColor,
+            font = architectsDaughterFont,
             size = size,
+            text = text,
         }
 
         attributes.label = Label {
-            title = title,
             coordinate = coordinate,
+            title = title,
         }
     end,
 

@@ -76,18 +76,18 @@ local Time = Metaclass {
         local time = string.format("%i:%i", minutes, seconds)
 
         local whiteColor = Color {
-            red = 0,
-            green = 0,
             blue = 0,
+            green = 0,
+            red = 0,
         }
 
         local architectsDaughterFont = Font(Resources.Fonts.architectsDaughter)
 
         local title = Title {
-            text = tostring(time),
-            font = architectsDaughterFont,
             color = whiteColor,
+            font = architectsDaughterFont,
             size = 48,
+            text = tostring(time),
         }
 
         local coordinate = Coordinate {
@@ -96,8 +96,8 @@ local Time = Metaclass {
         }
 
         attributes.label = Label {
-            title = title,
             coordinate = coordinate,
+            title = title,
         }
 
         attributes.time = time

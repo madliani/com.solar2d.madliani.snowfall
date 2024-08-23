@@ -73,21 +73,21 @@ local Menu = Metaclass {
             local architectsDaughterFont = Font(Resources.Fonts.architectsDaughter)
 
             local whiteColor = Color {
-                red = 0,
-                green = 0,
                 blue = 0,
+                green = 0,
+                red = 0,
             }
 
             local size = Size {
-                width = 190,
                 height = 45,
+                width = 190,
             }
 
             local title = Title {
-                text = items[i].text,
-                font = architectsDaughterFont,
                 color = whiteColor,
+                font = architectsDaughterFont,
                 size = 24,
+                text = items[i].text,
             }
 
             local coordinate = Coordinate {
@@ -96,11 +96,11 @@ local Menu = Metaclass {
             }
 
             local button = Button {
-                path = Resources.Images.yellowButton,
-                title = title,
-                size = size,
                 coordinate = coordinate,
                 event = items[i].event,
+                path = Resources.Images.yellowButton,
+                size = size,
+                title = title,
             }
 
             table.insert(buttonGroup, button)
