@@ -92,10 +92,11 @@ local Score = Metaclass {
             blue = 0,
         }
 
-        local font = Font(Resources.Fonts.architectsDaughter)
+        local architectsDaughterFont = Font(Resources.Fonts.architectsDaughter)
+
         local title = Title {
             text = tostring(initialCount),
-            font = font,
+            font = architectsDaughterFont,
             color = color,
             size = 48,
         }

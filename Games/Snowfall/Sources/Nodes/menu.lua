@@ -70,7 +70,7 @@ local Menu = Metaclass {
         for i = 1, #items, 1 do
             local step = i - 1
             local gap = 100
-            local font = Font(Resources.Fonts.architectsDaughter)
+            local architectsDaughterFont = Font(Resources.Fonts.architectsDaughter)
 
             local color = Color {
                 red = 0,
@@ -85,7 +85,7 @@ local Menu = Metaclass {
 
             local title = Title {
                 text = items[i].text,
-                font = font,
+                font = architectsDaughterFont,
                 color = color,
                 size = 24,
             }

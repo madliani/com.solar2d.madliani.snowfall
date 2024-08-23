@@ -82,6 +82,7 @@ local Heading = Metaclass {
         }
 
         local size = 48
+
         local title = Title {
             text = text,
             font = architectsDaughterFont,
