@@ -5,7 +5,7 @@ local Resources = require "resources"
 local Size = require "Libraries.Engine.Core.size"
 local Snowfall = require "Sources.snowfall"
 local display = require "display"
-local paths = require "Sources.paths"
+local Paths = require "Sources.paths"
 
 ---@class Pause: Image
 
@@ -78,7 +78,7 @@ local Pause = Metaclass {
 
         local event = Event {
             action = function()
-                Snowfall.pause(paths.Scenes.pauseMenu)
+                Snowfall.pause(Paths.Scenes.pauseMenu)
             end,
             type = "tap",
         }
