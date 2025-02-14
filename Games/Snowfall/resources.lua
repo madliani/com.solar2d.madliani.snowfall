@@ -8,7 +8,7 @@ return {
         dropdownMiddle = "Assets/Images/dropdown_middle.png",
         dropdownTop = "Assets/Images/dropdown_top.png",
         snowflake = "Assets/Images/snowflake.png",
-        transparrentPause = "Assets/Images/transparent_pause.png",
+        transparentPause = "Assets/Images/transparent_pause.png",
         yellowButton = "Assets/Images/yellow_button.png",
     },
     Musics = {

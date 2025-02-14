@@ -1,11 +1,11 @@
 local Coordinate = require "Libraries.Engine.Core.coordinate"
 local Event = require "Libraries.Engine.Core.event"
 local Image = require "Libraries.Engine.Nodes.image"
+local Paths = require "Sources.paths"
 local Resources = require "resources"
 local Size = require "Libraries.Engine.Core.size"
 local Snowfall = require "Sources.snowfall"
 local display = require "display"
-local Paths = require "Sources.paths"
 
 ---@class Pause: Image
 
@@ -74,7 +74,7 @@ local Pause = Metaclass {
             height = 25,
         }
 
-        local path = Resources.Images.transparrentPause
+        local path = Resources.Images.transparentPause
 
         local event = Event {
             action = function()
