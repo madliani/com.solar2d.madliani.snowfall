@@ -1,7 +1,7 @@
 local Background = require "Libraries.Engine.Nodes.background"
 local Blizzard = require "Sources.Nodes.blizzard"
 local Pause = require "Sources.Nodes.pause"
-local Resources = require "resources"
+local Resources = require "Sources.resources"
 local Scene = require "Libraries.Engine.Core.scene"
 local Score = require "Sources.Nodes.score"
 local ScoreCounter = require "Sources.Middleware.scoreCounter"
