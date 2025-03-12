@@ -11,6 +11,8 @@
 
 ## Screenshots
 
-![Snowfall main menu](./Assets/snowfall_main_menu.jpg)
-![Snowfall pause menu](./Assets/snowfall_pause_menu.jpg)
-![Snowfall gameplay](./Assets/snowfall_gameplay.jpg)
+<div align="center">
+    <img src="./Assets/snowfall_main_menu.jpg" alt="Snowfall main menu">
+    <img src="./Assets/snowfall_pause_menu.jpg" alt="Snowfall pause menu">
+    <img src="./Assets/snowfall_gameplay.jpg" alt="Snowfall gameplay">
+</div>
