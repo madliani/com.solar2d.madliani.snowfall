@@ -11,6 +11,6 @@
 
 ## Screenshots
 
-![Snowfall main menu](./snowfall_main_menu.jpg)
-![Snowfall pause menu](./snowfall_pause_menu.jpg)
-![Snowfall gameplay](./snowfall_gameplay.jpg)
+![Snowfall main menu](./Assets/snowfall_main_menu.jpg)
+![Snowfall pause menu](./Assets/snowfall_pause_menu.jpg)
+![Snowfall gameplay](./Assets/snowfall_gameplay.jpg)
