@@ -1,10 +1,10 @@
 local Coordinate = require "Libraries.Engine.Core.coordinate"
 local Event = require "Libraries.Engine.Core.event"
 local Image = require "Libraries.Engine.Nodes.image"
-local Paths = require "Sources.paths"
-local Resources = require "Sources.resources"
+local Paths = require "Sources.Game.paths"
+local Resources = require "Sources.Game.resources"
 local Size = require "Libraries.Engine.Core.size"
-local Snowfall = require "Sources.snowfall"
+local Snowfall = require "Sources.Game.snowfall"
 local display = require "display"
 
 ---@class Pause: Image

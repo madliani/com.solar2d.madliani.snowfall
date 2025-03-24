@@ -1,8 +1,8 @@
 local Event = require "Libraries.Engine.Core.event"
 local Loop = require "Libraries.Engine.Core.loop"
 local LoopManager = require "Libraries.Engine.Middleware.loopManager"
-local Resources = require "Sources.resources"
-local Snowflake = require "Sources.Nodes.snowflake"
+local Resources = require "Sources.Game.resources"
+local Snowflake = require "Sources.Game.Nodes.snowflake"
 local Task = require "Libraries.Engine.Core.task"
 
 ---@class Blizzard

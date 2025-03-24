@@ -1,6 +1,6 @@
 local Loop = require "Libraries.Engine.Core.loop"
 local LoopManager = require "Libraries.Engine.Middleware.loopManager"
-local Snowfall = require "Sources.snowfall"
+local Snowfall = require "Sources.Game.snowfall"
 local Task = require "Libraries.Engine.Core.task"
 local string = require "string"
 

@@ -1,12 +1,12 @@
 local Background = require "Libraries.Engine.Nodes.background"
-local Blizzard = require "Sources.Nodes.blizzard"
-local Pause = require "Sources.Nodes.pause"
-local Resources = require "Sources.resources"
+local Blizzard = require "Sources.Game.Nodes.blizzard"
+local Pause = require "Sources.Game.Nodes.pause"
+local Resources = require "Sources.Game.resources"
 local Scene = require "Libraries.Engine.Core.scene"
-local Score = require "Sources.Nodes.score"
-local ScoreCounter = require "Sources.Middleware.scoreCounter"
-local Time = require "Sources.Nodes.time"
-local TimeCounter = require "Sources.Middleware.timeCounter"
+local Score = require "Sources.Game.Nodes.score"
+local ScoreCounter = require "Sources.Game.Middleware.scoreCounter"
+local Time = require "Sources.Game.Nodes.time"
+local TimeCounter = require "Sources.Game.Middleware.timeCounter"
 
 local background = Background(Resources.Images.background)
 local score = Score(0)

@@ -1,29 +1,31 @@
 local Background = require "Libraries.Engine.Nodes.background"
-local Heading = require "Sources.Nodes.heading"
-local Menu = require "Sources.Nodes.menu"
-local Paths = require "Sources.paths"
-local Resources = require "Sources.resources"
+local Heading = require "Sources.Game.Nodes.heading"
+local Menu = require "Sources.Game.Nodes.menu"
+local Paths = require "Sources.Game.paths"
+local Resources = require "Sources.Game.resources"
 local Scene = require "Libraries.Engine.Core.scene"
-local Snowfall = require "Sources.snowfall"
+local Snowfall = require "Sources.Game.snowfall"
 
 local background = Background(Resources.Images.background)
 local heading = Heading "Snowfall"
 
 local menu = Menu {
     {
-        text = "Start Game",
+        text = "Resume Game",
         event = {
             type = "tap",
             action = function()
-                Snowfall.start(Paths.Scenes.startMenu, Paths.Scenes.world)
+                Snowfall.resume(Paths.Scenes.pauseMenu, Paths.Scenes.world)
             end,
         },
     },
     {
-        text = "About Game",
+        text = "Restart Game",
         event = {
             type = "tap",
-            action = function() end,
+            action = function()
+                Snowfall.restart(Paths.Scenes.pauseMenu, Paths.Scenes.world)
+            end,
         },
     },
     {
