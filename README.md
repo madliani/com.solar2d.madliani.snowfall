@@ -14,7 +14,7 @@ Welcome to Snowfall, a delightful game where you can experience the magic of sno
 ## Screenshots
 
 <div align="center">
-    <img src="./Assets/snowfall_main_menu.jpg" alt="Snowfall main menu">
-    <img src="./Assets/snowfall_pause_menu.jpg" alt="Snowfall pause menu">
     <img src="./Assets/snowfall_gameplay.jpg" alt="Snowfall gameplay">
+    <img src="./Assets/snowfall_pause_menu.jpg" alt="Snowfall pause menu">
+    <img src="./Assets/snowfall_main_menu.jpg" alt="Snowfall main menu">
 </div>
